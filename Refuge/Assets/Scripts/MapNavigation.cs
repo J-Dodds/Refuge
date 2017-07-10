@@ -27,12 +27,12 @@ public class MapNavigation : MonoBehaviour
         //Set start point
         refugeeObject.transform.position = mapNodes[0].transform.position;
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-		
-	}
+
+    }
 }
 
 
