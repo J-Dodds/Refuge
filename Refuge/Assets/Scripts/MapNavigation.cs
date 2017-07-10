@@ -8,7 +8,7 @@ public class MapNavigation : MonoBehaviour
     public GameObject[] mapNodes;
     public GameObject refugeeObject;
 
-    private int currentLocation = 0;
+    public int currentLocation = 0;
 
 	// Use this for initialization
 	void Start ()
