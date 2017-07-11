@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
     Character[] characters;
     ScreenType currentScreen = ScreenType.stHubMap;
     public Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
+    GameObject charUI;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour {
         screens.Add(ScreenType.stPause, GameObject.FindGameObjectWithTag("ScreenPause"));
         screens.Add(ScreenType.stOptions, GameObject.FindGameObjectWithTag("ScreenOptions"));
         screens.Add(ScreenType.stCredits, GameObject.FindGameObjectWithTag("ScreenCredits"));
+        charUI = GameObject.Find("CharacterUI");
 
         for (int index = 0; index < screens.Count; ++index)
             screens[(ScreenType)index].SetActive(false);
@@ -70,5 +72,11 @@ public class GameManager : MonoBehaviour {
         screens[currentScreen].SetActive(false);
         screens[newScreen].SetActive(true);
         currentScreen = newScreen;
+
+        if (newScreen == ScreenType.stHubMap || newScreen == ScreenType.stEncounter || newScreen == ScreenType.stLocation || newScreen == ScreenType.stWorldMap)
+            charUI.SetActive(true);
+        else
+            charUI.SetActive(false);
+
     }
 }
