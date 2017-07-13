@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
         stCredits = 7,
     };
 
-    Character[] characters;
+    public Character[] characters;
     ScreenType currentScreen = ScreenType.stHubMap;
     public Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
     GameObject charUI;
