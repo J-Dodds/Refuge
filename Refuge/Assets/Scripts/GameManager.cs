@@ -19,9 +19,12 @@ public class GameManager : MonoBehaviour {
     ScreenType currentScreen = ScreenType.stHubMap;
     public Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
     GameObject charUI;
+    public GameObject carryingItem;
+    public float lastClickTime;
+    public bool clicking = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		//screens.Add(ScreenType.stHubMap, GameObject.FindGameObjectWithTag("ScreenHubMap"));
         screens.Add(ScreenType.stHubMap, GameObject.FindGameObjectWithTag("ScreenHubMap"));
         screens.Add(ScreenType.stWorldMap, GameObject.FindGameObjectWithTag("ScreenWorldMap"));

@@ -23,6 +23,7 @@ public class Item : MonoBehaviour {
 
     public ItemType itemType;
     public bool carry;
+    public Sprite itemSprite;
 
 	// Use this for initialization
 	void Start () {
