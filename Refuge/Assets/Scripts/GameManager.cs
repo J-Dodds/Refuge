@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
     public GameObject carryingItem;
     public float lastClickTime;
     public bool clicking = false;
+    public int partyMoney;
 
     // Use this for initialization
     void Start () {
@@ -39,17 +40,12 @@ public class GameManager : MonoBehaviour {
         for (int index = 0; index < screens.Count; ++index)
             screens[(ScreenType)index].SetActive(false);
         screens[ScreenType.stHubMap].SetActive(true);
-
-        
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKey(KeyCode.UpArrow)) {
             ChangeScreen((ScreenType)Random.Range(0, 7));
-        }
-        else if (Input.GetKey(KeyCode.RightArrow)) {
-
         }
 	}
 
@@ -67,8 +63,15 @@ public class GameManager : MonoBehaviour {
                 chara = character;
             }
         }
-
         return chara;
+    }
+
+    public void AddMoney(int modifier) {
+        partyMoney += modifier;
+    }
+
+    public int GetMoney() {
+        return partyMoney;
     }
 
     void ChangeScreen(ScreenType newScreen) {
@@ -80,6 +83,5 @@ public class GameManager : MonoBehaviour {
             charUI.SetActive(true);
         else
             charUI.SetActive(false);
-
     }
 }
