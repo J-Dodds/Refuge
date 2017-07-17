@@ -48,9 +48,6 @@ public class GameManager : MonoBehaviour {
 		if (Input.GetKey(KeyCode.UpArrow)) {
             ChangeScreen((ScreenType)Random.Range(0, 7));
         }
-        else if (Input.GetKey(KeyCode.RightArrow)) {
-
-        }
 	}
 
     Character WealthiestChar(Item.ItemType itemType) {
