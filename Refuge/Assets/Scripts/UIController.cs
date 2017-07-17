@@ -8,6 +8,9 @@ public class UIController : MonoBehaviour {
     public GameManager _GameManager;
     public Sprite emptyInv;
     public List<UIChar> uiCharacters = new List<UIChar>();
+    public Text partyMoney;
+    public InputField moneyModifier;
+    public Button addMoney;
 
 	// Use this for initialization
 	void Start () {
@@ -53,5 +56,14 @@ public class UIController : MonoBehaviour {
                     uiCharacters[index].chara.inventory[a] = null;
             }
         }
+    }
+
+    public void OnClickMoney() {
+        int modifier;
+        if(int.TryParse(moneyModifier.text, out modifier))
+            _GameManager.AddMoney(modifier);
+        else
+            Debug.Log("Please enter a valid value");
+        partyMoney.text = "Cash: " + _GameManager.GetMoney().ToString();
     }
 }
