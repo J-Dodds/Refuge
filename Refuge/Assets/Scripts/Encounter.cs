@@ -30,14 +30,18 @@ public class Encounter : MonoBehaviour {
         if (currentItem.nextItem[0]) {
             currentItem = currentItem.nextItem[Encounter];
             encounterText.text = currentItem.message;
-            for (int index = 0; index < currentItem.nextItem.Count; ++index) {
-                decButtons[index].gameObject.SetActive(true);
-                decButtons[index].GetComponentInChildren<Text>().text = currentItem.nextItem[index].decisionText;
+            for (int index = 0; index < decButtons.Count; ++index) {
+                decButtons[index].gameObject.SetActive(false);
+                if (index < currentItem.nextItem.Count) {
+                    decButtons[index].gameObject.SetActive(true);
+                    decButtons[index].GetComponentInChildren<Text>().text = currentItem.nextItem[index].decisionText;
+                }
             }
 
             _GameManager.AddMoney(currentItem.moneyToGive);
             partyMoney.text = "Cash: " + _GameManager.GetMoney().ToString();
 
+            slot.gameObject.SetActive(false);
             if (currentItem.itemToGive) {
                 slot.gameObject.SetActive(true);
                 slot.item = currentItem.itemToGive.gameObject;
