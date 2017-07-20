@@ -29,7 +29,8 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
-    List<AudioChannel> channels = new List<AudioChannel>();
+    public List<AudioChannel> channels = new List<AudioChannel>();
+    public float masterVolume = 1;
 
     public void CreateChannel(string name) {
         AudioChannel channel = new AudioChannel(name);
@@ -48,7 +49,7 @@ public class AudioManager : MonoBehaviour {
         channel.Add(source);
         source.clip = clip;
         source.loop = loop;
-        source.volume = volume * channel.volume;
+        source.volume = masterVolume * volume * channel.volume;
         source.Play();
         Destroy(source, clip.length);
     }

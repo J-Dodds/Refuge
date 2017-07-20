@@ -66,4 +66,20 @@ public class UIController : MonoBehaviour {
             Debug.Log("Please enter a valid value");
         partyMoney.text = "Cash: " + _GameManager.GetMoney().ToString();
     }
+
+    public void ChangeSFXVolume(float vol) {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().GetChannel("SFX").volume = vol;
+    }
+
+    public void ChangeMusicVolume(float vol) {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().GetChannel("Music").volume = vol;
+    }
+
+    public void ChangeAmbientVolume(float vol) {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().GetChannel("Ambient").volume = vol;
+    }
+
+    public void ChangeMasterVolume(float vol) {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().masterVolume = vol;
+    }
 }
