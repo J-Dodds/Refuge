@@ -17,7 +17,7 @@ public class UIController : MonoBehaviour {
 		_GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         for (int index = 0; index < _GameManager.characters.Length; ++index) {
             uiCharacters[index].GetComponent<UIChar>().chara = _GameManager.characters[index];
-            uiCharacters[index].GetComponent<Image>().sprite = _GameManager.characters[index].sprite;
+            uiCharacters[index].GetComponentInChildren<Image>().sprite = _GameManager.characters[index].sprite;
             for (int a = 0; a < _GameManager.characters[index].inventory.Length; ++a) {
                 if (_GameManager.characters[index].inventory[a]) {
                     uiCharacters[index].inventory[a].GetComponent<Image>().sprite = _GameManager.characters[index].inventory[a].itemSprite;
