@@ -94,4 +94,16 @@ public class GameManager : MonoBehaviour {
         else
             charUI.SetActive(false);
     }
+
+    public void ChangeScreen(int iNewScreen) {
+        ScreenType newScreen = (ScreenType)iNewScreen;
+        screens[currentScreen].SetActive(false);
+        screens[newScreen].SetActive(true);
+        currentScreen = newScreen;
+
+        if (newScreen == ScreenType.stHubMap || newScreen == ScreenType.stEncounter || newScreen == ScreenType.stLocation || newScreen == ScreenType.stWorldMap)
+            charUI.SetActive(true);
+        else
+            charUI.SetActive(false);
+    }
 }
