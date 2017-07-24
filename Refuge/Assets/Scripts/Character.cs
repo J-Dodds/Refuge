@@ -66,4 +66,16 @@ public class Character : MonoBehaviour {
                 break;
         }
     }
+
+    public void AddItem(GameObject item) {
+        for (int index = 0; index < inventory.Length; ++index) {
+            if (inventory[index] == null) {
+                inventory[index] = item.GetComponent<Item>();
+                uiChar.inventory[index].GetComponent<InventorySlot>().item = item;
+                uiChar.inventory[index].GetComponent<Image>().sprite = item.GetComponent<Item>().itemSprite;
+                break;
+            }
+        }
+        GameObject.Find("UIController").GetComponent<UIController>().RefreshInventory();
+    }
 }

@@ -47,6 +47,10 @@ public class UIController : MonoBehaviour {
             slot.GetComponent<Image>().sprite = emptyInv;
         }
         // Update all slots
+        RefreshInventory();
+    }
+
+    public void RefreshInventory() {
         for (int index = 0; index < uiCharacters.Count; ++index) {
             for (int a = 0; a < uiCharacters[index].inventory.Length; ++a) {
                 if (uiCharacters[index].inventory[a].GetComponent<InventorySlot>().item) {

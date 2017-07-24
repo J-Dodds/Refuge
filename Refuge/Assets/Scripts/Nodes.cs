@@ -8,6 +8,7 @@ public class Nodes : MonoBehaviour
     public MapNavigation mapNavigation;
 
     public GameObject clinicUI;
+    public GameObject marketUI;
 
     Locations.LocationType currentNode;
 
@@ -56,6 +57,11 @@ public class Nodes : MonoBehaviour
             if (GetComponent<Locations>().locationType == Locations.LocationType.LTclinic)
             {
                 clinicUI.SetActive(true);
+            }
+
+            if(GetComponent<Locations>().locationType == Locations.LocationType.LTmarketplace)
+            {
+                marketUI.SetActive(true);
             }
         }
 
