@@ -6,7 +6,6 @@ public class Nodes : MonoBehaviour
 {
     public int nodeNumber = -1;
     public MapNavigation mapNavigation;
-    public Events events;
 
     public GameObject clinicUI;
 
@@ -46,10 +45,9 @@ public class Nodes : MonoBehaviour
             clinicUI.SetActive(false);
         }
 
-        //Move to node on button click
-        events.isMoving = true;
-        mapNavigation.currentLocation = GetComponent<Nodes>().nodeNumber - 1;
-        mapNavigation.refugeeObject.transform.position = mapNavigation.mapNodes[GetComponent<Nodes>().nodeNumber - 1].transform.position;
+            mapNavigation.currentLocation = GetComponent<Nodes>().nodeNumber - 1;
+            mapNavigation.refugeeObject.transform.position = mapNavigation.mapNodes[GetComponent<Nodes>().nodeNumber - 1].transform.position;
+    
 
         //What type of node is it?
         if(GetComponent<Locations>().locationType == Locations.LocationType.LTclinic)
