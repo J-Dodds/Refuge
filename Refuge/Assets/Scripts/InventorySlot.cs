@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandler {
+public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IDragHandler {
 
     public GameObject item;
     GameManager _GameManager;
@@ -27,7 +27,13 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
         }
     }
 
-
+    void IDragHandler.OnDrag(PointerEventData eventData) {
+        if (!_GameManager.clicking) {
+            GameObject.Find("UIController").GetComponent<UIController>().OnClickInventory(this.gameObject);
+            _GameManager.lastClickTime = Time.time;
+            _GameManager.clicking = true;
+        }
+    }
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData) {
         GameObject slot = eventData.pointerCurrentRaycast.gameObject;

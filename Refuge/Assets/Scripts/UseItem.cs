@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UseItem : MonoBehaviour, IPointerUpHandler, IPointerDownHandler {
+public class UseItem : MonoBehaviour, IPointerDownHandler, IDropHandler {
 
     GameManager _GameManager;
     public UIChar _UICharacter;
@@ -20,19 +20,17 @@ public class UseItem : MonoBehaviour, IPointerUpHandler, IPointerDownHandler {
 	}
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData) {
+        OnClick();
+    }
+
+    void IDropHandler.OnDrop(PointerEventData eventData) {
+        OnClick();
+    }
+
+    public void OnClick() {
         if (_GameManager.carryingItem) {
             _UICharacter.chara.UseItem(_GameManager.carryingItem.GetComponent<Item>());
             _GameManager.carryingItem = null;
-        }
-    }
-
-    void IPointerUpHandler.OnPointerUp(PointerEventData eventData) {
-        GameObject click = eventData.pointerCurrentRaycast.gameObject;
-        if (click == this.gameObject) {
-            if (_GameManager.carryingItem) {
-                _UICharacter.chara.UseItem(_GameManager.carryingItem.GetComponent<Item>());
-                _GameManager.carryingItem = null;
-            }
         }
     }
 }
