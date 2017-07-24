@@ -24,6 +24,16 @@ public class GameManager : MonoBehaviour {
     public bool clicking = false;
     public int partyMoney;
 
+        // Singleton
+    public static GameManager _Instance;
+    public static GameManager Instance {
+        get {
+            if (_Instance == null)
+                _Instance = new GameManager();
+            return _Instance;
+        }
+    }
+
     // Use this for initialization
     void Start () {
 		//screens.Add(ScreenType.stHubMap, GameObject.FindGameObjectWithTag("ScreenHubMap"));
@@ -74,7 +84,7 @@ public class GameManager : MonoBehaviour {
         return partyMoney;
     }
 
-    void ChangeScreen(ScreenType newScreen) {
+    public void ChangeScreen(ScreenType newScreen) {
         screens[currentScreen].SetActive(false);
         screens[newScreen].SetActive(true);
         currentScreen = newScreen;
