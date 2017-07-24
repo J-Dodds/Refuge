@@ -6,9 +6,6 @@ public class Marketplace : Locations
 {
     public GameObject character;
     public GameObject marketplaceUI;
-    public GameObject foodButton;
-    public GameObject waterButton;
-    public GameObject firstAidKitButton;
 
     public GameObject foodItem;
     public GameObject waterItem;
