@@ -24,7 +24,7 @@ public class UI_MenuTransition : MonoBehaviour {
 	{
 		if(useGameManagerMethod == true)
 		{
-			GameManager.Instance.ChangeScreen(GameManager.Instance.screens[(ScreenType)index]);
+			//GameManager.Instance.ChangeScreen(GameManager.Instance.screens[(ScreenType)index]);
 		}
 		//Turn on the next scene and off this one
 		thisPanel.SetActive(false);
