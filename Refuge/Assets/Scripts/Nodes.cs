@@ -39,20 +39,24 @@ public class Nodes : MonoBehaviour
 
     void OnMouseDown()
     {
-        //deactiveate all the situational UI
-        if(clinicUI.activeInHierarchy == true)
+        int difference = nodeNumber - mapNavigation.currentLocation;
+
+        if (difference == 2)
         {
-            clinicUI.SetActive(false);
-        }
+            //deactiveate all the situational UI
+            if (clinicUI.activeInHierarchy == true)
+            {
+                clinicUI.SetActive(false);
+            }
 
             mapNavigation.currentLocation = GetComponent<Nodes>().nodeNumber - 1;
             mapNavigation.refugeeObject.transform.position = mapNavigation.mapNodes[GetComponent<Nodes>().nodeNumber - 1].transform.position;
-    
 
-        //What type of node is it?
-        if(GetComponent<Locations>().locationType == Locations.LocationType.LTclinic)
-        {
-            clinicUI.SetActive(true);    
+            //What type of node is it?
+            if (GetComponent<Locations>().locationType == Locations.LocationType.LTclinic)
+            {
+                clinicUI.SetActive(true);
+            }
         }
 
         //Will lerp this in future, and limit to which nodes a refugee can travel
