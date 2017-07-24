@@ -7,7 +7,8 @@ public class Item : MonoBehaviour {
 
     public enum ItemType {
         itBakedBeans = 0,
-        itPeanutButter = 1,
+        //itPeanutButter = 1,
+        itMealRation = 1,
         itTrailMix = 2,
         itCleanWater = 3,
         itDirtyWater = 4,
@@ -20,6 +21,7 @@ public class Item : MonoBehaviour {
         itIntravenousHydration = 11,
         itMetronidazole = 12,
         itPenicillin = 13,
+        itFirstAid = 14,
     };
 
     public ItemType itemType;
