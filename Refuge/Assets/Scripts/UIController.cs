@@ -17,7 +17,7 @@ public class UIController : MonoBehaviour {
 		_GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         for (int index = 0; index < _GameManager.characters.Length; ++index) {
             uiCharacters[index].GetComponent<UIChar>().chara = _GameManager.characters[index];
-            uiCharacters[index].GetComponentInChildren<Image>().sprite = _GameManager.characters[index].sprite;
+            uiCharacters[index].sprite.GetComponent<Image>().sprite = _GameManager.characters[index].sprite;
             for (int a = 0; a < _GameManager.characters[index].inventory.Length; ++a) {
                 if (_GameManager.characters[index].inventory[a]) {
                     uiCharacters[index].inventory[a].GetComponent<Image>().sprite = _GameManager.characters[index].inventory[a].itemSprite;
@@ -44,6 +44,9 @@ public class UIController : MonoBehaviour {
         else {
             _GameManager.carryingItem = slot.GetComponent<InventorySlot>().item;
             slot.GetComponent<InventorySlot>().item = null;
+            for (int i = 0; i < slot.GetComponentInParent<UIChar>().inventory.Length; ++i)
+                if (slot.GetComponentInParent<UIChar>().inventory[i] == _GameManager.carryingItem)
+                    slot.GetComponentInParent<UIChar>().chara.inventory[i] = null;
             slot.GetComponent<Image>().sprite = emptyInv;
         }
         // Update all slots
@@ -52,13 +55,14 @@ public class UIController : MonoBehaviour {
 
     public void RefreshInventory() {
         for (int index = 0; index < uiCharacters.Count; ++index) {
-            for (int a = 0; a < uiCharacters[index].inventory.Length; ++a) {
-                if (uiCharacters[index].inventory[a].GetComponent<InventorySlot>().item) {
-                    uiCharacters[index].chara.inventory[a] = uiCharacters[index].inventory[a].GetComponent<InventorySlot>().item.GetComponent<Item>();
-                }
-                else
-                    uiCharacters[index].chara.inventory[a] = null;
-            }
+            uiCharacters[index].Refresh();
+            //for (int a = 0; a < uiCharacters[index].inventory.Length; ++a) {
+            //    if (uiCharacters[index].inventory[a].GetComponent<InventorySlot>().item) {
+            //        uiCharacters[index].chara.inventory[a] = uiCharacters[index].inventory[a].GetComponent<InventorySlot>().item.GetComponent<Item>();
+            //    }
+            //    else
+            //        uiCharacters[index].chara.inventory[a] = null;
+            //}
         }
     }
 
