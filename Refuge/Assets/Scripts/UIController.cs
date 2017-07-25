@@ -54,8 +54,17 @@ public class UIController : MonoBehaviour {
     }
 
     public void RefreshInventory() {
-        for (int index = 0; index < uiCharacters.Count; ++index) {
-            uiCharacters[index].Refresh();
+        foreach (UIChar _char in uiCharacters) {
+            for (int index = 0; index < _char.inventory.Length; ++index) {
+                if (_char.inventory[index])
+                    _char.chara.inventory[index] = _char.inventory[index].GetComponent<Item>();
+                else
+                    _char.chara.inventory[index] = null;
+            }
+            _char.Refresh();
+        }
+        //for (int index = 0; index < uiCharacters.Count; ++index) {
+        //    uiCharacters[index].Refresh();
             //for (int a = 0; a < uiCharacters[index].inventory.Length; ++a) {
             //    if (uiCharacters[index].inventory[a].GetComponent<InventorySlot>().item) {
             //        uiCharacters[index].chara.inventory[a] = uiCharacters[index].inventory[a].GetComponent<InventorySlot>().item.GetComponent<Item>();
@@ -63,7 +72,6 @@ public class UIController : MonoBehaviour {
             //    else
             //        uiCharacters[index].chara.inventory[a] = null;
             //}
-        }
     }
 
     public void OnClickMoney() {
