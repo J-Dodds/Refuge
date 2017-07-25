@@ -16,9 +16,11 @@ public class GameManager : MonoBehaviour {
     };
 
     public Character[] characters;
-    ScreenType currentScreen = ScreenType.stPause;
+    public ScreenType currentScreen = ScreenType.stPause;
+    ScreenType prevScreen;
     public Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
     GameObject charUI;
+    public GameObject levelScripting;
     public GameObject carryingItem;
     public float lastClickTime;
     public bool clicking = false;
@@ -50,12 +52,20 @@ public class GameManager : MonoBehaviour {
         for (int index = 0; index < screens.Count; ++index)
             screens[(ScreenType)index].SetActive(false);
         screens[ScreenType.stHubMap].SetActive(true);
+        ChangeScreen(ScreenType.stPause);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey(KeyCode.UpArrow)) {
-            ChangeScreen((ScreenType)Random.Range(0, 7));
+		if (Input.GetKey(KeyCode.P)) {
+            if (currentScreen == ScreenType.stPause) {
+                Time.timeScale = 1;
+                ChangeScreen(prevScreen);
+            }
+            else {
+                ChangeScreen(ScreenType.stPause);
+                Time.timeScale = 0;
+            }
         }
 	}
 
@@ -85,6 +95,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void ChangeScreen(ScreenType newScreen) {
+        prevScreen = currentScreen;
         screens[currentScreen].SetActive(false);
         screens[newScreen].SetActive(true);
         currentScreen = newScreen;
@@ -93,9 +104,15 @@ public class GameManager : MonoBehaviour {
             charUI.SetActive(true);
         else
             charUI.SetActive(false);
+        if (newScreen == ScreenType.stPause) {
+            levelScripting.SetActive(false);
+        }
+        else
+            levelScripting.SetActive(true);
     }
 
     public void ChangeScreen(int iNewScreen) {
+        prevScreen = currentScreen;
         ScreenType newScreen = (ScreenType)iNewScreen;
         screens[currentScreen].SetActive(false);
         screens[newScreen].SetActive(true);
@@ -105,5 +122,11 @@ public class GameManager : MonoBehaviour {
             charUI.SetActive(true);
         else
             charUI.SetActive(false);
+
+        if (newScreen == ScreenType.stPause) {
+            levelScripting.SetActive(false);
+        }
+        else
+            levelScripting.SetActive(true);
     }
 }
