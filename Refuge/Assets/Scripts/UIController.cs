@@ -36,18 +36,25 @@ public class UIController : MonoBehaviour {
 	}
 	
     public void OnClickInventory(GameObject slot) {
+        UIChar character = slot.GetComponentInParent<UIChar>();
         if (_GameManager.carryingItem) {
             slot.GetComponent<InventorySlot>().item = _GameManager.carryingItem;
             slot.GetComponent<Image>().sprite = _GameManager.carryingItem.GetComponent<Item>().itemSprite;
+            for (int i = 0; i < character.inventory.Length; ++i) {
+                if (character.inventory[i].GetComponent<InventorySlot>().item)
+                    character.chara.inventory[i] = character.inventory[i].GetComponent<InventorySlot>().item.GetComponent<Item>();
+            }
             _GameManager.carryingItem = null;
         }
         else {
             _GameManager.carryingItem = slot.GetComponent<InventorySlot>().item;
             slot.GetComponent<InventorySlot>().item = null;
-            for (int i = 0; i < slot.GetComponentInParent<UIChar>().inventory.Length; ++i)
-                if (slot.GetComponentInParent<UIChar>().inventory[i] == _GameManager.carryingItem)
-                    slot.GetComponentInParent<UIChar>().chara.inventory[i] = null;
             slot.GetComponent<Image>().sprite = emptyInv;
+            for (int i = 0; i < character.inventory.Length; ++i) {
+                if (character.inventory[i].GetComponent<InventorySlot>().item == null) {
+                    character.chara.inventory[i] = null;
+                }
+            }
         }
         // Update all slots
         RefreshInventory();
@@ -56,10 +63,13 @@ public class UIController : MonoBehaviour {
     public void RefreshInventory() {
         foreach (UIChar _char in uiCharacters) {
             for (int index = 0; index < _char.inventory.Length; ++index) {
-                if (_char.inventory[index])
+                if (_char.inventory[index].GetComponent<Item>()) {
                     _char.chara.inventory[index] = _char.inventory[index].GetComponent<Item>();
+                }
                 else
-                    _char.chara.inventory[index] = null;
+                {
+                    //_char.chara.inventory[index] = null;
+                }
             }
             _char.Refresh();
         }
