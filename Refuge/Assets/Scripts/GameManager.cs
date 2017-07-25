@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
 
         for (int index = 0; index < screens.Count; ++index)
             screens[(ScreenType)index].SetActive(false);
-        screens[ScreenType.stHubMap].SetActive(true);
+        screens[currentScreen].SetActive(true);
         ChangeScreen(ScreenType.stPause);
 	}
 	

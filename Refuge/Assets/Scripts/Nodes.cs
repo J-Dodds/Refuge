@@ -10,6 +10,8 @@ public class Nodes : MonoBehaviour
     public GameObject clinicUI;
     public GameObject marketUI;
 
+    public float yOffset = 20.0f;
+
     Locations.LocationType currentNode;
 
 	// Use this for initialization
@@ -51,7 +53,7 @@ public class Nodes : MonoBehaviour
             }
 
             mapNavigation.currentLocation = GetComponent<Nodes>().nodeNumber - 1;
-            mapNavigation.refugeeObject.transform.position = mapNavigation.mapNodes[GetComponent<Nodes>().nodeNumber - 1].transform.position;
+            mapNavigation.refugeeObject.transform.position = new Vector3 (mapNavigation.mapNodes[GetComponent<Nodes>().nodeNumber - 1].transform.position.x, mapNavigation.mapNodes[GetComponent<Nodes>().nodeNumber - 1].transform.position.y + yOffset, -3);
 
             //What type of node is it?
             if (GetComponent<Locations>().locationType == Locations.LocationType.LTclinic)
