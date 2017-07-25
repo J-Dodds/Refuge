@@ -105,11 +105,11 @@ public class GameManager : MonoBehaviour {
             charUI.SetActive(true);
         else
             charUI.SetActive(false);
-        if (newScreen == ScreenType.stPause) {
-            levelScripting.SetActive(false);
-        }
-        else
-            levelScripting.SetActive(true);
+        //if (newScreen == ScreenType.stPause) {
+            //levelScripting.SetActive(false);
+        //}
+       // else
+           // levelScripting.SetActive(true);
     }
 
     public void ChangeScreen(int iNewScreen) {
@@ -125,9 +125,9 @@ public class GameManager : MonoBehaviour {
             charUI.SetActive(false);
 
         if (newScreen == ScreenType.stPause) {
-            levelScripting.SetActive(false);
+            //levelScripting.SetActive(false);
         }
-        else
-            levelScripting.SetActive(true);
+        //else
+            //levelScripting.SetActive(true);
     }
 }

@@ -5,6 +5,8 @@ using Fungus;
 
 public class ExecuteFungusBlock : MonoBehaviour {
     private Flowchart flowchartInScene;
+    public GameObject flowchartGameObject;
+
 
     public string fungusBlockToExecute;
 
@@ -20,6 +22,9 @@ public class ExecuteFungusBlock : MonoBehaviour {
 
     public void OnClick()
     {
+        flowchartGameObject.SetActive(true);
         flowchartInScene.ExecuteBlock(fungusBlockToExecute);
+
+        //GameManager.Instance.ChangeScreen()
     }
 }
