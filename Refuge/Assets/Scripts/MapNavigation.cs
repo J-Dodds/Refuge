@@ -25,7 +25,7 @@ public class MapNavigation : MonoBehaviour
         }
 
         //Set start point
-        refugeeObject.transform.position = mapNodes[0].transform.position;
+        refugeeObject.transform.position = new Vector3( mapNodes[0].transform.position.x, mapNodes[0].transform.position.y + 20f, mapNodes[0].transform.position.z - 3);
 	}
 
     // Update is called once per frame
