@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
     public float lastClickTime;
     public bool clicking = false;
     public int partyMoney;
+    public Sprite defaultInventorySprite;
 
         // Singleton
     public static GameManager _Instance;
