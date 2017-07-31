@@ -51,7 +51,8 @@ public class AudioManager : MonoBehaviour {
         source.loop = loop;
         source.volume = masterVolume * volume * channel.volume;
         source.Play();
-        Destroy(source, clip.length);
+        if (!loop)
+            Destroy(source, clip.length);
     }
 
 	// Use this for initialization
