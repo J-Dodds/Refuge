@@ -22,7 +22,10 @@ public class Clinic : Locations
 
     public void HealRefugee()
     {
-        refugees.GetComponent<Refugees>().health += healAmount;
-        Debug.Log(refugees.GetComponent<Refugees>().health);
+        if (refugees.GetComponent<Refugees>().health >= 100)
+        {
+            refugees.GetComponent<Refugees>().health += healAmount;
+            Debug.Log(refugees.GetComponent<Refugees>().health);
+        }
     }
 }

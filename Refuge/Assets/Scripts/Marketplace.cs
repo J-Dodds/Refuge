@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Marketplace : Locations
@@ -15,6 +16,16 @@ public class Marketplace : Locations
     public int waterPrice = 10;
     public int firstAidKitPrice = 150;
 
+    public Text foodText;
+    public Text waterText;
+    public Text firstAidKitText;
+
+    void Start()
+    {
+        foodText.text = "Food = " + foodPrice;
+        waterText.text = "Water = " + waterPrice;
+        firstAidKitText.text = "First Aid Kit = " + firstAidKitPrice;
+    }
 
     public void AddFoodToInventory()
     {
