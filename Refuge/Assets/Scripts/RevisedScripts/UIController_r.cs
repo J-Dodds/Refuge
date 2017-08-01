@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController_r : MonoBehaviour {
 
     GameManager_r _GameManager;
-    Sprite emtpyInv;
+    public Sprite emtpyInv;
 
 	// Use this for initialization
 	void Start () {
@@ -15,10 +16,12 @@ public class UIController_r : MonoBehaviour {
     public void OnClickInventory(GameObject slot) {
         if (slot.GetComponent<InventorySlot_r>().item && !_GameManager.carryingItem) {
             _GameManager.carryingItem = slot.GetComponent<InventorySlot_r>().item;
-            slot.GetComponent<InventorySlot>().item = null;
+            slot.GetComponent<Image>().sprite = emtpyInv;
+            slot.GetComponent<InventorySlot_r>().item = null;
         }
         else if (!slot.GetComponent<InventorySlot_r>().item && _GameManager.carryingItem) {
             slot.GetComponent<InventorySlot_r>().item = _GameManager.carryingItem;
+            slot.GetComponent<Image>().sprite = slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().itemSprite;
             _GameManager.carryingItem = null;
         }
     }
