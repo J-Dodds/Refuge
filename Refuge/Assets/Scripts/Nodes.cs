@@ -9,10 +9,11 @@ public class Nodes : MonoBehaviour
 
     public GameObject clinicUI;
     public GameObject marketUI;
+    public GameObject abandonedShopUI;
 
     public float yOffset = 20.0f;
 
-    Locations.LocationType currentNode;
+    bool isMoving = false;
 
 	// Use this for initialization
 	void Start ()
@@ -28,12 +29,6 @@ public class Nodes : MonoBehaviour
             Debug.Log("Node number too low. Start numbering at 1");
         }
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
 
     void OnMouseOver()
     {
@@ -46,11 +41,6 @@ public class Nodes : MonoBehaviour
 
         if (difference == 2)
         {
-            //deactiveate all the situational UI
-            if (clinicUI.activeInHierarchy == true)
-            {
-                clinicUI.SetActive(false);
-            }
 
             mapNavigation.currentLocation = GetComponent<Nodes>().nodeNumber - 1;
             mapNavigation.refugeeObject.transform.position = new Vector3 (mapNavigation.mapNodes[GetComponent<Nodes>().nodeNumber - 1].transform.position.x, mapNavigation.mapNodes[GetComponent<Nodes>().nodeNumber - 1].transform.position.y + yOffset, -3);
@@ -59,11 +49,27 @@ public class Nodes : MonoBehaviour
             if (GetComponent<Locations>().locationType == Locations.LocationType.LTclinic)
             {
                 clinicUI.SetActive(true);
+                marketUI.SetActive(false);
+                abandonedShopUI.SetActive(false);
             }
-
-            if(GetComponent<Locations>().locationType == Locations.LocationType.LTmarketplace)
+            else if(GetComponent<Locations>().locationType == Locations.LocationType.LTmarketplace)
             {
                 marketUI.SetActive(true);
+                clinicUI.SetActive(false);
+                abandonedShopUI.SetActive(false);
+            }
+            else if (GetComponent<Locations>().locationType == Locations.LocationType.LTabandonedShop)
+            {
+                clinicUI.SetActive(false);
+                marketUI.SetActive(false);
+                abandonedShopUI.SetActive(true);
+            }
+
+            if (GetComponent<Locations>().locationType == Locations.LocationType.LTempty)
+            {
+                clinicUI.SetActive(false);
+                marketUI.SetActive(false);
+                abandonedShopUI.SetActive(false);
             }
         }
 
