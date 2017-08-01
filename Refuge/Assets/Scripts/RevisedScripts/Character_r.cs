@@ -27,7 +27,9 @@ public class Character_r : MonoBehaviour {
     public void AddStress(float modifier) { stress += modifier; Mathf.Clamp01(stress); UIStress.GetComponent<Slider>().value = stress; }
     public float GetStress() { return stress; }
 
-    void UseItem (Item_r item) {
+    public void UseItem () {
+        Item_r item = GameObject.Find("GameManager").GetComponent<GameManager_r>().carryingItem.GetComponent<Item_r>();
+        GameObject.Find("GameManager").GetComponent<GameManager_r>().carryingItem = null;
         AddHealth (item.healthMod);
         AddThirst (item.thirstMod);
         AddHunger (item.hungerMod);
@@ -42,7 +44,7 @@ public class Character_r : MonoBehaviour {
             typhoid = true;
     }
 
-    void AddItem (GameObject item) {
+    public void AddItem (GameObject item) {
         for (int index = 0; index < inventory.Length; ++index) {
             if (!inventory[index].GetComponent<InventorySlot_r>().item) {
                 inventory[index].GetComponent<InventorySlot_r>().item = item;

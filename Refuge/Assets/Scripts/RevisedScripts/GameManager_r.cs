@@ -15,10 +15,11 @@ public class GameManager_r : MonoBehaviour {
         STCredits = 7,
     };
 
+    public GameObject charUI;
     public GameObject[] characters;
     public GameObject carryingItem;
     ScreenType currentScreen, prevScreen;
-    Dictionary<ScreenType, GameObject> screens;
+    Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
     int partyMoney;
 
     // Singleton
@@ -34,16 +35,16 @@ public class GameManager_r : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // Find each screen object
-        screens.Add(ScreenType.STHubMap, GameObject.FindGameObjectWithTag("ScreenHubMap"));
-        screens.Add(ScreenType.STWorldMap, GameObject.FindGameObjectWithTag("ScreenWorldMap"));
+        screens.Add(ScreenType.STHubMap, GameObject.FindGameObjectWithTag("ScreenHubMap")); // Char UI
+        screens.Add(ScreenType.STWorldMap, GameObject.FindGameObjectWithTag("ScreenWorldMap")); // Char UI
         screens.Add(ScreenType.STEncounter, GameObject.FindGameObjectWithTag("ScreenEncounter"));
         screens.Add(ScreenType.STLocation, GameObject.FindGameObjectWithTag("ScreenLocation"));
         screens.Add(ScreenType.STMarket, GameObject.FindGameObjectWithTag("ScreenMarket"));
         screens.Add(ScreenType.STPause, GameObject.FindGameObjectWithTag("ScreenPause"));
         screens.Add(ScreenType.STOptions, GameObject.FindGameObjectWithTag("ScreenOptions"));
         screens.Add(ScreenType.STCredits, GameObject.FindGameObjectWithTag("ScreenCredits"));
-        
-        for (int index = 0; index < screens.Count; ++index)
+
+        for (int index = 0; index < screens.Count; ++index) 
             screens[(ScreenType)index].SetActive(false);
         ChangeScreen(ScreenType.STPause);
     }
@@ -55,6 +56,10 @@ public class GameManager_r : MonoBehaviour {
         currentScreen = newScreen;
 
         // UI Requirements
+        if (currentScreen == ScreenType.STHubMap || currentScreen == ScreenType.STWorldMap)
+            charUI.SetActive(true);
+        else
+            charUI.SetActive(false);
     }
 
     void ChangeScreen(int iNewScreen) {
