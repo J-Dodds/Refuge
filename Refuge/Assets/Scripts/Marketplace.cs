@@ -29,16 +29,16 @@ public class Marketplace : Locations
 
     public void AddFoodToInventory()
     {
-        character.GetComponent<Character>().AddItem(foodItem);
+        character.GetComponent<Character_r>().AddItem(foodItem);
     }
 
     public void AddWaterToInventory()
     {
-        character.GetComponent<Character>().AddItem(waterItem);
+        character.GetComponent<Character_r>().AddItem(waterItem);
     }
 
     public void AddFirstAidKitToInventory()
     {
-        character.GetComponent<Character>().AddItem(firstAidKitItem);
+        character.GetComponent<Character_r>().AddItem(firstAidKitItem);
     }
 }
