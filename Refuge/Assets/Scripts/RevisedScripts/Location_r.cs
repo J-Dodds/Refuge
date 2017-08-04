@@ -33,6 +33,8 @@ public class Location_r : MonoBehaviour {
                 }
             slot.GetComponent<InventorySlot_r>().item = selectedObj;
         }
+        if (Random.Range(0f, 1f) > 0.75f)
+            inventory[inventory.Length - 1].GetComponent<InventorySlot_r>().item = null;
     }
 
     void Scavenge() {
