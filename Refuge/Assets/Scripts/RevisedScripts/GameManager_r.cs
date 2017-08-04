@@ -17,10 +17,15 @@ public class GameManager_r : MonoBehaviour {
 
     public GameObject charUI;
     public GameObject[] characters;
+    public GameObject mouseHoverTip;
+    public GameObject mouseHoverDescription;
     public GameObject carryingItem;
     ScreenType currentScreen, prevScreen;
     Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
     int partyMoney;
+    float partySpeed;
+
+    float hoverTimer = 0;
 
     // Singleton
     public static GameManager _Instance;
@@ -49,7 +54,7 @@ public class GameManager_r : MonoBehaviour {
         ChangeScreen(ScreenType.STPause);
     }
 
-    void ChangeScreen(ScreenType newScreen) {
+    public void ChangeScreen(ScreenType newScreen) {
         prevScreen = currentScreen;
         screens[currentScreen].SetActive(false);
         screens[newScreen].SetActive(true);
@@ -62,7 +67,7 @@ public class GameManager_r : MonoBehaviour {
             charUI.SetActive(false);
     }
 
-    void ChangeScreen(int iNewScreen) {
+    public void ChangeScreen(int iNewScreen) {
         ScreenType newScreen = (ScreenType)iNewScreen;
         prevScreen = currentScreen;
         screens[currentScreen].SetActive(false);
@@ -72,7 +77,7 @@ public class GameManager_r : MonoBehaviour {
         // UI Requirements
     }
 
-    GameObject WealthiestChar(Item_r.ItemType itemType) {
+    public GameObject WealthiestChar(Item_r.ItemType itemType) {
         GameObject chara = new GameObject();
         int maxItemCount = 0;
         foreach (GameObject character in characters) {
