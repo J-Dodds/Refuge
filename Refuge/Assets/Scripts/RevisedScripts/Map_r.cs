@@ -8,6 +8,8 @@ public class Map_r : MonoBehaviour {
     public GameObject refugeeObj;
     GameObject newLocation;
     GameManager_r GM;
+    float movementXOffset = 10;
+    float movementYOffset = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -16,16 +18,24 @@ public class Map_r : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Vector3.Distance(refugeeObj.transform.position, newLocation.transform.position) > 0.05) {
-            refugeeObj.transform.position = Vector3.Lerp(refugeeObj.transform.position, newLocation.transform.position, Time.deltaTime);
-            foreach (GameObject chara in GM.characters) {
-                chara.GetComponent<Character_r>().AddHunger(-0.01f);
-                chara.GetComponent<Character_r>().AddThirst(-0.01f);
+        if (newLocation) {
+        if (Vector3.Distance(refugeeObj.transform.position, newLocation.transform.position) > 0.2) {
+            refugeeObj.transform.position = Vector3.Lerp(refugeeObj.transform.position, newLocation.transform.position, Time.deltaTime * GM.partySpeed);
+                foreach (GameObject chara in GM.characters) {
+                    chara.GetComponent<Character_r>().AddHunger(-0.006f);
+                    chara.GetComponent<Character_r>().AddThirst(-0.006f);
+                }
+            }
+        else {
+                Debug.Log("We Made It! (woo)");
+                refugeeObj.transform.position = new Vector3(newLocation.transform.position.x + movementXOffset, newLocation.transform.position.y + movementYOffset, 0);
+                newLocation.GetComponent<Location_r>().Scavenge();
+                newLocation = null;
             }
         }
 	}
 
-    void Travel (GameObject location) {
+    public void Travel (GameObject location) {
         newLocation = location;
     }
 }

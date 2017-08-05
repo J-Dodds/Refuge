@@ -22,7 +22,7 @@ public class GameManager_r : MonoBehaviour {
     ScreenType currentScreen, prevScreen;
     Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
     int partyMoney;
-    float partySpeed;
+    public float partySpeed = 2;
 
     float hoverTimer = 0;
 
@@ -49,8 +49,9 @@ public class GameManager_r : MonoBehaviour {
         screens.Add(ScreenType.STCredits, GameObject.FindGameObjectWithTag("ScreenCredits"));
 
         for (int index = 0; index < screens.Count; ++index) 
-            screens[(ScreenType)index].SetActive(false);
-        ChangeScreen(ScreenType.STPause);
+            if (screens[(ScreenType)index])
+                screens[(ScreenType)index].SetActive(false);
+        ChangeScreen(ScreenType.STWorldMap);
     }
 
     public void ChangeScreen(ScreenType newScreen) {
@@ -60,6 +61,7 @@ public class GameManager_r : MonoBehaviour {
         currentScreen = newScreen;
 
         // UI Requirements
+        if (charUI)
         if (currentScreen == ScreenType.STHubMap || currentScreen == ScreenType.STWorldMap)
             charUI.SetActive(true);
         else

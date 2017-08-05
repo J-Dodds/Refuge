@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Location_r : MonoBehaviour {
+public class Location_r : MonoBehaviour, IPointerClickHandler {
 
     public enum LocationType {
         LTClinic = 0,
@@ -19,6 +20,15 @@ public class Location_r : MonoBehaviour {
     Dictionary<GameObject, float> itemSpawnChance;
     Dictionary<GameObject, float> itemPrice;
     string description;
+    Map_r map;
+
+    void Start() {
+        map = GameObject.FindGameObjectWithTag("ScreenWorldMap").GetComponent<Map_r>();
+    }
+
+    void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
+        map.Travel(gameObject);
+    }
 
     void GenerateInventory() {
         foreach (GameObject slot in inventory) {
@@ -37,7 +47,8 @@ public class Location_r : MonoBehaviour {
             inventory[inventory.Length - 1].GetComponent<InventorySlot_r>().item = null;
     }
 
-    void Scavenge() {
+    public void Scavenge() {
+        GenerateInventory();
         inventoryUI.SetActive(true);
     }
 
@@ -45,11 +56,6 @@ public class Location_r : MonoBehaviour {
         GameObject.Find("GameManager").GetComponent<GameManager_r>().ChangeScreen(GameManager_r.ScreenType.STEncounter);
     }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		
