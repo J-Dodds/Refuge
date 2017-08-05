@@ -18,7 +18,6 @@ public class GameManager_r : MonoBehaviour {
     public GameObject charUI;
     public GameObject[] characters;
     public GameObject mouseHoverTip;
-    public GameObject mouseHoverDescription;
     public GameObject carryingItem;
     ScreenType currentScreen, prevScreen;
     Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
