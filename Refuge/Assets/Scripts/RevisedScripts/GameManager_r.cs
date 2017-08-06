@@ -52,6 +52,12 @@ public class GameManager_r : MonoBehaviour {
             if (screens[(ScreenType)index])
                 screens[(ScreenType)index].SetActive(false);
         ChangeScreen(ScreenType.STPause);
+        foreach (GameObject chara in characters) {
+            chara.GetComponent<Character_r>().AddHealth(1);
+            chara.GetComponent<Character_r>().AddHunger(1);
+            chara.GetComponent<Character_r>().AddThirst(1);
+            chara.GetComponent<Character_r>().AddStress(1);
+        }
     }
 
     public void ChangeScreen(ScreenType newScreen) {
@@ -76,6 +82,11 @@ public class GameManager_r : MonoBehaviour {
         currentScreen = newScreen;
 
         // UI Requirements
+        if (charUI)
+            if (currentScreen == ScreenType.STHubMap || currentScreen == ScreenType.STWorldMap)
+                charUI.SetActive(true);
+            else
+                charUI.SetActive(false);
     }
 
     public GameObject WealthiestChar(Item_r.ItemType itemType) {
