@@ -21,6 +21,8 @@ public class UIController_r : MonoBehaviour {
         }
         else if (!slot.GetComponent<InventorySlot_r>().item && _GameManager.carryingItem) {
             slot.GetComponent<InventorySlot_r>().item = _GameManager.carryingItem;
+            _GameManager.AddMoney(-slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price);
+            slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price = 0;
             slot.GetComponent<Image>().sprite = slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().itemSprite;
             _GameManager.carryingItem = null;
         }

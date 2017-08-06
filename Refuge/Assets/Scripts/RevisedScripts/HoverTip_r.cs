@@ -10,6 +10,7 @@ public class HoverTip_r : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     string hoverTip;
     [SerializeField]
     float xOffset = 150;
+    [SerializeField]
     float yOffset = -100;
     bool isOver;
 

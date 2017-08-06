@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Location_r : MonoBehaviour, IPointerClickHandler {
@@ -17,8 +18,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     public GameObject[] inventory;
     public GameObject[] possibleItems;
     float encounterChance;
-    Dictionary<GameObject, float> itemSpawnChance;
-    Dictionary<GameObject, float> itemPrice;
+    [SerializeField]
     string description;
     Map_r map;
 
@@ -37,11 +37,12 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
             GameObject selectedObj = possibleItems[Random.Range(0, possibleItems.Length)];
             foreach (GameObject item in possibleItems)
                 if (selectedObj) {
-                    if (itemSpawnChance[item] > rnd && itemSpawnChance[item] - rnd > itemSpawnChance[selectedObj] - rnd) {
+                    if (item.GetComponent<Item_r>().spawnChance > rnd && item.GetComponent<Item_r>().spawnChance - rnd > selectedObj.GetComponent<Item_r>().spawnChance - rnd) {
                         selectedObj = item;
                     }
                 }
             slot.GetComponent<InventorySlot_r>().item = selectedObj;
+            slot.GetComponent<Image>().sprite = selectedObj.GetComponent<Item_r>().itemSprite;
         }
         if (Random.Range(0f, 1f) > 0.75f)
             inventory[inventory.Length - 1].GetComponent<InventorySlot_r>().item = null;
