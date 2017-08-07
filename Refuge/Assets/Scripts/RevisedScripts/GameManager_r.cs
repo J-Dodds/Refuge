@@ -14,6 +14,8 @@ public class GameManager_r : MonoBehaviour {
         STPause = 5,
         STOptions = 6,
         STCredits = 7,
+
+        STClinic = 8,
     };
 
     public GameObject charUI;
@@ -59,6 +61,7 @@ public class GameManager_r : MonoBehaviour {
         screens.Add(ScreenType.STPause, GameObject.FindGameObjectWithTag("ScreenPause"));
         screens.Add(ScreenType.STOptions, GameObject.FindGameObjectWithTag("ScreenOptions"));
         screens.Add(ScreenType.STCredits, GameObject.FindGameObjectWithTag("ScreenCredits"));
+        screens.Add(ScreenType.STClinic, GameObject.FindGameObjectWithTag("ScreenClinic"));
 
         for (int index = 0; index < screens.Count; ++index) 
             if (screens[(ScreenType)index])

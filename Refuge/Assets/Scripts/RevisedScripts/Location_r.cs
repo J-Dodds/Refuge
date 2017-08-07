@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class Location_r : MonoBehaviour, IPointerClickHandler {
 
+    public bool changeScreen;
+    public int destinationScreen;
+
     public enum LocationType {
         LTClinic = 0,
         LTAbandonedShop = 1,
@@ -47,6 +50,11 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
         if (Random.Range(0f, 1f) > 0.75f) {
             inventory[inventory.Length - 1].GetComponent<InventorySlot_r>().item = null;
             inventory[inventory.Length - 1].GetComponent<Image>().sprite = GameObject.Find("UIController").GetComponent<UIController_r>().emtpyInv;
+        }
+
+        if(changeScreen)
+        {
+            GameManager_r.Instance.ChangeScreen(destinationScreen);
         }
     }
 
