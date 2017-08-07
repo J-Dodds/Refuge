@@ -17,10 +17,15 @@ public class GameManager_r : MonoBehaviour {
 
     public GameObject charUI;
     public GameObject[] characters;
+    public GameObject mouseHoverTip;
     public GameObject carryingItem;
     ScreenType currentScreen, prevScreen;
     Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
+
     public int partyMoney;
+    public float partySpeed = 2;
+
+    float hoverTimer = 0;
 
     // Singleton
     public static GameManager _Instance;
@@ -45,24 +50,32 @@ public class GameManager_r : MonoBehaviour {
         screens.Add(ScreenType.STCredits, GameObject.FindGameObjectWithTag("ScreenCredits"));
 
         for (int index = 0; index < screens.Count; ++index) 
-            screens[(ScreenType)index].SetActive(false);
+            if (screens[(ScreenType)index])
+                screens[(ScreenType)index].SetActive(false);
         ChangeScreen(ScreenType.STPause);
+        foreach (GameObject chara in characters) {
+            chara.GetComponent<Character_r>().AddHealth(1);
+            chara.GetComponent<Character_r>().AddHunger(1);
+            chara.GetComponent<Character_r>().AddThirst(1);
+            chara.GetComponent<Character_r>().AddStress(1);
+        }
     }
 
-    void ChangeScreen(ScreenType newScreen) {
+    public void ChangeScreen(ScreenType newScreen) {
         prevScreen = currentScreen;
         screens[currentScreen].SetActive(false);
         screens[newScreen].SetActive(true);
         currentScreen = newScreen;
 
         // UI Requirements
+        if (charUI)
         if (currentScreen == ScreenType.STHubMap || currentScreen == ScreenType.STWorldMap)
             charUI.SetActive(true);
         else
             charUI.SetActive(false);
     }
 
-    void ChangeScreen(int iNewScreen) {
+    public void ChangeScreen(int iNewScreen) {
         ScreenType newScreen = (ScreenType)iNewScreen;
         prevScreen = currentScreen;
         screens[currentScreen].SetActive(false);
@@ -70,9 +83,14 @@ public class GameManager_r : MonoBehaviour {
         currentScreen = newScreen;
 
         // UI Requirements
+        if (charUI)
+            if (currentScreen == ScreenType.STHubMap || currentScreen == ScreenType.STWorldMap)
+                charUI.SetActive(true);
+            else
+                charUI.SetActive(false);
     }
 
-    GameObject WealthiestChar(Item_r.ItemType itemType) {
+    public GameObject WealthiestChar(Item_r.ItemType itemType) {
         GameObject chara = new GameObject();
         int maxItemCount = 0;
         foreach (GameObject character in characters) {

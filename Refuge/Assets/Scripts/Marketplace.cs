@@ -32,7 +32,7 @@ public class Marketplace : Locations
     {
         if (gameManager.partyMoney >= foodPrice)
         {
-            character.GetComponent<Character>().AddItem(foodItem);
+            character.GetComponent<Character_r>().AddItem(foodItem);
             gameManager.partyMoney -= foodPrice;
         }
     }
@@ -41,7 +41,7 @@ public class Marketplace : Locations
     {
         if (gameManager.partyMoney >= waterPrice)
         {
-            character.GetComponent<Character>().AddItem(waterItem);
+            character.GetComponent<Character_r>().AddItem(waterItem);
             gameManager.partyMoney -= waterPrice;
         }
     }
@@ -50,7 +50,7 @@ public class Marketplace : Locations
     {
         if (gameManager.partyMoney >= firstAidKitPrice)
         {
-            character.GetComponent<Character>().AddItem(firstAidKitItem);
+            character.GetComponent<Character_r>().AddItem(firstAidKitItem);
             gameManager.partyMoney -= firstAidKitPrice;
         }
     }

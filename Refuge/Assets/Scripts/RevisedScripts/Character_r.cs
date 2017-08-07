@@ -9,8 +9,8 @@ public class Character_r : MonoBehaviour {
     string charName, bio;
     [SerializeField]
     public GameObject[] inventory;
-    float health, hunger, thirst, stress; // Normalized
-    bool injured, cholera, dysentery, typhoid;
+    public float health, hunger, thirst, stress; // Normalized
+    public bool injured, cholera, dysentery, typhoid;
 
     public Sprite sprite;
     [SerializeField]

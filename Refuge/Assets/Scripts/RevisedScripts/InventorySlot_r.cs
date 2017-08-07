@@ -8,7 +8,6 @@ public class InventorySlot_r : MonoBehaviour, IPointerUpHandler, IPointerDownHan
 
     public GameObject item;
     float lastClick;
-    GameObject character;
     GameManager_r _GameManager;
     UIController_r _UIController;
 
