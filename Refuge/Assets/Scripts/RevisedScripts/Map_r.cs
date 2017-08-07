@@ -11,6 +11,7 @@ public class Map_r : MonoBehaviour {
     GameManager_r GM;
     float movementXOffset = 10;
     float movementYOffset = 10;
+    int currentLocationNumber;
 
     public int chanceOfNothing = 60;
     public int chanceOfInjury = 70;
@@ -18,16 +19,16 @@ public class Map_r : MonoBehaviour {
     public int chanceOfDysentary = 90;
     public int chanceOfTyphoid = 100;
 
-	// Use this for initialization
-	void Start () {
-		GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start() {
+        GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
+    }
+
+    // Update is called once per frame
+    void Update() {
         if (newLocation)
         {
-        if (Vector3.Distance(refugeeObj.transform.position, newLocation.transform.position) > 0.6)
+            if (Vector3.Distance(refugeeObj.transform.position, newLocation.transform.position) > 0.6)
             {
                 refugeeObj.transform.position = Vector3.Lerp(refugeeObj.transform.position, newLocation.transform.position, Time.deltaTime * GM.partySpeed);
 
@@ -37,7 +38,7 @@ public class Map_r : MonoBehaviour {
                     chara.GetComponent<Character_r>().AddThirst(-0.002f);
                 }
             }
-        else {
+            else {
                 Debug.Log("We Made It! (woo)");
                 refugeeObj.transform.position = new Vector3(newLocation.transform.position.x + movementXOffset, newLocation.transform.position.y + movementYOffset, -5);
                 newLocation.GetComponent<Location_r>().Scavenge();
@@ -74,9 +75,14 @@ public class Map_r : MonoBehaviour {
                 StartCoroutine(GM.GetComponent<GameManager_r>().HasGottenHealthCondition());
             }
         }
-	}
+    }
 
-    public void Travel (GameObject location) {
-        newLocation = location;
+    public void Travel(GameObject location)
+    {
+        if (location.GetComponent<Location_r>().locationNumber == currentLocationNumber - 1 || location.GetComponent<Location_r>().locationNumber == currentLocationNumber + 1)
+        {
+            newLocation = location;
+            currentLocationNumber = location.GetComponent<Location_r>().locationNumber;
+        }
     }
 }
