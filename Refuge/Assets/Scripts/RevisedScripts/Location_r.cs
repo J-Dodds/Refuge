@@ -17,6 +17,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     public GameObject inventoryUI;
     public GameObject[] inventory;
     public GameObject[] possibleItems;
+    public int locationNumber = 0;
     float encounterChance;
     public string description;
     public Map_r map;
