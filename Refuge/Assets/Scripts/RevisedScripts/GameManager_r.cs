@@ -66,6 +66,7 @@ public class GameManager_r : MonoBehaviour {
         screens[currentScreen].SetActive(false);
         screens[newScreen].SetActive(true);
         currentScreen = newScreen;
+        mouseHoverTip.SetActive(false);
 
         // UI Requirements
         if (charUI)
