@@ -12,8 +12,8 @@ public class Clinic : Locations
     public int healCost = 100;
     public int cureCost = 0;
 
-    Text healText;
-    Text cureText;
+    public Text healText;
+    public Text cureText;
 
     bool injured = false;
     bool cholera = false;
@@ -97,6 +97,7 @@ public class Clinic : Locations
                 cholera = false;
                 dysentary = false;
                 typhoid = false;
+                cureCost = 0;
             }
         }
     }
