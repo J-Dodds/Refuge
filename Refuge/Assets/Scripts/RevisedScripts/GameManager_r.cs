@@ -14,7 +14,6 @@ public class GameManager_r : MonoBehaviour {
         STPause = 5,
         STOptions = 6,
         STCredits = 7,
-
         STClinic = 8,
     };
 
@@ -99,7 +98,7 @@ public class GameManager_r : MonoBehaviour {
 
         // UI Requirements
         if (charUI)
-            if (currentScreen == ScreenType.STHubMap || currentScreen == ScreenType.STWorldMap)
+            if (currentScreen == ScreenType.STHubMap || currentScreen == ScreenType.STWorldMap || currentScreen == ScreenType.STClinic || currentScreen == ScreenType.STMarket)
                 charUI.SetActive(true);
             else
                 charUI.SetActive(false);

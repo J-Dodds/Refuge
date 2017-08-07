@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour {
         stPause = 5,
         stOptions = 6,
         stCredits = 7,
-        stClinic = 8,
     };
 
     public Character[] characters;
@@ -46,7 +45,6 @@ public class GameManager : MonoBehaviour {
         screens.Add(ScreenType.stPause, GameObject.FindGameObjectWithTag("ScreenPause"));
         screens.Add(ScreenType.stOptions, GameObject.FindGameObjectWithTag("ScreenOptions"));
         screens.Add(ScreenType.stCredits, GameObject.FindGameObjectWithTag("ScreenCredits"));
-        screens.Add(ScreenType.stClinic, GameObject.FindGameObjectWithTag("ScreenClinic"));
         charUI = GameObject.Find("CharacterUI");
 
         for (int index = 0; index < screens.Count; ++index)
@@ -91,7 +89,7 @@ public class GameManager : MonoBehaviour {
         screens[newScreen].SetActive(true);
         currentScreen = newScreen;
 
-        if (newScreen == ScreenType.stHubMap || newScreen == ScreenType.stEncounter || newScreen == ScreenType.stLocation || newScreen == ScreenType.stWorldMap || newScreen == ScreenType.stClinic)
+        if (newScreen == ScreenType.stHubMap || newScreen == ScreenType.stEncounter || newScreen == ScreenType.stLocation || newScreen == ScreenType.stWorldMap)
             charUI.SetActive(true);
         else
             charUI.SetActive(false);
@@ -103,7 +101,7 @@ public class GameManager : MonoBehaviour {
         screens[newScreen].SetActive(true);
         currentScreen = newScreen;
 
-        if (newScreen == ScreenType.stHubMap || newScreen == ScreenType.stEncounter || newScreen == ScreenType.stLocation || newScreen == ScreenType.stWorldMap || newScreen == ScreenType.stClinic)
+        if (newScreen == ScreenType.stHubMap || newScreen == ScreenType.stEncounter || newScreen == ScreenType.stLocation || newScreen == ScreenType.stWorldMap )
             charUI.SetActive(true);
         else
             charUI.SetActive(false);

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Location_r : MonoBehaviour, IPointerClickHandler {
 
-    public bool changeScreen;
+    public bool changeScreen = false;
     public int destinationScreen;
 
     public enum LocationType {
