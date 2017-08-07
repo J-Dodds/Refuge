@@ -14,7 +14,7 @@ public class UIController_r : MonoBehaviour {
 	}
 
     public void OnClickInventory(GameObject slot) {
-        if (slot.GetComponent<InventorySlot_r>().item && !_GameManager.carryingItem) {
+        if (slot.GetComponent<InventorySlot_r>().item && !_GameManager.carryingItem && _GameManager.partyMoney >= slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price) {
             _GameManager.carryingItem = slot.GetComponent<InventorySlot_r>().item;
             slot.GetComponent<Image>().sprite = emtpyInv;
             slot.GetComponent<InventorySlot_r>().item = null;
