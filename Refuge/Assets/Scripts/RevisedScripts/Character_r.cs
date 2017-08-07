@@ -18,13 +18,13 @@ public class Character_r : MonoBehaviour {
     [SerializeField]
     GameObject UIHealth, UIHunger, UIThirst, UIStress; // Sliders
 
-    public void AddHealth(float modifier) { health += modifier; Mathf.Clamp01(health); UIHealth.GetComponent<Slider>().value = health; }
+    public void AddHealth(float modifier) { health += modifier; health = Mathf.Clamp01(health); UIHealth.GetComponent<Slider>().value = health; }
     public float GetHealth() { return health; }
-    public void AddThirst(float modifier) { thirst += modifier; Mathf.Clamp01(thirst); UIThirst.GetComponent<Slider>().value = thirst; }
+    public void AddThirst(float modifier) { thirst += modifier; thirst = Mathf.Clamp01(thirst); UIThirst.GetComponent<Slider>().value = thirst; }
     public float GetThirst() { return thirst; }
-    public void AddHunger(float modifier) { hunger += modifier; Mathf.Clamp01(hunger); UIHunger.GetComponent<Slider>().value = hunger; }
+    public void AddHunger(float modifier) { hunger += modifier; hunger = Mathf.Clamp01(hunger); UIHunger.GetComponent<Slider>().value = hunger; }
     public float GetHunger() { return hunger; }
-    public void AddStress(float modifier) { stress += modifier; Mathf.Clamp01(stress); UIStress.GetComponent<Slider>().value = stress; }
+    public void AddStress(float modifier) { stress += modifier; stress = Mathf.Clamp01(stress); UIStress.GetComponent<Slider>().value = stress; }
     public float GetStress() { return stress; }
 
     public void UseItem () {
@@ -42,6 +42,14 @@ public class Character_r : MonoBehaviour {
             dysentery = true;
         if (Random.Range(0f, 1f) > item.typhoidChance)
             typhoid = true;
+        if (item.itemType == Item_r.ItemType.ITCureAll) {
+            typhoid = false;
+            dysentery = false;
+            cholera = false;
+            injured = false;
+        }
+        if (item.itemType == Item_r.ItemType.ITHeal)
+            AddHealth(1);
     }
 
     public void AddItem (GameObject item) {

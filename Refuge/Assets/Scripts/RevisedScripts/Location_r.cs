@@ -18,11 +18,10 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     public GameObject[] inventory;
     public GameObject[] possibleItems;
     float encounterChance;
-    [SerializeField]
-    string description;
-    Map_r map;
+    public string description;
+    public Map_r map;
 
-    void Start() {
+    public void Start() {
         map = GameObject.FindGameObjectWithTag("ScreenWorldMap").GetComponent<Map_r>();
     }
 
@@ -30,7 +29,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
         map.Travel(gameObject);
     }
 
-    void GenerateInventory() {
+    public virtual void GenerateInventory() {
         foreach (GameObject slot in inventory) {
             // No Empty RND Slots
             float rnd = Random.Range(0f, 1f);
@@ -44,8 +43,10 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
             slot.GetComponent<InventorySlot_r>().item = selectedObj;
             slot.GetComponent<Image>().sprite = selectedObj.GetComponent<Item_r>().itemSprite;
         }
-        if (Random.Range(0f, 1f) > 0.75f)
+        if (Random.Range(0f, 1f) > 0.75f) {
             inventory[inventory.Length - 1].GetComponent<InventorySlot_r>().item = null;
+            inventory[inventory.Length - 1].GetComponent<Image>().sprite = GameObject.Find("UIController").GetComponent<UIController_r>().emtpyInv;
+        }
     }
 
     public void Scavenge() {
@@ -53,7 +54,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
         inventoryUI.SetActive(true);
     }
 
-    void StartEncounter() {
+    public void StartEncounter() {
         GameObject.Find("GameManager").GetComponent<GameManager_r>().ChangeScreen(GameManager_r.ScreenType.STEncounter);
     }
 
