@@ -11,16 +11,17 @@ public class Clinic_r : Location_r, IPointerClickHandler {
     }
 
     public override void GenerateInventory() {
-        int diseaseCount = 0;
-        foreach (GameObject chara in GameObject.Find("GameManager").GetComponent<GameManager_r>().characters) {
-            if (chara.GetComponent<Character_r>().injured)
-                ++diseaseCount;
-            if (chara.GetComponent<Character_r>().dysentery)
-                ++diseaseCount;
-            if (chara.GetComponent<Character_r>().cholera)
-                ++diseaseCount;
-            if (chara.GetComponent<Character_r>().typhoid)
-                ++diseaseCount;
+        for (int i = 0; i < inventory.Length; ++i) {
+            if (i < inventory.Length / 2) {
+                inventory[i].GetComponent<InventorySlot_r>().item = possibleItems[0];
+                inventory[i].GetComponent<Image>().sprite = possibleItems[0].GetComponent<Item_r>().itemSprite;
+            }
+            else {
+                inventory[i].GetComponent<InventorySlot_r>().item = possibleItems[1];
+                inventory[i].GetComponent<Image>().sprite = possibleItems[1].GetComponent<Item_r>().itemSprite;
+            }
+
+
         }
     }
 
