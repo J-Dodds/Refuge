@@ -54,25 +54,25 @@ public class Map_r : MonoBehaviour {
                     else if (rand > chanceOfNothing && rand <= chanceOfInjury)
                     {
                         chara.GetComponent<Character_r>().injured = true;
-                        GM.GetComponent<GameManager_r>().conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten injured! ");
+                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten injured! ");
                     }
                     else if (rand > chanceOfInjury && rand <= chanceOfCholera)
                     {
                         chara.GetComponent<Character_r>().cholera = true;
-                        GM.GetComponent<GameManager_r>().conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten cholera! ");
+                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten cholera! ");
                     }
                     else if (rand > chanceOfCholera && rand <= chanceOfDysentary)
                     {
                         chara.GetComponent<Character_r>().dysentery = true;
-                        GM.GetComponent<GameManager_r>().conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten dysentary! ");
+                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten dysentary! ");
                     }
                     else if (rand > chanceOfDysentary && rand <= chanceOfTyphoid)
                     {
                         chara.GetComponent<Character_r>().typhoid = true;
-                        GM.GetComponent<GameManager_r>().conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten typhoid! ");
+                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten typhoid! ");
                     }
                 }
-                StartCoroutine(GM.GetComponent<GameManager_r>().HasGottenHealthCondition());
+                StartCoroutine(GM.HasGottenHealthCondition());
             }
         }
     }
