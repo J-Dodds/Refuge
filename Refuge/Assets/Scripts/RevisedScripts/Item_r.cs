@@ -20,12 +20,15 @@ public class Item_r : MonoBehaviour {
         ITMetronidazole = 11,
         ITPenicilin = 12,
         ITRepairFracture = 13,
+        ITCureAll = 14,
+        ITHeal = 15,
     };
 
     public ItemType itemType;
     public Sprite itemSprite;
     public float healthMod, hungerMod, thirstMod, stressMod;
     public float injuryChance, choleraChance, dysenteryChance, typhoidChance;
+    public bool cureDiseases;
     public int price;
     public float spawnChance;
 }
