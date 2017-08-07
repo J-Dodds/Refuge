@@ -13,19 +13,17 @@ public class GameManager : MonoBehaviour {
         stPause = 5,
         stOptions = 6,
         stCredits = 7,
+        stClinic = 8,
     };
 
     public Character[] characters;
-    public ScreenType currentScreen = ScreenType.stPause;
-    ScreenType prevScreen;
+    ScreenType currentScreen = ScreenType.stPause;
     public Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
     GameObject charUI;
-    public GameObject levelScripting;
     public GameObject carryingItem;
     public float lastClickTime;
     public bool clicking = false;
     public int partyMoney;
-    public Sprite defaultInventorySprite;
 
         // Singleton
     public static GameManager _Instance;
@@ -48,25 +46,18 @@ public class GameManager : MonoBehaviour {
         screens.Add(ScreenType.stPause, GameObject.FindGameObjectWithTag("ScreenPause"));
         screens.Add(ScreenType.stOptions, GameObject.FindGameObjectWithTag("ScreenOptions"));
         screens.Add(ScreenType.stCredits, GameObject.FindGameObjectWithTag("ScreenCredits"));
+        screens.Add(ScreenType.stClinic, GameObject.FindGameObjectWithTag("ScreenClinic"));
         charUI = GameObject.Find("CharacterUI");
 
         for (int index = 0; index < screens.Count; ++index)
             screens[(ScreenType)index].SetActive(false);
-        screens[currentScreen].SetActive(true);
-        ChangeScreen(ScreenType.stPause);
+        screens[ScreenType.stHubMap].SetActive(true);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey(KeyCode.P)) {
-            if (currentScreen == ScreenType.stPause) {
-                Time.timeScale = 1;
-                ChangeScreen(prevScreen);
-            }
-            else {
-                ChangeScreen(ScreenType.stPause);
-                Time.timeScale = 0;
-            }
+		if (Input.GetKey(KeyCode.UpArrow)) {
+            ChangeScreen((ScreenType)Random.Range(0, 7));
         }
 	}
 
@@ -96,38 +87,25 @@ public class GameManager : MonoBehaviour {
     }
 
     public void ChangeScreen(ScreenType newScreen) {
-        prevScreen = currentScreen;
         screens[currentScreen].SetActive(false);
         screens[newScreen].SetActive(true);
         currentScreen = newScreen;
 
-        if (newScreen == ScreenType.stHubMap || newScreen == ScreenType.stEncounter || newScreen == ScreenType.stLocation || newScreen == ScreenType.stWorldMap)
+        if (newScreen == ScreenType.stHubMap || newScreen == ScreenType.stEncounter || newScreen == ScreenType.stLocation || newScreen == ScreenType.stWorldMap || newScreen == ScreenType.stClinic)
             charUI.SetActive(true);
         else
             charUI.SetActive(false);
-        //if (newScreen == ScreenType.stPause) {
-            //levelScripting.SetActive(false);
-        //}
-       // else
-           // levelScripting.SetActive(true);
     }
 
     public void ChangeScreen(int iNewScreen) {
-        prevScreen = currentScreen;
         ScreenType newScreen = (ScreenType)iNewScreen;
         screens[currentScreen].SetActive(false);
         screens[newScreen].SetActive(true);
         currentScreen = newScreen;
 
-        if (newScreen == ScreenType.stHubMap || newScreen == ScreenType.stEncounter || newScreen == ScreenType.stLocation || newScreen == ScreenType.stWorldMap)
+        if (newScreen == ScreenType.stHubMap || newScreen == ScreenType.stEncounter || newScreen == ScreenType.stLocation || newScreen == ScreenType.stWorldMap || newScreen == ScreenType.stClinic)
             charUI.SetActive(true);
         else
             charUI.SetActive(false);
-
-        if (newScreen == ScreenType.stPause) {
-            //levelScripting.SetActive(false);
-        }
-        //else
-            //levelScripting.SetActive(true);
     }
 }
