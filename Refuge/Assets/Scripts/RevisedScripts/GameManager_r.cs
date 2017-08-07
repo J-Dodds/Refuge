@@ -20,7 +20,7 @@ public class GameManager_r : MonoBehaviour {
     public GameObject carryingItem;
     ScreenType currentScreen, prevScreen;
     Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
-    int partyMoney;
+    public int partyMoney;
 
     // Singleton
     public static GameManager _Instance;

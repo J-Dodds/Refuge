@@ -10,7 +10,9 @@ public class Refugees : MonoBehaviour
     //public GameObject RefugeeThree;
 
     public int health = 100;
-	
+
+    public bool isSick = false;
+
 	// Update is called once per frame
 	void Update ()
     {

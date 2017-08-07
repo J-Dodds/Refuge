@@ -10,14 +10,14 @@ public class Character : MonoBehaviour {
     public Sprite sprite;
     public UIChar uiChar;
     public Item[] inventory = new Item[4];
-    float health;
+    public float health;
     float hunger;
     float thirst;
     float stress;
-    bool injured;
-    bool cholera;
-    bool dysentry;
-    bool typhoid;
+    public bool injured;
+    public bool cholera;
+    public bool dysentry;
+    public bool typhoid;
     
     public void AddHealth(float modifier) { health += modifier; Mathf.Clamp01(health); uiChar.health.GetComponent<Slider>().value = health; }
     public float GetHealth() { return health; }
