@@ -11,6 +11,7 @@ public class Clinic : Locations
 
     public int healCost = 100;
     public int cureCost = 0;
+    public int costPerCondition = 100;
 
     public Text healText;
     public Text cureText;
@@ -33,7 +34,7 @@ public class Clinic : Locations
         {
             if (injured == false)
             {
-                cureCost += 100;
+                cureCost += costPerCondition;
                 injured = true;
             }
         }
@@ -42,7 +43,7 @@ public class Clinic : Locations
         {
             if (cholera == false)
             {
-                cureCost += 100;
+                cureCost += costPerCondition;
                 cholera = true;
             }
         }
@@ -51,7 +52,7 @@ public class Clinic : Locations
         {
             if (dysentary == false)
             {
-                cureCost += 100;
+                cureCost += costPerCondition;
                 dysentary = true;
             }
         }
@@ -60,7 +61,7 @@ public class Clinic : Locations
         {
             if (injured == false)
             {
-                cureCost += 100;
+                cureCost += costPerCondition;
                 typhoid = true;
             }
         }
