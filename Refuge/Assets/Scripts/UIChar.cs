@@ -23,8 +23,8 @@ public class UIChar : MonoBehaviour {
         for (int i = 0; i < chara.inventory.Length; ++i) {
             if (chara.inventory[i])
                 inventory[i].GetComponent<Image>().sprite = chara.inventory[i].itemSprite;
-            else
-                inventory[i].GetComponent<Image>().sprite = _GameManager.defaultInventorySprite;
+            //else
+                //inventory[i].GetComponent<Image>().sprite = _GameManager.defaultInventorySprite;
         }
         health.GetComponent<Slider>().value = chara.GetHealth();
         hunger.GetComponent<Slider>().value = chara.GetHunger();
