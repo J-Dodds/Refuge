@@ -28,21 +28,42 @@ public class Character_r : MonoBehaviour {
     public float GetStress() { return stress; }
 
     public void UseItem () {
-        Item_r item = GameObject.Find("GameManager").GetComponent<GameManager_r>().carryingItem.GetComponent<Item_r>();
+        GameManager_r GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
+        Item_r item = GM.carryingItem.GetComponent<Item_r>();
         GameObject.Find("GameManager").GetComponent<GameManager_r>().carryingItem = null;
         AddHealth (item.healthMod);
         AddThirst (item.thirstMod);
         AddHunger (item.hungerMod);
         AddStress (item.stressMod);
         if (Random.Range(0f, 1f) > item.injuryChance)
+        {
             injured = true;
+            GM.conditionReportText.text = charName + " has gotten injured! ";
+            StartCoroutine(GM.HasGottenHealthCondition());
+        }
+
         if (Random.Range(0f, 1f) > item.choleraChance)
+        {
             cholera = true;
+            GM.conditionReportText.text = charName + " has gotten cholera! ";
+            StartCoroutine(GM.HasGottenHealthCondition());
+        }
+
         if (Random.Range(0f, 1f) > item.dysenteryChance)
+        {
             dysentery = true;
+            GM.conditionReportText.text = charName + " has gotten dysentery! ";
+            StartCoroutine(GM.HasGottenHealthCondition());
+        }
+
         if (Random.Range(0f, 1f) > item.typhoidChance)
+        {
             typhoid = true;
-        if (item.itemType == Item_r.ItemType.ITCureAll) {
+            GM.conditionReportText.text = charName + " has gotten typhoid! ";
+            StartCoroutine(GM.HasGottenHealthCondition());
+        }
+
+            if (item.itemType == Item_r.ItemType.ITCureAll) {
             typhoid = false;
             dysentery = false;
             cholera = false;
