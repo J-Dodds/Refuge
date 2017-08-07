@@ -6,7 +6,11 @@ using UnityEngine;
 public class Clinic : Locations
 {
     public int healAmount;
-    public GameObject refugees;
+    public Character_r character;
+    public GameManager_r gameManager;
+
+    public int healCost = 100;
+    public int cureCost = 200;
 
 	// Use this for initialization
 	void Start ()
@@ -22,10 +26,27 @@ public class Clinic : Locations
 
     public void HealRefugee()
     {
-        if (refugees.GetComponent<Refugees>().health >= 100)
+        if (character.GetComponent<Refugees>().health >= 100)
         {
-            refugees.GetComponent<Refugees>().health += healAmount;
-            Debug.Log(refugees.GetComponent<Refugees>().health);
+            if (gameManager.partyMoney >= healCost)
+            {
+                character.GetComponent<Refugees>().health += healAmount;
+                Debug.Log(character.GetComponent<Refugees>().health);
+                gameManager.partyMoney -= healCost;
+            }
+        }
+    }
+
+    public void CureDisease()
+    {
+        if(character.GetComponent<Refugees>().isSick == true)
+        {
+            if(gameManager.partyMoney >= cureCost)
+            {
+                character.GetComponent<Refugees>().isSick = false;
+                gameManager.partyMoney -= cureCost;
+
+            }
         }
     }
 }

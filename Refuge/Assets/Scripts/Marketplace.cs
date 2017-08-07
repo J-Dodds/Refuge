@@ -20,6 +20,7 @@ public class Marketplace : Locations
     public Text waterText;
     public Text firstAidKitText;
 
+    GameManager_r gameManager;
     void Start()
     {
         foodText.text = "Food = " + foodPrice;
@@ -29,16 +30,28 @@ public class Marketplace : Locations
 
     public void AddFoodToInventory()
     {
-        character.GetComponent<Character_r>().AddItem(foodItem);
+        if (gameManager.partyMoney >= foodPrice)
+        {
+            character.GetComponent<Character_r>().AddItem(foodItem);
+            gameManager.partyMoney -= foodPrice;
+        }
     }
 
     public void AddWaterToInventory()
     {
-        character.GetComponent<Character_r>().AddItem(waterItem);
+        if (gameManager.partyMoney >= waterPrice)
+        {
+            character.GetComponent<Character_r>().AddItem(waterItem);
+            gameManager.partyMoney -= waterPrice;
+        }
     }
 
     public void AddFirstAidKitToInventory()
     {
-        character.GetComponent<Character_r>().AddItem(firstAidKitItem);
+        if (gameManager.partyMoney >= firstAidKitPrice)
+        {
+            character.GetComponent<Character_r>().AddItem(firstAidKitItem);
+            gameManager.partyMoney -= firstAidKitPrice;
+        }
     }
 }
