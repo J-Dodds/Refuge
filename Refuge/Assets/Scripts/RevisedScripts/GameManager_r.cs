@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager_r : MonoBehaviour {
     
@@ -19,6 +20,8 @@ public class GameManager_r : MonoBehaviour {
     public GameObject[] characters;
     public GameObject mouseHoverTip;
     public GameObject carryingItem;
+    public Text conditionReportText;
+    public int reportActiveTime = 3;
     ScreenType currentScreen, prevScreen;
     Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
 
@@ -37,8 +40,16 @@ public class GameManager_r : MonoBehaviour {
         }
     }
 
-	// Use this for initialization
-	void Start () {
+    public IEnumerator HasGottenHealthCondition()
+    {
+        conditionReportText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(reportActiveTime);
+        conditionReportText.text = "";
+        conditionReportText.gameObject.SetActive(false);
+    }
+
+    // Use this for initialization
+    void Start () {
         // Find each screen object
         screens.Add(ScreenType.STHubMap, GameObject.FindGameObjectWithTag("ScreenHubMap")); // Char UI
         screens.Add(ScreenType.STWorldMap, GameObject.FindGameObjectWithTag("ScreenWorldMap")); // Char UI

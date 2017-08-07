@@ -17,8 +17,6 @@ public class Character_r : MonoBehaviour {
     GameObject UISprite; // Button
     [SerializeField]
     GameObject UIHealth, UIHunger, UIThirst, UIStress; // Sliders
-    public Text conditionReportText;
-    public int reportActiveTime = 1;
 
     public void AddHealth(float modifier) { health += modifier; health = Mathf.Clamp01(health); UIHealth.GetComponent<Slider>().value = health; }
     public float GetHealth() { return health; }
@@ -28,13 +26,6 @@ public class Character_r : MonoBehaviour {
     public float GetHunger() { return hunger; }
     public void AddStress(float modifier) { stress += modifier; stress = Mathf.Clamp01(stress); UIStress.GetComponent<Slider>().value = stress; }
     public float GetStress() { return stress; }
-
-    public IEnumerator HasGottenHealthCondition()
-    {
-        conditionReportText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(reportActiveTime);
-        conditionReportText.gameObject.SetActive(false);
-    }
 
     public void UseItem () {
         Item_r item = GameObject.Find("GameManager").GetComponent<GameManager_r>().carryingItem.GetComponent<Item_r>();
