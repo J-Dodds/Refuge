@@ -54,7 +54,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
 
         if(changeScreen)
         {
-            GameManager_r.Instance.ChangeScreen(destinationScreen);
+            GameManager_r.Instance.ChangeScreen(destinationScreen); // THIS BREAKS THE FUNCTION FOR SOME REASON
         }
     }
 
