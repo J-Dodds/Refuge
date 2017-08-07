@@ -15,14 +15,27 @@ public class UIController_r : MonoBehaviour {
 
     public void OnClickInventory(GameObject slot) {
         if (slot.GetComponent<InventorySlot_r>().item && !_GameManager.carryingItem && _GameManager.partyMoney >= slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price) {
+            Debug.Log(slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price +  " <= " + _GameManager.partyMoney);
             _GameManager.carryingItem = slot.GetComponent<InventorySlot_r>().item;
             slot.GetComponent<Image>().sprite = emtpyInv;
             slot.GetComponent<InventorySlot_r>().item = null;
         }
         else if (!slot.GetComponent<InventorySlot_r>().item && _GameManager.carryingItem) {
             slot.GetComponent<InventorySlot_r>().item = _GameManager.carryingItem;
-            _GameManager.AddMoney(-slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price);
-            slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price = 0;
+            bool anotherSlot = true;
+            List<GameObject> maps = new List<GameObject>();
+            maps.AddRange(GameObject.FindGameObjectsWithTag("ScreenWorldMap"));
+            maps.AddRange(GameObject.FindGameObjectsWithTag("ScreenHubMap"));
+            foreach (GameObject obj in maps)
+                foreach (GameObject loc in obj.GetComponent<Map_r>().locations)
+                    foreach (GameObject invSlot in loc.GetComponent<Location_r>().inventory)
+                        if (invSlot == slot)
+                            anotherSlot = false;
+            if (anotherSlot) {
+                _GameManager.AddMoney(-slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price);
+                slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price = 0;
+            }
+
             slot.GetComponent<Image>().sprite = slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().itemSprite;
             _GameManager.carryingItem = null;
         }
