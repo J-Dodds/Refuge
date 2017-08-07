@@ -43,36 +43,6 @@ public class Map_r : MonoBehaviour {
                 refugeeObj.transform.position = new Vector3(newLocation.transform.position.x + movementXOffset, newLocation.transform.position.y + movementYOffset, -5);
                 newLocation.GetComponent<Location_r>().Scavenge();
                 newLocation = null;
-
-                foreach (GameObject chara in GM.characters)
-                {
-                    int rand = Random.Range(0, 100);
-                    if (rand <= chanceOfNothing)
-                    {
-                        Debug.Log("You caught nothing");
-                    }
-                    else if (rand > chanceOfNothing && rand <= chanceOfInjury)
-                    {
-                        chara.GetComponent<Character_r>().injured = true;
-                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten injured! ");
-                    }
-                    else if (rand > chanceOfInjury && rand <= chanceOfCholera)
-                    {
-                        chara.GetComponent<Character_r>().cholera = true;
-                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten cholera! ");
-                    }
-                    else if (rand > chanceOfCholera && rand <= chanceOfDysentary)
-                    {
-                        chara.GetComponent<Character_r>().dysentery = true;
-                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten dysentary! ");
-                    }
-                    else if (rand > chanceOfDysentary && rand <= chanceOfTyphoid)
-                    {
-                        chara.GetComponent<Character_r>().typhoid = true;
-                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten typhoid! ");
-                    }
-                }
-                StartCoroutine(GM.HasGottenHealthCondition());
             }
         }
     }
@@ -83,6 +53,35 @@ public class Map_r : MonoBehaviour {
         {
             newLocation = location;
             currentLocationNumber = location.GetComponent<Location_r>().locationNumber;
+            foreach (GameObject chara in GM.characters)
+            {
+                int rand = Random.Range(0, 100);
+                if (rand <= chanceOfNothing)
+                {
+                    Debug.Log("You caught nothing");
+                }
+                else if (rand > chanceOfNothing && rand <= chanceOfInjury)
+                {
+                    chara.GetComponent<Character_r>().injured = true;
+                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten injured! ");
+                }
+                else if (rand > chanceOfInjury && rand <= chanceOfCholera)
+                {
+                    chara.GetComponent<Character_r>().cholera = true;
+                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten cholera! ");
+                }
+                else if (rand > chanceOfCholera && rand <= chanceOfDysentary)
+                {
+                    chara.GetComponent<Character_r>().dysentery = true;
+                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten dysentary! ");
+                }
+                else if (rand > chanceOfDysentary && rand <= chanceOfTyphoid)
+                {
+                    chara.GetComponent<Character_r>().typhoid = true;
+                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten typhoid! ");
+                }
+            }
+            StartCoroutine(GM.HasGottenHealthCondition());
         }
     }
 }

@@ -22,7 +22,7 @@ public class GameManager_r : MonoBehaviour {
     public GameObject mouseHoverTip;
     public GameObject carryingItem;
     public Text conditionReportText;
-    public int reportActiveTime = 3;
+    public float reportActiveTime = 1f;
     ScreenType currentScreen, prevScreen;
     Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
 
@@ -30,6 +30,7 @@ public class GameManager_r : MonoBehaviour {
     public float partySpeed = 2;
 
     float hoverTimer = 0;
+   public bool inCoRoutine = false;
 
     // Singleton
     public static GameManager _Instance;
@@ -43,10 +44,13 @@ public class GameManager_r : MonoBehaviour {
 
     public IEnumerator HasGottenHealthCondition()
     {
+        inCoRoutine = true;
         conditionReportText.gameObject.SetActive(true);
         yield return new WaitForSeconds(reportActiveTime);
         conditionReportText.text = "";
         conditionReportText.gameObject.SetActive(false);
+        inCoRoutine = false;
+        StopCoroutine(HasGottenHealthCondition());
     }
 
     // Use this for initialization
