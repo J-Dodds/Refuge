@@ -30,6 +30,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     }
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
+        Debug.Log("The user clicked");
         map.Travel(gameObject);
     }
 

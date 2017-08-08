@@ -11,8 +11,9 @@ public class Map_r : MonoBehaviour {
     GameManager_r GM;
     float movementXOffset = 10;
     float movementYOffset = 10;
-    int currentLocationNumber;
 
+    [SerializeField]
+    int currentLocationNumber;
     public int chanceOfNothing = 60;
     public int chanceOfInjury = 70;
     public int chanceOfCholera = 80;
@@ -80,8 +81,12 @@ public class Map_r : MonoBehaviour {
                     chara.GetComponent<Character_r>().typhoid = true;
                     GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten typhoid! ");
                 }
+
             }
             StartCoroutine(GM.HasGottenHealthCondition());
+
         }
+        else
+            Debug.Log(location.GetComponent<Location_r>().locationNumber + " | " + currentLocationNumber +  " | " + locations.Length);
     }
 }
