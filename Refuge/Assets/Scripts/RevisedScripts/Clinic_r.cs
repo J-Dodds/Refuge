@@ -20,8 +20,10 @@ public class Clinic_r : Location_r, IPointerClickHandler {
                 inventory[i].GetComponent<InventorySlot_r>().item = possibleItems[1];
                 inventory[i].GetComponent<Image>().sprite = possibleItems[1].GetComponent<Item_r>().itemSprite;
             }
-
-
+        }
+        if (changeScreen) {
+            GameObject.Find("GameManager").GetComponent<GameManager_r>().ChangeScreen(destinationScreen);
+            GameObject.Find("GameManager").GetComponent<GameManager_r>().conditionReportText.text = "";
         }
     }
 
