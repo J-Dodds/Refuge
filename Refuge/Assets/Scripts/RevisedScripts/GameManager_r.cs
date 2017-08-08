@@ -21,6 +21,7 @@ public class GameManager_r : MonoBehaviour {
     public GameObject[] characters;
     public GameObject mouseHoverTip;
     public GameObject carryingItem;
+    GameObject GOCarry;
     public Text conditionReportText;
     public float reportActiveTime = 1f;
     ScreenType currentScreen, prevScreen;
@@ -76,6 +77,18 @@ public class GameManager_r : MonoBehaviour {
             chara.GetComponent<Character_r>().AddThirst(1);
             chara.GetComponent<Character_r>().AddStress(1);
         }
+    }
+
+    void Update() {
+        if (carryingItem) {
+            if (!carryingItem.activeInHierarchy) {
+                carryingItem = Instantiate(carryingItem);
+                carryingItem.AddComponent<Image>();
+                carryingItem.GetComponent<Image>().sprite = carryingItem.GetComponent<Item_r>().itemSprite;
+            }
+            carryingItem.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -5);
+        }
+        
     }
 
     public void ChangeScreen(ScreenType newScreen) {
