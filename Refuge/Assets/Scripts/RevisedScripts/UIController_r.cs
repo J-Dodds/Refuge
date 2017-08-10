@@ -45,6 +45,13 @@ public class UIController_r : MonoBehaviour {
         }
     }
 
+    public void BackToMap() {
+        if (_GameManager.currentScreen == GameManager_r.ScreenType.STHubMap)
+            _GameManager.ChangeScreen(GameManager_r.ScreenType.STWorldMap);
+        else
+            _GameManager.ChangeScreen(_GameManager.prevScreen);
+    }
+
     public void ChangeSFXVolume(float vol) {
         GameObject.Find("AudioManager").GetComponent<AudioManager>().GetChannel("SFX").volume = vol;
     }

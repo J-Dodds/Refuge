@@ -24,7 +24,7 @@ public class GameManager_r : MonoBehaviour {
     public GameObject moneyGUI;
     public Text conditionReportText;
     public float reportActiveTime = 1f;
-    ScreenType currentScreen, prevScreen;
+    public ScreenType currentScreen, prevScreen;
     Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
 
     public int partyMoney;

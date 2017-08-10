@@ -24,10 +24,14 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     float encounterChance;
     public string description;
     public Map_r map;
+    bool worldMap = true;
     public bool generated = false;
 
     public void Start() {
-        map = GameObject.FindGameObjectWithTag("ScreenWorldMap").GetComponent<Map_r>();
+        if (worldMap)
+            map = GameObject.FindGameObjectWithTag("ScreenWorldMap").GetComponent<Map_r>();
+        else
+            map = transform.parent.GetComponent<Map_r>();
     }
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
