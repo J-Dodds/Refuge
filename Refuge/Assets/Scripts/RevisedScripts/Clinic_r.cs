@@ -11,14 +11,17 @@ public class Clinic_r : Location_r, IPointerClickHandler {
     }
 
     public override void GenerateInventory() {
-        for (int i = 0; i < inventory.Length; ++i) {
-            if (i < inventory.Length / 2) {
-                inventory[i].GetComponent<InventorySlot_r>().item = possibleItems[0];
-                inventory[i].GetComponent<Image>().sprite = possibleItems[0].GetComponent<Item_r>().itemSprite;
-            }
-            else {
-                inventory[i].GetComponent<InventorySlot_r>().item = possibleItems[1];
-                inventory[i].GetComponent<Image>().sprite = possibleItems[1].GetComponent<Item_r>().itemSprite;
+        if (!generated) {
+            generated = true;
+            for (int i = 0; i < inventory.Length; ++i) {
+                if (i < inventory.Length / 2) {
+                    inventory[i].GetComponent<InventorySlot_r>().item = possibleItems[0];
+                    inventory[i].GetComponent<Image>().sprite = possibleItems[0].GetComponent<Item_r>().itemSprite;
+                }
+                else {
+                    inventory[i].GetComponent<InventorySlot_r>().item = possibleItems[1];
+                    inventory[i].GetComponent<Image>().sprite = possibleItems[1].GetComponent<Item_r>().itemSprite;
+                }
             }
         }
         if (changeScreen) {

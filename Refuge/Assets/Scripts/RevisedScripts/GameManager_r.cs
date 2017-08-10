@@ -21,7 +21,7 @@ public class GameManager_r : MonoBehaviour {
     public GameObject[] characters;
     public GameObject mouseHoverTip;
     public GameObject carryingItem;
-    GameObject GOCarry;
+    public GameObject moneyGUI;
     public Text conditionReportText;
     public float reportActiveTime = 1f;
     ScreenType currentScreen, prevScreen;
@@ -144,6 +144,6 @@ public class GameManager_r : MonoBehaviour {
         return chara;
     }
 
-    public void AddMoney(int modifier) { partyMoney += modifier; }
+    public void AddMoney(int modifier) { partyMoney += modifier; if (moneyGUI) moneyGUI.GetComponent<Text>().text = "Money: " + partyMoney; }
     public int GetMoney() { return partyMoney; }
 }

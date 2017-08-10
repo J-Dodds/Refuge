@@ -24,6 +24,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     float encounterChance;
     public string description;
     public Map_r map;
+    public bool generated = false;
 
     public void Start() {
         map = GameObject.FindGameObjectWithTag("ScreenWorldMap").GetComponent<Map_r>();
@@ -35,22 +36,25 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     }
 
     public virtual void GenerateInventory() {
-        foreach (GameObject slot in inventory) {
-            // No Empty RND Slots
-            float rnd = Random.Range(0f, 1f);
-            GameObject selectedObj = possibleItems[Random.Range(0, possibleItems.Length)];
-            foreach (GameObject item in possibleItems)
-                if (selectedObj) {
-                    if (item.GetComponent<Item_r>().spawnChance > rnd && item.GetComponent<Item_r>().spawnChance - rnd > selectedObj.GetComponent<Item_r>().spawnChance - rnd) {
-                        selectedObj = item;
+        if (!generated) {
+            generated = true;
+            foreach (GameObject slot in inventory) {
+                // No Empty RND Slots
+                float rnd = Random.Range(0f, 1f);
+                GameObject selectedObj = possibleItems[Random.Range(0, possibleItems.Length)];
+                foreach (GameObject item in possibleItems)
+                    if (selectedObj) {
+                        if (item.GetComponent<Item_r>().spawnChance > rnd && item.GetComponent<Item_r>().spawnChance - rnd > selectedObj.GetComponent<Item_r>().spawnChance - rnd) {
+                            selectedObj = item;
+                        }
                     }
-                }
-            slot.GetComponent<InventorySlot_r>().item = selectedObj;
-            slot.GetComponent<Image>().sprite = selectedObj.GetComponent<Item_r>().itemSprite;
-        }
-        if (Random.Range(0f, 1f) > 0.75f) {
-            inventory[inventory.Length - 1].GetComponent<InventorySlot_r>().item = null;
-            inventory[inventory.Length - 1].GetComponent<Image>().sprite = GameObject.Find("UIController").GetComponent<UIController_r>().emtpyInv;
+                slot.GetComponent<InventorySlot_r>().item = selectedObj;
+                slot.GetComponent<Image>().sprite = selectedObj.GetComponent<Item_r>().itemSprite;
+            }
+            if (Random.Range(0f, 1f) > 0.75f) {
+                inventory[inventory.Length - 1].GetComponent<InventorySlot_r>().item = null;
+                inventory[inventory.Length - 1].GetComponent<Image>().sprite = GameObject.Find("UIController").GetComponent<UIController_r>().emtpyInv;
+            }
         }
 
         if(changeScreen)
