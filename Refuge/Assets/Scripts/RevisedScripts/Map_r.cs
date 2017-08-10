@@ -37,6 +37,7 @@ public class Map_r : MonoBehaviour {
                 {
                     chara.GetComponent<Character_r>().AddHunger(-0.002f);
                     chara.GetComponent<Character_r>().AddThirst(-0.002f);
+                    chara.GetComponent<Character_r>().AddStress(-0.0005f * (1 - chara.GetComponent<Character_r>().GetHunger()));
                 }
             }
             else {
