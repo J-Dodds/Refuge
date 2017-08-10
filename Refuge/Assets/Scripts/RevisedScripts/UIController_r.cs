@@ -21,6 +21,10 @@ public class UIController_r : MonoBehaviour {
             slot.GetComponent<InventorySlot_r>().item = null;
         }
         else if (!slot.GetComponent<InventorySlot_r>().item && _GameManager.carryingItem) {
+            if (_GameManager.carryingItem.GetComponent<Image>()) {
+                Destroy(_GameManager.carryingItem.GetComponent<Image>());
+                Destroy(_GameManager.carryingItem.gameObject);
+            }
             slot.GetComponent<InventorySlot_r>().item = _GameManager.carryingItem;
             bool anotherSlot = true;
             List<GameObject> maps = new List<GameObject>();

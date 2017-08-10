@@ -82,9 +82,14 @@ public class GameManager_r : MonoBehaviour {
     void Update() {
         if (carryingItem) {
             if (!carryingItem.activeInHierarchy) {
-                carryingItem = Instantiate(carryingItem);
-                carryingItem.AddComponent<Image>();
-                carryingItem.GetComponent<Image>().sprite = carryingItem.GetComponent<Item_r>().itemSprite;
+                if (!carryingItem.GetComponent<Image>()) {
+                    carryingItem = Instantiate(carryingItem);
+                    carryingItem.AddComponent<Image>();
+                    carryingItem.GetComponent<Image>().sprite = carryingItem.GetComponent<Item_r>().itemSprite;
+                    carryingItem.transform.SetParent(GameObject.Find("Canvas").transform);
+                    carryingItem.gameObject.transform.SetSiblingIndex(carryingItem.gameObject.transform.GetSiblingIndex());
+                    carryingItem.GetComponent<Image>().raycastTarget = false;
+                }
             }
             carryingItem.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -5);
         }
