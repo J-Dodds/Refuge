@@ -36,7 +36,8 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
         Debug.Log("The user clicked");
-        map.Travel(gameObject);
+        map.locationObject = gameObject;
+        map.confirmTravelPanel.SetActive(true);
     }
 
     public virtual void GenerateInventory() {

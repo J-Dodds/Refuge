@@ -20,25 +20,46 @@ public class Map_r : MonoBehaviour {
     public int chanceOfDysentary = 90;
     public int chanceOfTyphoid = 100;
 
+    public GameObject confirmTravelPanel;
+    [SerializeField]
+    Text costOfTravelText;
+    bool? confirmTravel = null;
+    public GameObject locationObject;
+
+    float hungerPercentLeft;
+    float thirstPercentLeft;
+    float stressPercentLeft;
+
     // Use this for initialization
     void Start() {
         GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
+
+        hungerPercentLeft = 100f;
+        thirstPercentLeft = 100f;
+        stressPercentLeft = 100f;
     }
 
     // Update is called once per frame
-    void Update() {
-        if (newLocation)
+    void Update()
+    {
+        if(confirmTravelPanel.activeInHierarchy == true)
         {
-            if (Vector3.Distance(refugeeObj.transform.position, newLocation.transform.position) > 0.6)
+            newLocation = locationObject;
+            costOfTravelText.text = "You Will Lose: Health - " + -(((100.0f - hungerPercentLeft) / 1000000.0f) + ((100f - thirstPercentLeft) / 1000000f) + ((100f - stressPercentLeft) / 1000000f)) * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
+                                "                   Hunger - " + 0.002f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
+                                "                   Thirst - " + 0.002f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
+                                "                   Stress - " + 0.0005f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n";
+        }
+
+        if (confirmTravel == true)
+        {
+            confirmTravelPanel.SetActive(false);
+            if (Vector3.Distance(refugeeObj.transform.position, newLocation.transform.position) > 0.8)
             {
                 refugeeObj.transform.position = Vector3.Lerp(refugeeObj.transform.position, newLocation.transform.position, Time.deltaTime * GM.partySpeed);
 
                 foreach (GameObject chara in GM.characters)
                 {
-                    float hungerPercentLeft = chara.GetComponent<Character_r>().hunger / 1 * 100;
-                    float thirstPercentLeft = chara.GetComponent<Character_r>().thirst / 1 * 100;
-                    float stressPercentLeft = chara.GetComponent<Character_r>().stress / 1 * 100;
-
                     chara.GetComponent<Character_r>().AddHunger(-0.002f);
                     chara.GetComponent<Character_r>().AddThirst(-0.002f);
                     chara.GetComponent<Character_r>().AddStress(-0.0005f);
@@ -51,7 +72,7 @@ public class Map_r : MonoBehaviour {
                 Debug.Log("We Made It! (woo)");
                 refugeeObj.transform.position = new Vector3(newLocation.transform.position.x + movementXOffset, newLocation.transform.position.y + movementYOffset, -5);
                 newLocation.GetComponent<Location_r>().Scavenge();
-                newLocation = null;
+                confirmTravel = false;
             }
         }
     }
@@ -95,6 +116,18 @@ public class Map_r : MonoBehaviour {
 
         }
         else
-            Debug.Log(location.GetComponent<Location_r>().locationNumber + " | " + currentLocationNumber +  " | " + locations.Length);
+            Debug.Log(location.GetComponent<Location_r>().locationNumber + " | " + currentLocationNumber + " | " + locations.Length);
+    }
+
+    public void YesTravel()
+    {
+        confirmTravel = true;
+        confirmTravelPanel.SetActive(false);
+    }
+
+    public void NoTravel()
+    {
+        confirmTravel = false;
+        confirmTravelPanel.SetActive(false);
     }
 }
