@@ -27,6 +27,8 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     bool worldMap = true;
     public bool generated = false;
 
+    public bool travelReady = false;
+
     public void Start() {
         if (worldMap)
             map = GameObject.FindGameObjectWithTag("ScreenWorldMap").GetComponent<Map_r>();
@@ -36,8 +38,11 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
         Debug.Log("The user clicked");
-        map.locationObject = gameObject;
-        map.confirmTravelPanel.SetActive(true);
+
+        if (locationNumber == map.currentLocationNumber - 1 || locationNumber == map.currentLocationNumber + 1)
+        {
+            map.Travel(gameObject);
+        }
     }
 
     public virtual void GenerateInventory() {
@@ -80,6 +85,13 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
 
 	// Update is called once per frame
 	void Update () {
-		
+        //if (locationNumber == map.currentLocationNumber - 1 || locationNumber == map.currentLocationNumber + 1)
+        //{
+        //    if (travelReady == true)
+        //    {
+        //        map.Travel(gameObject);
+        //        travelReady = false;
+        //    }
+        //}
 	}
 }

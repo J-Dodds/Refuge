@@ -7,7 +7,12 @@ using UnityEngine.UI;
 public class Clinic_r : Location_r, IPointerClickHandler {
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
-        map.Travel(gameObject);
+        Debug.Log("The user clicked");
+
+        if (locationNumber == map.currentLocationNumber - 1 || locationNumber == map.currentLocationNumber + 1)
+        {
+            map.Travel(gameObject);
+        }
     }
 
     public override void GenerateInventory() {
