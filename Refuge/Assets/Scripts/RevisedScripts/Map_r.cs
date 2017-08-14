@@ -35,9 +35,16 @@ public class Map_r : MonoBehaviour {
 
                 foreach (GameObject chara in GM.characters)
                 {
+                    float hungerPercentLeft = chara.GetComponent<Character_r>().hunger / 1 * 100;
+                    float thirstPercentLeft = chara.GetComponent<Character_r>().thirst / 1 * 100;
+                    float stressPercentLeft = chara.GetComponent<Character_r>().stress / 1 * 100;
+
                     chara.GetComponent<Character_r>().AddHunger(-0.002f);
                     chara.GetComponent<Character_r>().AddThirst(-0.002f);
-                    chara.GetComponent<Character_r>().AddStress(-0.0005f * (1 - chara.GetComponent<Character_r>().GetHunger()));
+                    chara.GetComponent<Character_r>().AddStress(-0.0005f);
+
+                    chara.GetComponent<Character_r>().AddHealth(-(((100.0f - hungerPercentLeft) / 100000.0f) + ((100f - thirstPercentLeft) / 100000f) + ((100f - stressPercentLeft) / 100000f)));
+                    Debug.Log("Heal Loss == " + -(((100.0f - hungerPercentLeft) / 1000000.0f) + ((100f - thirstPercentLeft) / 1000000f) + ((100f - stressPercentLeft) / 1000000f)));
                 }
             }
             else {

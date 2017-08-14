@@ -11,6 +11,7 @@ public class Character_r : MonoBehaviour {
     public GameObject[] inventory;
     public float health, hunger, thirst, stress; // Normalized
     public bool injured, cholera, dysentery, typhoid;
+    public bool isDead = false;
 
     public Sprite sprite;
     [SerializeField]
@@ -26,6 +27,15 @@ public class Character_r : MonoBehaviour {
     public float GetHunger() { return hunger; }
     public void AddStress(float modifier) { stress += modifier; stress = Mathf.Clamp01(stress); UIStress.GetComponent<Slider>().value = stress; }
     public float GetStress() { return stress; }
+
+    void Update()
+    {
+        if(health <= 0)
+        {
+            isDead = true;
+            OnDeath();
+        }
+    }
 
     public void UseItem () {
         GameManager_r GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
@@ -80,5 +90,14 @@ public class Character_r : MonoBehaviour {
                 inventory[index].GetComponent<Image>().sprite = item.GetComponent<Item_r>().itemSprite;
             }
         }
+    }
+
+    public void OnDeath()
+    {
+        GameManager_r GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
+        GM.conditionReportText.text = charName + " Has Died!";
+        StartCoroutine(GM.HasGottenHealthCondition());
+        Debug.Log(charName + " has died");
+        Destroy(gameObject);
     }
 }
