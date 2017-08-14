@@ -61,7 +61,6 @@ public class Map_r : MonoBehaviour {
                     chara.GetComponent<Character_r>().AddHealth(-(((100.0f - hungerPercentLeft) / 100000.0f) + ((100f - thirstPercentLeft) / 100000f) + ((100f - stressPercentLeft) / 100000f)));
                 }
             }
-
             else {
                 Debug.Log("We Made It! (woo)");
                 refugeeObj.transform.position = new Vector3(newLocation.transform.position.x + movementXOffset, newLocation.transform.position.y + movementYOffset, -5);
