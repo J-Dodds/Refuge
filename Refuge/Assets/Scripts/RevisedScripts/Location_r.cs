@@ -26,6 +26,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     public Map_r map;
     bool worldMap = true;
     public bool generated = false;
+    public List<GameObject> possibleLocations = new List<GameObject>();
 
     public bool travelReady = false;
 

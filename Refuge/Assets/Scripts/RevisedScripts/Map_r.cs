@@ -31,6 +31,9 @@ public class Map_r : MonoBehaviour {
     float thirstPercentLeft;
     float stressPercentLeft;
 
+    GameObject currentLocation;
+    int time = 0;
+
     // Use this for initialization
     void Start() {
         GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
@@ -54,9 +57,9 @@ public class Map_r : MonoBehaviour {
 
                 foreach (GameObject chara in GM.characters)
                 {
-                    chara.GetComponent<Character_r>().AddHunger(-0.002f);
-                    chara.GetComponent<Character_r>().AddThirst(-0.002f);
-                    chara.GetComponent<Character_r>().AddStress(-0.0005f);
+                    chara.GetComponent<Character_r>().AddHunger(-0.0001f * time);
+                    chara.GetComponent<Character_r>().AddThirst(-0.0001f * time);
+                    chara.GetComponent<Character_r>().AddStress(-0.00001f * time);
 
                     chara.GetComponent<Character_r>().AddHealth(-(((100.0f - hungerPercentLeft) / 100000.0f) + ((100f - thirstPercentLeft) / 100000f) + ((100f - stressPercentLeft) / 100000f)));
                 }
@@ -72,15 +75,17 @@ public class Map_r : MonoBehaviour {
 
     public void Travel(GameObject location)
     {
-        if (location.GetComponent<Location_r>().locationNumber == currentLocationNumber - 1 || location.GetComponent<Location_r>().locationNumber == currentLocationNumber + 1)
-        {
+        if (!newLocation || newLocation.GetComponent<Location_r>().possibleLocations.Contains(location)) {
+        //if (location.GetComponent<Location_r>().locationNumber == currentLocationNumber - 1 || location.GetComponent<Location_r>().locationNumber == currentLocationNumber + 1)
+        //{
+            time = (int)Vector3.Distance(refugeeObj.transform.position, location.transform.position) / 5;
             confirmTravelPanel.SetActive(true);
             newLocation = location;
 
             costOfTravelText.text = "You Will Lose: Health - " + (((100.0f - hungerPercentLeft) / 1000000.0f) + ((100f - thirstPercentLeft) / 1000000f) + ((100f - stressPercentLeft) / 1000000f)) * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
-                    "                   Hunger - " + 0.002f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
-                    "                   Thirst - " + 0.002f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
-                    "                   Stress - " + 0.0005f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n";
+                    "                   Hunger - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
+                    "                   Thirst - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
+                    "                   Stress - " + time * 0.00001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n";
         }
         else
             Debug.Log(location.GetComponent<Location_r>().locationNumber + " | " + currentLocationNumber + " | " + locations.Length);

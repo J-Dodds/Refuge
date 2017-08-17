@@ -81,9 +81,10 @@ public class GameManager_r : MonoBehaviour {
 
     void Update() {
         if (carryingItem) {
-            if (!carryingItem.activeInHierarchy) {
-                if (!carryingItem.GetComponent<Image>()) {
+            if (!carryingItem.activeInHierarchy || !carryingItem.activeSelf) {
+                if(!carryingItem.activeInHierarchy)
                     carryingItem = Instantiate(carryingItem);
+                if (!carryingItem.GetComponent<Image>()) {
                     carryingItem.AddComponent<Image>();
                     carryingItem.GetComponent<Image>().sprite = carryingItem.GetComponent<Item_r>().itemSprite;
                     carryingItem.transform.SetParent(GameObject.Find("Canvas").transform);
