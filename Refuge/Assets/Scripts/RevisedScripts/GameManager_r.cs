@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class GameManager_r : MonoBehaviour {
     
@@ -82,7 +83,7 @@ public class GameManager_r : MonoBehaviour {
     void Update() {
         if (carryingItem) {
             if (!carryingItem.activeInHierarchy || !carryingItem.activeSelf) {
-                if(!carryingItem.activeInHierarchy)
+                if(PrefabUtility.GetPrefabParent(carryingItem) == null && PrefabUtility.GetPrefabObject(carryingItem) != null)
                     carryingItem = Instantiate(carryingItem);
                 if (!carryingItem.GetComponent<Image>()) {
                     carryingItem.AddComponent<Image>();
