@@ -82,9 +82,11 @@ public class GameManager_r : MonoBehaviour {
 
     void Update() {
         if (carryingItem) {
+            bool exists;
             if (!carryingItem.activeInHierarchy || !carryingItem.activeSelf) {
-                if(PrefabUtility.GetPrefabParent(carryingItem) == null && PrefabUtility.GetPrefabObject(carryingItem) != null)
-                    carryingItem = Instantiate(carryingItem);
+                //if(PrefabUtility.GetPrefabParent(carryingItem) == null && PrefabUtility.GetPrefabObject(carryingItem) != null) // Doesn't work in build
+                //if (true)
+                //    carryingItem = Instantiate(carryingItem);
                 if (!carryingItem.GetComponent<Image>()) {
                     carryingItem.AddComponent<Image>();
                     carryingItem.GetComponent<Image>().sprite = carryingItem.GetComponent<Item_r>().itemSprite;
@@ -93,7 +95,11 @@ public class GameManager_r : MonoBehaviour {
                     carryingItem.GetComponent<Image>().raycastTarget = false;
                 }
             }
-            carryingItem.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -5);
+            carryingItem.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -5f);
+            carryingItem.SetActive(true);
+            Vector3 newPos = carryingItem.transform.position;
+            newPos.z = -5f;
+            carryingItem.transform.position = newPos;
         }
         
     }

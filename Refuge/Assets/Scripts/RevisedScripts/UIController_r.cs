@@ -19,6 +19,9 @@ public class UIController_r : MonoBehaviour {
             _GameManager.carryingItem = slot.GetComponent<InventorySlot_r>().item;
             slot.GetComponent<Image>().sprite = emtpyInv;
             slot.GetComponent<InventorySlot_r>().item = null;
+            _GameManager.carryingItem = Instantiate(_GameManager.carryingItem);
+            _GameManager.carryingItem.transform.SetParent(GameObject.Find("Canvas").transform, false);
+            _GameManager.carryingItem.transform.SetAsLastSibling();
         }
         else if (!slot.GetComponent<InventorySlot_r>().item && _GameManager.carryingItem) {
             if (_GameManager.carryingItem.GetComponent<Image>()) {
