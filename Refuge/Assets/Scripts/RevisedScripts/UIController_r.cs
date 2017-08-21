@@ -8,7 +8,6 @@ public class UIController_r : MonoBehaviour {
     GameManager_r _GameManager;
     AudioManager _AudioManager;
     public Sprite emtpyInv;
-    public AudioClip clickSound;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +16,7 @@ public class UIController_r : MonoBehaviour {
 	}
 
     public void OnClickInventory(GameObject slot) {
-        _AudioManager.PlayClip(clickSound, _AudioManager.GetChannel("SFX"));
+        _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
         if (slot.GetComponent<InventorySlot_r>().item && !_GameManager.carryingItem && _GameManager.partyMoney >= slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price) {
             Debug.Log(slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price +  " <= " + _GameManager.partyMoney);
             _GameManager.carryingItem = slot.GetComponent<InventorySlot_r>().item;

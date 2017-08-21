@@ -33,7 +33,6 @@ public class GameManager_r : MonoBehaviour {
 
     float hoverTimer = 0;
    public bool inCoRoutine = false;
-    public AudioClip clickSound;
     AudioManager _AudioManager;
 
     // Singleton
@@ -70,6 +69,9 @@ public class GameManager_r : MonoBehaviour {
         screens.Add(ScreenType.STCredits, GameObject.FindGameObjectWithTag("ScreenCredits"));
         screens.Add(ScreenType.STClinic, GameObject.FindGameObjectWithTag("ScreenClinic"));
 
+        if (!screens[ScreenType.STPause])
+            Debug.Log("Pause is missing yo");
+
         for (int index = 0; index < screens.Count; ++index) 
             if (screens[(ScreenType)index])
                 screens[(ScreenType)index].SetActive(false);
@@ -104,7 +106,7 @@ public class GameManager_r : MonoBehaviour {
 
     public void ChangeScreen(ScreenType newScreen) {
         if (_AudioManager)
-            _AudioManager.PlayClip(clickSound, _AudioManager.GetChannel("SFX"));
+            _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
 
         prevScreen = currentScreen;
         screens[currentScreen].SetActive(false);
@@ -122,7 +124,7 @@ public class GameManager_r : MonoBehaviour {
 
     public void ChangeScreen(int iNewScreen) {
         if (_AudioManager)
-            _AudioManager.PlayClip(clickSound, _AudioManager.GetChannel("SFX"));
+            _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
 
         ScreenType newScreen = (ScreenType)iNewScreen;
         prevScreen = currentScreen;
