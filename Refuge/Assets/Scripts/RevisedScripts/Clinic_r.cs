@@ -8,6 +8,7 @@ public class Clinic_r : Location_r, IPointerClickHandler {
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
         Debug.Log("The user clicked");
+        _AudioManager.PlayClip(clickSound, _AudioManager.GetChannel("SFX"));
 
         if (locationNumber == map.currentLocationNumber - 1 || locationNumber == map.currentLocationNumber + 1)
         {

@@ -33,6 +33,8 @@ public class GameManager_r : MonoBehaviour {
 
     float hoverTimer = 0;
    public bool inCoRoutine = false;
+    public AudioClip clickSound;
+    AudioManager _AudioManager;
 
     // Singleton
     public static GameManager _Instance;
@@ -78,15 +80,12 @@ public class GameManager_r : MonoBehaviour {
             chara.GetComponent<Character_r>().AddThirst(1);
             chara.GetComponent<Character_r>().AddStress(1);
         }
+
+        _AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update() {
         if (carryingItem) {
-            bool exists;
-            if (!carryingItem.activeInHierarchy || !carryingItem.activeSelf) {
-                //if(PrefabUtility.GetPrefabParent(carryingItem) == null && PrefabUtility.GetPrefabObject(carryingItem) != null) // Doesn't work in build
-                //if (true)
-                //    carryingItem = Instantiate(carryingItem);
                 if (!carryingItem.GetComponent<Image>()) {
                     carryingItem.AddComponent<Image>();
                     carryingItem.GetComponent<Image>().sprite = carryingItem.GetComponent<Item_r>().itemSprite;
@@ -94,7 +93,6 @@ public class GameManager_r : MonoBehaviour {
                     carryingItem.gameObject.transform.SetSiblingIndex(carryingItem.gameObject.transform.GetSiblingIndex());
                     carryingItem.GetComponent<Image>().raycastTarget = false;
                 }
-            }
             carryingItem.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -5f);
             carryingItem.SetActive(true);
             Vector3 newPos = carryingItem.transform.position;
@@ -105,6 +103,9 @@ public class GameManager_r : MonoBehaviour {
     }
 
     public void ChangeScreen(ScreenType newScreen) {
+        if (_AudioManager)
+            _AudioManager.PlayClip(clickSound, _AudioManager.GetChannel("SFX"));
+
         prevScreen = currentScreen;
         screens[currentScreen].SetActive(false);
         screens[newScreen].SetActive(true);
@@ -120,6 +121,9 @@ public class GameManager_r : MonoBehaviour {
     }
 
     public void ChangeScreen(int iNewScreen) {
+        if (_AudioManager)
+            _AudioManager.PlayClip(clickSound, _AudioManager.GetChannel("SFX"));
+
         ScreenType newScreen = (ScreenType)iNewScreen;
         prevScreen = currentScreen;
         screens[currentScreen].SetActive(false);
