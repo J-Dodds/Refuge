@@ -28,6 +28,11 @@ public class Character_r : MonoBehaviour {
     public void AddStress(float modifier) { stress += modifier; stress = Mathf.Clamp01(stress); UIStress.GetComponent<Slider>().value = stress; }
     public float GetStress() { return stress; }
 
+    public GameObject injurySprite;
+    public GameObject choleraSprite;
+    public GameObject dysenterySprite;
+    public GameObject typhoidSprite;
+
     void Update()
     {
         if(health <= 0)
@@ -45,11 +50,13 @@ public class Character_r : MonoBehaviour {
         AddThirst (item.thirstMod);
         AddHunger (item.hungerMod);
         AddStress (item.stressMod);
+
         if (Random.Range(0f, 1f) > item.injuryChance)
         {
             injured = true;
             GM.conditionReportText.text = charName + " has gotten injured! ";
             StartCoroutine(GM.HasGottenHealthCondition());
+            injurySprite.SetActive(true);
         }
 
         if (Random.Range(0f, 1f) > item.choleraChance)
@@ -57,6 +64,7 @@ public class Character_r : MonoBehaviour {
             cholera = true;
             GM.conditionReportText.text = charName + " has gotten cholera! ";
             StartCoroutine(GM.HasGottenHealthCondition());
+            choleraSprite.SetActive(true);
         }
 
         if (Random.Range(0f, 1f) > item.dysenteryChance)
@@ -64,6 +72,7 @@ public class Character_r : MonoBehaviour {
             dysentery = true;
             GM.conditionReportText.text = charName + " has gotten dysentery! ";
             StartCoroutine(GM.HasGottenHealthCondition());
+            dysenterySprite.SetActive(true);
         }
 
         if (Random.Range(0f, 1f) > item.typhoidChance)
@@ -71,6 +80,7 @@ public class Character_r : MonoBehaviour {
             typhoid = true;
             GM.conditionReportText.text = charName + " has gotten typhoid! ";
             StartCoroutine(GM.HasGottenHealthCondition());
+            typhoidSprite.SetActive(true);
         }
 
             if (item.itemType == Item_r.ItemType.ITCureAll) {
@@ -78,7 +88,12 @@ public class Character_r : MonoBehaviour {
             dysentery = false;
             cholera = false;
             injured = false;
+            injurySprite.SetActive(true);
+            choleraSprite.SetActive(true);
+            dysenterySprite.SetActive(true);
+            typhoidSprite.SetActive(true);
         }
+
         if (item.itemType == Item_r.ItemType.ITHeal)
             AddHealth(1);
     }
