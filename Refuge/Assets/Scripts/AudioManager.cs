@@ -31,6 +31,7 @@ public class AudioManager : MonoBehaviour {
 
     public List<AudioChannel> channels = new List<AudioChannel>();
     public float masterVolume = 1;
+    public AudioClip clickSound;
 
     public void CreateChannel(string name) {
         AudioChannel channel = new AudioChannel(name);

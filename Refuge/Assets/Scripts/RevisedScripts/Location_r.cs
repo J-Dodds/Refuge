@@ -28,7 +28,6 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     public bool generated = false;
     public List<GameObject> possibleLocations = new List<GameObject>();
     public AudioManager _AudioManager;
-    public AudioClip clickSound;
 
     public bool travelReady = false;
 
@@ -42,7 +41,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
         Debug.Log("The user clicked");
-        _AudioManager.PlayClip(clickSound, _AudioManager.GetChannel("SFX"));
+        _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
 
         if (locationNumber == map.currentLocationNumber - 1 || locationNumber == map.currentLocationNumber + 1)
         {
