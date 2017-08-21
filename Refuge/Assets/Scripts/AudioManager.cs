@@ -6,7 +6,7 @@ public class AudioChannel {
 
     public string name;
     public List<AudioSource> sources = new List<AudioSource>();
-    public float volume;
+    public float volume = 1;
 
     public AudioChannel(string name) {
         this.name = name;
@@ -45,7 +45,8 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void PlayClip(AudioClip clip, AudioChannel channel, float volume = 1, bool loop = false) {
-        AudioSource source = new AudioSource();
+        gameObject.AddComponent<AudioSource>();
+        AudioSource source = gameObject.GetComponent<AudioSource>();
         channel.Add(source);
         source.clip = clip;
         source.loop = loop;

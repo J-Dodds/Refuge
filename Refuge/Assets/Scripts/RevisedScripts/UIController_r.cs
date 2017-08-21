@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class UIController_r : MonoBehaviour {
 
     GameManager_r _GameManager;
+    AudioManager _AudioManager;
     public Sprite emtpyInv;
+    public AudioClip clickSound;
 
 	// Use this for initialization
 	void Start () {
 		_GameManager = GameObject.Find("GameManager").GetComponent<GameManager_r>();
+        _AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 	}
 
     public void OnClickInventory(GameObject slot) {
+        _AudioManager.PlayClip(clickSound, _AudioManager.GetChannel("SFX"));
         if (slot.GetComponent<InventorySlot_r>().item && !_GameManager.carryingItem && _GameManager.partyMoney >= slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price) {
             Debug.Log(slot.GetComponent<InventorySlot_r>().item.GetComponent<Item_r>().price +  " <= " + _GameManager.partyMoney);
             _GameManager.carryingItem = slot.GetComponent<InventorySlot_r>().item;
