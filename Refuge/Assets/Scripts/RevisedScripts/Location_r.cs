@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Fungus;
 
 public class Location_r : MonoBehaviour, IPointerClickHandler {
 
     public bool changeScreen = false;
     public int destinationScreen;
+
+    public string FungusBlockToExecute;
+    public bool executeEncounterWithFungus;
 
     public enum LocationType {
         LTClinic = 0,
@@ -73,8 +77,18 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
 
         if(changeScreen)
         {
-            GameObject.Find("GameManager").GetComponent<GameManager_r>().ChangeScreen(destinationScreen);
-            GameObject.Find("GameManager").GetComponent<GameManager_r>().conditionReportText.text = "";
+            Debug.Log("Tried to change screen");
+            if(executeEncounterWithFungus)
+            {
+                FindObjectOfType<Flowchart>().ExecuteBlock(FungusBlockToExecute);
+                GameObject.Find("GameManager").GetComponent<GameManager_r>().ChangeScreen(2);
+                Debug.Log("Switched screen to a fungus block");
+            }
+            else
+            {
+                GameObject.Find("GameManager").GetComponent<GameManager_r>().ChangeScreen(destinationScreen);
+                GameObject.Find("GameManager").GetComponent<GameManager_r>().conditionReportText.text = "";
+            }
         }
     }
 

@@ -25,8 +25,6 @@ public class PromptMenu : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetKey(KeyCode.P))
-			DisplayPrompt("TestPrompt", "This is a test prompt");
 		
 	}
 
