@@ -16,6 +16,9 @@ public class GameManager_r : MonoBehaviour {
         STOptions = 6,
         STCredits = 7,
         STClinic = 8,
+        STEnMap1 = 9, // Heshem Night
+        STEnMap2 = 10, // Heshem Day
+        STEnMap3 = 11, // World Night
     };
 
     public GameObject charUI;
@@ -71,10 +74,13 @@ public class GameManager_r : MonoBehaviour {
         screens.Add(ScreenType.STOptions, GameObject.FindGameObjectWithTag("ScreenOptions"));
         screens.Add(ScreenType.STCredits, GameObject.FindGameObjectWithTag("ScreenCredits"));
         screens.Add(ScreenType.STClinic, GameObject.FindGameObjectWithTag("ScreenClinic"));
+        screens.Add(ScreenType.STEnMap1, GameObject.FindGameObjectWithTag("ScreenHeshemNight"));
+        screens.Add(ScreenType.STEnMap2, GameObject.FindGameObjectWithTag("ScreenHeshemDay"));
+        screens.Add(ScreenType.STEnMap3, GameObject.FindGameObjectWithTag("ScreenWorldNight"));
 
-        if (!screens[ScreenType.STPause])
-            Debug.Log("Pause is missing yo");
-
+        if (!screens[ScreenType.STEnMap3])
+            Debug.Log("World Night Map has gone walkabouts");
+        
         for (int index = 0; index < screens.Count; ++index) 
             if (screens[(ScreenType)index])
                 screens[(ScreenType)index].SetActive(false);
@@ -123,6 +129,9 @@ public class GameManager_r : MonoBehaviour {
             charUI.SetActive(true);
         else
             charUI.SetActive(false);
+        if (newScreen == ScreenType.STEnMap1 || newScreen == ScreenType.STEnMap2 || newScreen == ScreenType.STEnMap3)
+            screens[ScreenType.STEncounter].SetActive(true);
+
     }
 
     public void ChangeScreen(int iNewScreen) {
@@ -135,13 +144,14 @@ public class GameManager_r : MonoBehaviour {
         screens[newScreen].SetActive(true);
         currentScreen = newScreen;
 		mouseHoverTip.SetActive(false);
-
         // UI Requirements
         if (charUI)
             if (currentScreen == ScreenType.STHubMap || currentScreen == ScreenType.STWorldMap || currentScreen == ScreenType.STClinic || currentScreen == ScreenType.STMarket)
                 charUI.SetActive(true);
             else
                 charUI.SetActive(false);
+        if (iNewScreen == 9 || iNewScreen == 10 || iNewScreen == 11)
+            screens[ScreenType.STEncounter].SetActive(true);
     }
 
     public GameObject WealthiestChar(Item_r.ItemType itemType) {
