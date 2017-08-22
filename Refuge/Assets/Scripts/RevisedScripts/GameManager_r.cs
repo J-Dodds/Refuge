@@ -47,13 +47,16 @@ public class GameManager_r : MonoBehaviour {
 
     public IEnumerator HasGottenHealthCondition()
     {
-        inCoRoutine = true;
-        conditionReportText.gameObject.SetActive(true);
+        
+        //inCoRoutine = true;
+        //conditionReportText.gameObject.SetActive(true);
         yield return new WaitForSeconds(reportActiveTime);
-        conditionReportText.text = "";
-        conditionReportText.gameObject.SetActive(false);
+        //conditionReportText.text = "";
+        //conditionReportText.gameObject.SetActive(false);
         inCoRoutine = false;
+
         StopCoroutine(HasGottenHealthCondition());
+        
     }
 
     // Use this for initialization

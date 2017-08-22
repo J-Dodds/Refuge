@@ -36,10 +36,12 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     public bool travelReady = false;
 
     public void Start() {
+        if (!map) {
         if (worldMap)
             map = GameObject.FindGameObjectWithTag("ScreenWorldMap").GetComponent<Map_r>();
         else
             map = transform.parent.GetComponent<Map_r>();
+        }
         _AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -47,13 +49,14 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
         Debug.Log("The user clicked");
         _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
 
-        if (locationNumber == map.currentLocationNumber - 1 || locationNumber == map.currentLocationNumber + 1)
+        //if (locationNumber == map.currentLocationNumber - 1 || locationNumber == map.currentLocationNumber + 1)
         {
             map.Travel(gameObject);
         }
     }
 
     public virtual void GenerateInventory() {
+        if (inventory.Length > 0) {
         if (!generated) {
             generated = true;
             foreach (GameObject slot in inventory) {
@@ -73,6 +76,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
                 inventory[inventory.Length - 1].GetComponent<InventorySlot_r>().item = null;
                 inventory[inventory.Length - 1].GetComponent<Image>().sprite = GameObject.Find("UIController").GetComponent<UIController_r>().emtpyInv;
             }
+        }
         }
 
         if(changeScreen)

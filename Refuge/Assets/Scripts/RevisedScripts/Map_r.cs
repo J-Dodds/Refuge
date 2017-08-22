@@ -9,7 +9,7 @@ public class Map_r : MonoBehaviour {
     public GameObject refugeeObj;
     GameObject previousLocation;
     public GameObject newLocation;
-    GameManager_r GM;
+    public GameManager_r GM;
     float movementXOffset = 10;
     float movementYOffset = 10;
 
@@ -33,6 +33,8 @@ public class Map_r : MonoBehaviour {
 
     GameObject currentLocation;
     int time = 0;
+
+    public bool confirm;
 
     // Use this for initialization
     void Start() {
@@ -79,10 +81,12 @@ public class Map_r : MonoBehaviour {
         //if (location.GetComponent<Location_r>().locationNumber == currentLocationNumber - 1 || location.GetComponent<Location_r>().locationNumber == currentLocationNumber + 1)
         //{
             time = (int)Vector3.Distance(refugeeObj.transform.position, location.transform.position) / 5;
-            confirmTravelPanel.SetActive(true);
+
             newLocation = location;
-            if(!newLocation)
-                Debug.Log(location.name);
+            if (confirm)
+                confirmTravelPanel.SetActive(true);
+            else
+                YesTravel();
             costOfTravelText.text = "You Will Lose: Health - " + (((100.0f - hungerPercentLeft) / 1000000.0f) + ((100f - thirstPercentLeft) / 1000000f) + ((100f - stressPercentLeft) / 1000000f)) * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
                     "                   Hunger - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
                     "                   Thirst - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
@@ -94,6 +98,9 @@ public class Map_r : MonoBehaviour {
 
     public void YesTravel()
     {
+        if (!GM)
+            GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
+        if (GM) {
         foreach (GameObject chara in GM.characters)
         {
             int rand = Random.Range(0, 100);
@@ -122,7 +129,10 @@ public class Map_r : MonoBehaviour {
                 GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten typhoid! ");
             }
         }
-        StartCoroutine(GM.HasGottenHealthCondition());
+        }
+        else
+            Debug.Log("A thing is broken");
+        //StartCoroutine(GM.HasGottenHealthCondition());
 
         if (newLocation.GetComponent<Location_r>() != null)
         {
