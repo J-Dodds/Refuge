@@ -59,9 +59,9 @@ public class Map_r : MonoBehaviour {
 
                 foreach (GameObject chara in GM.characters)
                 {
-                    chara.GetComponent<Character_r>().AddHunger(-0.0001f * time);
-                    chara.GetComponent<Character_r>().AddThirst(-0.0001f * time);
-                    chara.GetComponent<Character_r>().AddStress(-0.00001f * time);
+                    chara.GetComponent<Character_r>().AddHunger(-0.00001f * time);
+                    chara.GetComponent<Character_r>().AddThirst(-0.00001f * time);
+                    chara.GetComponent<Character_r>().AddStress(-0.000005f * time);
 
                     chara.GetComponent<Character_r>().AddHealth(-(((100.0f - hungerPercentLeft) / 100000.0f) + ((100f - thirstPercentLeft) / 100000f) + ((100f - stressPercentLeft) / 100000f)));
                 }

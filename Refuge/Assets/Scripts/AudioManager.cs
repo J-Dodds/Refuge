@@ -7,6 +7,7 @@ public class AudioChannel {
     public string name;
     public List<AudioSource> sources = new List<AudioSource>();
     public float volume = 1;
+    public GameObject gameObject;
 
     public AudioChannel(string name) {
         this.name = name;
@@ -32,6 +33,7 @@ public class AudioManager : MonoBehaviour {
     public List<AudioChannel> channels = new List<AudioChannel>();
     public float masterVolume = 1;
     public AudioClip clickSound;
+    public AudioClip BGM;
 
     public void CreateChannel(string name) {
         AudioChannel channel = new AudioChannel(name);
@@ -46,15 +48,16 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void PlayClip(AudioClip clip, AudioChannel channel, float volume = 1, bool loop = false) {
-        gameObject.AddComponent<AudioSource>();
-        AudioSource source = gameObject.GetComponent<AudioSource>();
+        channel.gameObject = new GameObject();
+        channel.gameObject.AddComponent<AudioSource>();
+        AudioSource source = channel.gameObject.GetComponent<AudioSource>();
         channel.Add(source);
         source.clip = clip;
         source.loop = loop;
         source.volume = masterVolume * volume * channel.volume;
         source.Play();
         if (!loop)
-            Destroy(source, clip.length);
+            Destroy(channel.gameObject, clip.length);
     }
 
 	// Use this for initialization

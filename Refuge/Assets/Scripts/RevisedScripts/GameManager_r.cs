@@ -92,6 +92,7 @@ public class GameManager_r : MonoBehaviour {
         }
 
         _AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        _AudioManager.PlayClip(_AudioManager.BGM, _AudioManager.GetChannel("Music"), 1, true);
     }
 
     void Update() {
