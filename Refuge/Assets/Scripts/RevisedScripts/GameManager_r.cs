@@ -35,7 +35,8 @@ public class GameManager_r : MonoBehaviour {
 
     float hoverTimer = 0;
    public bool inCoRoutine = false;
-    AudioManager _AudioManager;
+    public AudioManager _AudioManager;
+    bool musicStarted = false;
 
     // Singleton
     public static GameManager _Instance;
@@ -92,7 +93,7 @@ public class GameManager_r : MonoBehaviour {
         }
 
         _AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        _AudioManager.PlayClip(_AudioManager.BGM, _AudioManager.GetChannel("Music"), 1, true);
+
     }
 
     void Update() {
@@ -110,7 +111,10 @@ public class GameManager_r : MonoBehaviour {
             newPos.z = -5f;
             carryingItem.transform.position = newPos;
         }
-        
+        if (!musicStarted) {
+            _AudioManager.PlayClip(_AudioManager.BGM, _AudioManager.GetChannel("Music"), 1, true);
+            musicStarted = true;
+        }
     }
 
     public void ChangeScreen(ScreenType newScreen) {
