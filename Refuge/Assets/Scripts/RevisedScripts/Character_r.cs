@@ -45,11 +45,12 @@ public class Character_r : MonoBehaviour {
     public void UseItem () {
         GameManager_r GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
         Item_r item = GM.carryingItem.GetComponent<Item_r>();
-        GameObject.Find("GameManager").GetComponent<GameManager_r>().carryingItem = null;
         AddHealth (item.healthMod);
         AddThirst (item.thirstMod);
         AddHunger (item.hungerMod);
         AddStress (item.stressMod);
+        Destroy(item.gameObject);
+        GameObject.Find("GameManager").GetComponent<GameManager_r>().carryingItem = null;
 
         if (Random.Range(0f, 1f) > item.injuryChance)
         {
