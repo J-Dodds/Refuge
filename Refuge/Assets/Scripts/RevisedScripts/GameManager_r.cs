@@ -142,7 +142,7 @@ public class GameManager_r : MonoBehaviour {
     public void ChangeScreen(int iNewScreen) {
         if (_AudioManager)
             _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
-        Destroy(carryingItem);0
+        Destroy(carryingItem);
 
         ScreenType newScreen = (ScreenType)iNewScreen;
         prevScreen = currentScreen;
