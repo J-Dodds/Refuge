@@ -84,7 +84,8 @@ public class Character_r : MonoBehaviour {
             typhoidSprite.SetActive(true);
         }
 
-            if (item.itemType == Item_r.ItemType.ITCureAll) {
+            if (item.itemType == Item_r.ItemType.ITCureAll)
+        {
             typhoid = false;
             dysentery = false;
             cholera = false;
