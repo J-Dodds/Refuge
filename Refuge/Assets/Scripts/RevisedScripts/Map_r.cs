@@ -77,7 +77,7 @@ public class Map_r : MonoBehaviour {
 
     public void Travel(GameObject location)
     {
-        if (!newLocation || newLocation.GetComponent<Location_r>().possibleLocations.Contains(location)) {
+        if (newLocation != location || newLocation.GetComponent<Location_r>().possibleLocations.Contains(location)) {
         //if (location.GetComponent<Location_r>().locationNumber == currentLocationNumber - 1 || location.GetComponent<Location_r>().locationNumber == currentLocationNumber + 1)
         //{
             time = (int)Vector3.Distance(refugeeObj.transform.position, location.transform.position) / 5;
