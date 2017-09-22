@@ -9,7 +9,7 @@ public class Character_r : MonoBehaviour {
     public string charName, bio;
     [SerializeField]
     public GameObject[] inventory;
-    public float health, hunger, thirst, stress; // Normalized
+    public float health, hunger, thirst; // Normalized
     public bool injured, cholera, dysentery, typhoid;
     public bool isDead = false;
 
@@ -17,7 +17,7 @@ public class Character_r : MonoBehaviour {
     [SerializeField]
     GameObject UISprite; // Button
     [SerializeField]
-    GameObject UIHealth, UIHunger, UIThirst, UIStress; // Sliders
+    GameObject UIHealth, UIHunger, UIThirst; // Sliders
 
     public void AddHealth(float modifier) { health += modifier; health = Mathf.Clamp01(health); UIHealth.GetComponent<Slider>().value = health; }
     public float GetHealth() { return health; }
@@ -25,8 +25,6 @@ public class Character_r : MonoBehaviour {
     public float GetThirst() { return thirst; }
     public void AddHunger(float modifier) { hunger += modifier; hunger = Mathf.Clamp01(hunger); UIHunger.GetComponent<Slider>().value = hunger; }
     public float GetHunger() { return hunger; }
-    public void AddStress(float modifier) { stress += modifier; stress = Mathf.Clamp01(stress); UIStress.GetComponent<Slider>().value = stress; }
-    public float GetStress() { return stress; }
 
     public GameObject injurySprite;
     public GameObject choleraSprite;
@@ -48,7 +46,6 @@ public class Character_r : MonoBehaviour {
         AddHealth (item.healthMod);
         AddThirst (item.thirstMod);
         AddHunger (item.hungerMod);
-        AddStress (item.stressMod);
         Destroy(item.gameObject);
         GameObject.Find("GameManager").GetComponent<GameManager_r>().carryingItem = null;
 

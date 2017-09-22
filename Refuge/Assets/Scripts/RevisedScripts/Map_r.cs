@@ -61,7 +61,6 @@ public class Map_r : MonoBehaviour {
                 {
                     chara.GetComponent<Character_r>().AddHunger(-0.00001f * time);
                     chara.GetComponent<Character_r>().AddThirst(-0.00001f * time);
-                    chara.GetComponent<Character_r>().AddStress(-0.000005f * time);
 
                     chara.GetComponent<Character_r>().AddHealth(-(((100.0f - hungerPercentLeft) / 100000.0f) + ((100f - thirstPercentLeft) / 100000f) + ((100f - stressPercentLeft) / 100000f)));
                 }
@@ -78,8 +77,8 @@ public class Map_r : MonoBehaviour {
     public void Travel(GameObject location)
     {
         if (newLocation != location || newLocation.GetComponent<Location_r>().possibleLocations.Contains(location)) {
-        //if (location.GetComponent<Location_r>().locationNumber == currentLocationNumber - 1 || location.GetComponent<Location_r>().locationNumber == currentLocationNumber + 1)
-        //{
+            //if (location.GetComponent<Location_r>().locationNumber == currentLocationNumber - 1 || location.GetComponent<Location_r>().locationNumber == currentLocationNumber + 1)
+            //{
             time = (int)Vector3.Distance(refugeeObj.transform.position, location.transform.position) / 5;
 
             newLocation = location;
@@ -87,8 +86,7 @@ public class Map_r : MonoBehaviour {
 
             costOfTravelText.text = "You Will Lose: Health - " + (((100.0f - hungerPercentLeft) / 1000000.0f) + ((100f - thirstPercentLeft) / 1000000f) + ((100f - stressPercentLeft) / 1000000f)) * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
                     "                   Hunger - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
-                    "                   Thirst - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
-                    "                   Stress - " + time * 0.00001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n";
+                    "                   Thirst - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n";
         }
         else
             Debug.Log(location.GetComponent<Location_r>().locationNumber + " | " + currentLocationNumber + " | " + locations.Length);

@@ -26,7 +26,7 @@ public class Item_r : MonoBehaviour {
 
     public ItemType itemType;
     public Sprite itemSprite;
-    public float healthMod, hungerMod, thirstMod, stressMod;
+    public float healthMod, hungerMod, thirstMod;
     public float injuryChance, choleraChance, dysenteryChance, typhoidChance;
     public bool cureDiseases;
     public int price;

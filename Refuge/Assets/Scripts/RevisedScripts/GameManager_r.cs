@@ -89,7 +89,6 @@ public class GameManager_r : MonoBehaviour {
             chara.GetComponent<Character_r>().AddHealth(1);
             chara.GetComponent<Character_r>().AddHunger(1);
             chara.GetComponent<Character_r>().AddThirst(1);
-            chara.GetComponent<Character_r>().AddStress(1);
         }
 
         _AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
