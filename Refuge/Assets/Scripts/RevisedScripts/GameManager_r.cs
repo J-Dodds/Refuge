@@ -52,11 +52,11 @@ public class GameManager_r : MonoBehaviour {
     {
         
         //inCoRoutine = true;
-        //conditionReportText.gameObject.SetActive(true);
+        conditionReportText.gameObject.SetActive(true);
         yield return new WaitForSeconds(reportActiveTime);
-        //conditionReportText.text = "";
-        //conditionReportText.gameObject.SetActive(false);
-        inCoRoutine = false;
+        conditionReportText.text = "";
+        conditionReportText.gameObject.SetActive(false);
+        //inCoRoutine = false;
 
         StopCoroutine(HasGottenHealthCondition());
         

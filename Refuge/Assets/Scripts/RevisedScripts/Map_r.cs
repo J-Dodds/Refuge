@@ -15,11 +15,11 @@ public class Map_r : MonoBehaviour {
 
     [SerializeField]
     public int currentLocationNumber = 0;
-    public int chanceOfNothing = 60;
-    public int chanceOfInjury = 70;
-    public int chanceOfCholera = 80;
+    public int chanceOfNothing = 75;
+    public int chanceOfInjury = 80;
+    public int chanceOfCholera = 85;
     public int chanceOfDysentary = 90;
-    public int chanceOfTyphoid = 100;
+    public int chanceOfTyphoid = 95;
 
     public GameObject confirmTravelPanel;
     [SerializeField]
@@ -91,14 +91,10 @@ public class Map_r : MonoBehaviour {
             {
                 confirmTravelPanel.SetActive(true);
 
-                    //Im aware the numbers don't match with the value they are actually going down by, but this fits the slider much much better - Jordon
+                //Im aware the numbers don't match with the value they are actually going down by, but this fits the slider much much better - Jordon
                 costOfTravelText.text += "Hunger - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n" +
-                                         "Thirst - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n" +
-                                         /*"You will lose health if hunger or thirst are empty"*/;
-            }
-            else
-            {
-                YesTravel();
+                                         "Thirst - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n";
+                                         /*"You will lose health if hunger or thirst are empty"*/
             }
         }
         else
@@ -109,48 +105,63 @@ public class Map_r : MonoBehaviour {
     {
         if (!GM)
             GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
-        if (GM) {
-        foreach (GameObject chara in GM.characters)
+
+        if (GM)
         {
-            int rand = Random.Range(0, 100);
-            if (rand <= chanceOfNothing)
+            foreach (GameObject chara in GM.characters)
             {
-                Debug.Log("You caught nothing");
+                int rand = Random.Range(0, 100);
+                Debug.Log(rand);
+
+                if (rand <= chanceOfNothing)
+                {
+                    Debug.Log("You caught nothing");
+                }
+                else if (rand > chanceOfNothing && rand <= chanceOfInjury)
+                {
+                    chara.GetComponent<Character_r>().injured = true;
+                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten injured! ");
+                    StartCoroutine(GM.HasGottenHealthCondition());
+                    chara.GetComponent<Character_r>().injurySprite.SetActive(true);
+                }
+                else if (rand > chanceOfInjury && rand <= chanceOfCholera)
+                {
+                    chara.GetComponent<Character_r>().cholera = true;
+                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten cholera! ");
+                    StartCoroutine(GM.HasGottenHealthCondition());
+                    chara.GetComponent<Character_r>().choleraSprite.SetActive(true);
+                }
+                else if (rand > chanceOfCholera && rand <= chanceOfDysentary)
+                {
+                    chara.GetComponent<Character_r>().dysentery = true;
+                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten dysentary! ");
+                    StartCoroutine(GM.HasGottenHealthCondition());
+                    chara.GetComponent<Character_r>().dysenterySprite.SetActive(true);
+                }
+                else if (rand > chanceOfDysentary && rand <= chanceOfTyphoid)
+                {
+                    chara.GetComponent<Character_r>().typhoid = true;
+                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten typhoid! ");
+                    StartCoroutine(GM.HasGottenHealthCondition());
+                    chara.GetComponent<Character_r>().typhoidSprite.SetActive(true);
+                }
             }
-            else if (rand > chanceOfNothing && rand <= chanceOfInjury)
-            {
-                chara.GetComponent<Character_r>().injured = true;
-                GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten injured! ");
-            }
-            else if (rand > chanceOfInjury && rand <= chanceOfCholera)
-            {
-                chara.GetComponent<Character_r>().cholera = true;
-                GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten cholera! ");
-            }
-            else if (rand > chanceOfCholera && rand <= chanceOfDysentary)
-            {
-                chara.GetComponent<Character_r>().dysentery = true;
-                GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten dysentary! ");
-            }
-            else if (rand > chanceOfDysentary && rand <= chanceOfTyphoid)
-            {
-                chara.GetComponent<Character_r>().typhoid = true;
-                GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten typhoid! ");
-            }
-        }
         }
         else
+        {
             Debug.Log("A thing is broken");
-        //StartCoroutine(GM.HasGottenHealthCondition());
+            //StartCoroutine(GM.HasGottenHealthCondition());
+        }
 
         if (newLocation.GetComponent<Location_r>() != null)
         {
             currentLocationNumber = newLocation.GetComponent<Location_r>().locationNumber;
         }
-        else if(newLocation.GetComponent<Clinic_r>())
+        else if (newLocation.GetComponent<Clinic_r>())
         {
-            currentLocationNumber = newLocation.GetComponent < Clinic_r>().locationNumber;
+            currentLocationNumber = newLocation.GetComponent<Clinic_r>().locationNumber;
         }
+
         confirmTravel = true;
         if (confirmTravelPanel)
             confirmTravelPanel.SetActive(false);
