@@ -64,13 +64,7 @@ public class Map_r : MonoBehaviour {
 
                     if(chara.GetComponent<Character_r>().hunger == 0 || chara.GetComponent<Character_r>().thirst == 0)
                     {
-                        chara.GetComponent<Character_r>().AddHealth(-0.005f);
-
-                        costOfTravelText.text += "You Will Lose: Health - " + (-0.005f * 100) + "\n";
-                    }
-                    else
-                    {
-                        costOfTravelText.text += "You Will Lose: Health - " + 0 + "\n";
+                        //chara.GetComponent<Character_r>().AddHealth(-0.005f);
                     }
                 }
             }
@@ -100,7 +94,7 @@ public class Map_r : MonoBehaviour {
                     //Im aware the numbers don't match with the value they are actually going down by, but this fits the slider much much better - Jordon
                 costOfTravelText.text += "Hunger - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n" +
                                          "Thirst - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n" +
-                                         "You will lose health if hunger or thirst are empty";
+                                         /*"You will lose health if hunger or thirst are empty"*/;
             }
             else
             {
