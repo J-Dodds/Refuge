@@ -31,7 +31,7 @@ public class GameManager_r : MonoBehaviour {
     Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
 
     public int partyMoney;
-    public float partySpeed = 2f;
+    public float partySpeed = 1f;
 
     float hoverTimer = 0;
    public bool inCoRoutine = false;

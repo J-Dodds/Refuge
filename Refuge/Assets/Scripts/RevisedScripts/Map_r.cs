@@ -59,17 +59,28 @@ public class Map_r : MonoBehaviour {
 
                 foreach (GameObject chara in GM.characters)
                 {
-                    chara.GetComponent<Character_r>().AddHunger(-0.00001f * time);
-                    chara.GetComponent<Character_r>().AddThirst(-0.00001f * time);
+                    chara.GetComponent<Character_r>().AddHunger(-0.0001f * time);
+                    chara.GetComponent<Character_r>().AddThirst(-0.0001f * time);
 
-                    chara.GetComponent<Character_r>().AddHealth(-(((100.0f - hungerPercentLeft) / 100000.0f) + ((100f - thirstPercentLeft) / 100000f) + ((100f - stressPercentLeft) / 100000f)));
+                    if(chara.GetComponent<Character_r>().hunger == 0 || chara.GetComponent<Character_r>().thirst == 0)
+                    {
+                        chara.GetComponent<Character_r>().AddHealth(-0.005f);
+
+                        costOfTravelText.text += "You Will Lose: Health - " + (-0.005f * 100) + "\n";
+                    }
+                    else
+                    {
+                        costOfTravelText.text += "You Will Lose: Health - " + 0 + "\n";
+                    }
                 }
             }
-            else {
+            else
+            {
                 Debug.Log("We Made It! (woo)");
                 refugeeObj.transform.position = Vector3.MoveTowards(refugeeObj.transform.position, new Vector3(newLocation.transform.position.x + movementXOffset, newLocation.transform.position.y + movementYOffset, -5), 1.0f);
                 newLocation.GetComponent<Location_r>().Scavenge();
                 confirmTravel = false;
+                costOfTravelText.text = "";
             }
         }
     }
@@ -84,18 +95,17 @@ public class Map_r : MonoBehaviour {
             newLocation = location;
             if (confirmTravelPanel)
             {
-            confirmTravelPanel.SetActive(true);
+                confirmTravelPanel.SetActive(true);
 
-
-
-
-                //Old text, pre "days travel" stuff
-            //costOfTravelText.text = "You Will Lose: Health - " + (((100.0f - hungerPercentLeft) / 1000000.0f) + ((100f - thirstPercentLeft) / 1000000f) + ((100f - stressPercentLeft) / 1000000f)) * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
-            //        "                   Hunger - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
-            //        "                   Thirst - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n";
+                    //inital setting of text
+                costOfTravelText.text += "Hunger - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n" +
+                                         "Thirst - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n" +
+                                         "You will lose health if hunger or thirst are empty";
             }
             else
+            {
                 YesTravel();
+            }
         }
         else
             Debug.Log(location.GetComponent<Location_r>().locationNumber + " | " + currentLocationNumber + " | " + locations.Length);
