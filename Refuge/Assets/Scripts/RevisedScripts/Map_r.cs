@@ -67,7 +67,7 @@ public class Map_r : MonoBehaviour {
             }
             else {
                 Debug.Log("We Made It! (woo)");
-                refugeeObj.transform.position = new Vector3(newLocation.transform.position.x + movementXOffset, newLocation.transform.position.y + movementYOffset, -5);
+                refugeeObj.transform.position = Vector3.MoveTowards(refugeeObj.transform.position, new Vector3(newLocation.transform.position.x + movementXOffset, newLocation.transform.position.y + movementYOffset, -5), 1.0f);
                 newLocation.GetComponent<Location_r>().Scavenge();
                 confirmTravel = false;
             }
@@ -82,13 +82,18 @@ public class Map_r : MonoBehaviour {
             time = (int)Vector3.Distance(refugeeObj.transform.position, location.transform.position) / 5;
 
             newLocation = location;
-            if (confirmTravelPanel) {
+            if (confirmTravelPanel)
+            {
             confirmTravelPanel.SetActive(true);
 
-            costOfTravelText.text = "You Will Lose: Health - " + (((100.0f - hungerPercentLeft) / 1000000.0f) + ((100f - thirstPercentLeft) / 1000000f) + ((100f - stressPercentLeft) / 1000000f)) * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
-                    "                   Hunger - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
-                    "                   Thirst - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n";
-                }
+
+
+
+                //Old text, pre "days travel" stuff
+            //costOfTravelText.text = "You Will Lose: Health - " + (((100.0f - hungerPercentLeft) / 1000000.0f) + ((100f - thirstPercentLeft) / 1000000f) + ((100f - stressPercentLeft) / 1000000f)) * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
+            //        "                   Hunger - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n" +
+            //        "                   Thirst - " + time * 0.0001f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) + "\n";
+            }
             else
                 YesTravel();
         }
