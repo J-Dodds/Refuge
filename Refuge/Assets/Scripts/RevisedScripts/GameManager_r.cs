@@ -31,7 +31,7 @@ public class GameManager_r : MonoBehaviour {
     Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
 
     public int partyMoney;
-    public float partySpeed = 2f;
+    public float partySpeed = 1f;
 
     float hoverTimer = 0;
    public bool inCoRoutine = false;
@@ -52,11 +52,11 @@ public class GameManager_r : MonoBehaviour {
     {
         
         //inCoRoutine = true;
-        //conditionReportText.gameObject.SetActive(true);
+        conditionReportText.gameObject.SetActive(true);
         yield return new WaitForSeconds(reportActiveTime);
-        //conditionReportText.text = "";
-        //conditionReportText.gameObject.SetActive(false);
-        inCoRoutine = false;
+        conditionReportText.text = "";
+        conditionReportText.gameObject.SetActive(false);
+        //inCoRoutine = false;
 
         StopCoroutine(HasGottenHealthCondition());
         
