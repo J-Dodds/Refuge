@@ -6,15 +6,15 @@ using UnityEngine.UI;
 
 public class Clinic_r : Location_r, IPointerClickHandler {
 
-    void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
-        Debug.Log("The user clicked");
-        _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
+    //void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
+    //    Debug.Log("The user clicked");
+    //    _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
 
-        if (locationNumber == map.currentLocationNumber - 1 || locationNumber == map.currentLocationNumber + 1)
-        {
-            map.Travel(gameObject);
-        }
-    }
+    //    if (locationNumber == map.currentLocationNumber - 1 || locationNumber == map.currentLocationNumber + 1)
+    //    {
+    //        map.Travel(gameObject);
+    //    }
+    //}
 
     public override void GenerateInventory() {
         if (!generated) {
