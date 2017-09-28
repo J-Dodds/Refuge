@@ -96,6 +96,8 @@ public class Map_r : MonoBehaviour {
                                          "Thirst - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n";
                                          /*"You will lose health if hunger or thirst are empty"*/
             }
+            else
+                confirmTravel = true;
         }
         else
             Debug.Log(location.GetComponent<Location_r>().locationNumber + " | " + currentLocationNumber + " | " + locations.Length);
