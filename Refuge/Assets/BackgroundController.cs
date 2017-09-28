@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BackgroundController : MonoBehaviour {
     public float fadeDuration = 1;
     public float timeToFade;
-    public Texture destinationTexture;
+    public Sprite destinationTexture;
     public Image ImageComponent;
 
     public enum changeState
@@ -46,11 +46,13 @@ public class BackgroundController : MonoBehaviour {
 
     }
 
+// Set the texture to the new image while invisible
     public void ChangeImage()
     {
-        ImageComponent.material.mainTexture = destinationTexture;
+        ImageComponent.sprite = destinationTexture;
     }
 
+// Either blend the image to black or full-colour depending on if the transition has happened
     public void StartImgChange(bool readyForImage)
     {
         timeToFade = Time.timeSinceLevelLoad + fadeDuration;
@@ -64,5 +66,11 @@ public class BackgroundController : MonoBehaviour {
             ImageState = changeState.ChangingToBlack;
         }
         // 
+    }
+
+    public void BeginImageChange(Sprite newImage)
+    {
+        destinationTexture = newImage;
+        ImageState = changeState.ChangingToBlack;
     }
 }
