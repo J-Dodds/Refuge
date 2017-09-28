@@ -34,9 +34,11 @@ public class GameManager_r : MonoBehaviour {
     public float partySpeed = 1f;
 
     float hoverTimer = 0;
-   public bool inCoRoutine = false;
+    public bool inCoRoutine = false;
     public AudioManager _AudioManager;
     bool musicStarted = false;
+
+    public bool inTutorial = true;
 
     // Singleton
     public static GameManager _Instance;

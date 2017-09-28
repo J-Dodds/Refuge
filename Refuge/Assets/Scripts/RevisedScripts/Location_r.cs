@@ -48,11 +48,8 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
         Debug.Log("The user clicked");
         _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
-
-        //if (locationNumber == map.currentLocationNumber - 1 || locationNumber == map.currentLocationNumber + 1)
-        {
-            map.Travel(gameObject);
-        }
+    
+        map.Travel(gameObject);
     }
 
     public virtual void GenerateInventory() {

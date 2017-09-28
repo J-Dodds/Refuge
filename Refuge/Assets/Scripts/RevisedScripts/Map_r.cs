@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class Map_r : MonoBehaviour {
-
+public class Map_r : MonoBehaviour
+{
     public GameObject[] locations;
     public GameObject refugeeObj;
     GameObject previousLocation;
@@ -51,42 +51,45 @@ public class Map_r : MonoBehaviour {
     {
         if (confirmTravel == true)
         {
-            //if(newLocation)
-            //{
-            if (Vector3.Distance(refugeeObj.transform.position, newLocation.transform.position) > 0.6f)
+            if (newLocation)
             {
-                refugeeObj.transform.position = Vector3.Lerp(refugeeObj.transform.position, newLocation.transform.position, Time.deltaTime * GM.partySpeed);
-
-                foreach (GameObject chara in GM.characters)
+                if (Vector3.Distance(refugeeObj.transform.position, newLocation.transform.position) > 0.6f)
                 {
-                    chara.GetComponent<Character_r>().AddHunger(-0.0001f * time);
-                    chara.GetComponent<Character_r>().AddThirst(-0.0001f * time);
+                    refugeeObj.transform.position = Vector3.Lerp(refugeeObj.transform.position, newLocation.transform.position, Time.deltaTime * GM.partySpeed);
 
-                    if(chara.GetComponent<Character_r>().hunger == 0 || chara.GetComponent<Character_r>().thirst == 0)
+                    foreach (GameObject chara in GM.characters)
                     {
-                        //chara.GetComponent<Character_r>().AddHealth(-0.005f);
+                        chara.GetComponent<Character_r>().AddHunger(-0.0001f * time);
+                        chara.GetComponent<Character_r>().AddThirst(-0.0001f * time);
+
+                        if (chara.GetComponent<Character_r>().hunger == 0 || chara.GetComponent<Character_r>().thirst == 0)
+                        {
+                            //chara.GetComponent<Character_r>().AddHealth(-0.005f);
+                        }
                     }
                 }
-            }
-            else
-            {
-                Debug.Log("We Made It! (woo)");
-                refugeeObj.transform.position = Vector3.MoveTowards(refugeeObj.transform.position, new Vector3(newLocation.transform.position.x + movementXOffset, newLocation.transform.position.y + movementYOffset, -5), 1.0f);
-                newLocation.GetComponent<Location_r>().Scavenge();
-                confirmTravel = false;
-                costOfTravelText.text = "";
+                else
+                {
+                    Debug.Log("We Made It! (woo)");
+                    refugeeObj.transform.position = Vector3.MoveTowards(refugeeObj.transform.position, new Vector3(newLocation.transform.position.x + movementXOffset, newLocation.transform.position.y + movementYOffset, -5), 1.0f);
+                    newLocation.GetComponent<Location_r>().Scavenge();
+                    confirmTravel = false;
+                    costOfTravelText.text = "";
+                }
             }
         }
     }
 
     public void Travel(GameObject location)
     {
-        if (newLocation != location || newLocation.GetComponent<Location_r>().possibleLocations.Contains(location)) {
+        if (newLocation != location || newLocation.GetComponent<Location_r>().possibleLocations.Contains(location))
+        {
             //if (location.GetComponent<Location_r>().locationNumber == currentLocationNumber - 1 || location.GetComponent<Location_r>().locationNumber == currentLocationNumber + 1)
             //{
             time = (int)Vector3.Distance(refugeeObj.transform.position, location.transform.position) / 5;
 
             newLocation = location;
+
             if (confirmTravelPanel)
             {
                 confirmTravelPanel.SetActive(true);
@@ -95,6 +98,10 @@ public class Map_r : MonoBehaviour {
                 costOfTravelText.text += "Hunger - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n" +
                                          "Thirst - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n";
                                          /*"You will lose health if hunger or thirst are empty"*/
+            }
+            else
+            {
+                YesTravel();
             }
         }
         else
@@ -108,44 +115,52 @@ public class Map_r : MonoBehaviour {
 
         if (GM)
         {
-            foreach (GameObject chara in GM.characters)
+            if (GM.inTutorial == false)
             {
-                int rand = Random.Range(0, 100);
-                Debug.Log(rand);
+                foreach (GameObject chara in GM.characters)
+                {
+                    int rand = Random.Range(0, 100);
+                    Debug.Log(rand);
 
-                if (rand <= chanceOfNothing)
-                {
-                    Debug.Log("You caught nothing");
-                }
-                else if (rand > chanceOfNothing && rand <= chanceOfInjury)
-                {
-                    chara.GetComponent<Character_r>().injured = true;
-                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten injured! ");
-                    StartCoroutine(GM.HasGottenHealthCondition());
-                    chara.GetComponent<Character_r>().injurySprite.SetActive(true);
-                }
-                else if (rand > chanceOfInjury && rand <= chanceOfCholera)
-                {
-                    chara.GetComponent<Character_r>().cholera = true;
-                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten cholera! ");
-                    StartCoroutine(GM.HasGottenHealthCondition());
-                    chara.GetComponent<Character_r>().choleraSprite.SetActive(true);
-                }
-                else if (rand > chanceOfCholera && rand <= chanceOfDysentary)
-                {
-                    chara.GetComponent<Character_r>().dysentery = true;
-                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten dysentary! ");
-                    StartCoroutine(GM.HasGottenHealthCondition());
-                    chara.GetComponent<Character_r>().dysenterySprite.SetActive(true);
-                }
-                else if (rand > chanceOfDysentary && rand <= chanceOfTyphoid)
-                {
-                    chara.GetComponent<Character_r>().typhoid = true;
-                    GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten typhoid! ");
-                    StartCoroutine(GM.HasGottenHealthCondition());
-                    chara.GetComponent<Character_r>().typhoidSprite.SetActive(true);
+                    if (rand <= chanceOfNothing)
+                    {
+                        Debug.Log("You caught nothing");
+                    }
+                    else if (rand > chanceOfNothing && rand <= chanceOfInjury)
+                    {
+                        chara.GetComponent<Character_r>().injured = true;
+                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten injured! ");
+                        StartCoroutine(GM.HasGottenHealthCondition());
+                        chara.GetComponent<Character_r>().injurySprite.SetActive(true);
+                    }
+                    else if (rand > chanceOfInjury && rand <= chanceOfCholera)
+                    {
+                        chara.GetComponent<Character_r>().cholera = true;
+                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten cholera! ");
+                        StartCoroutine(GM.HasGottenHealthCondition());
+                        chara.GetComponent<Character_r>().choleraSprite.SetActive(true);
+                    }
+                    else if (rand > chanceOfCholera && rand <= chanceOfDysentary)
+                    {
+                        chara.GetComponent<Character_r>().dysentery = true;
+                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten dysentary! ");
+                        StartCoroutine(GM.HasGottenHealthCondition());
+                        chara.GetComponent<Character_r>().dysenterySprite.SetActive(true);
+                    }
+                    else if (rand > chanceOfDysentary && rand <= chanceOfTyphoid)
+                    {
+                        chara.GetComponent<Character_r>().typhoid = true;
+                        GM.conditionReportText.text += (chara.GetComponent<Character_r>().charName + " has gotten typhoid! ");
+                        StartCoroutine(GM.HasGottenHealthCondition());
+                        chara.GetComponent<Character_r>().typhoidSprite.SetActive(true);
+                    }
                 }
             }
+            else
+            {
+                "In tutorial";
+            }
+                    
         }
         else
         {
@@ -162,9 +177,9 @@ public class Map_r : MonoBehaviour {
             currentLocationNumber = newLocation.GetComponent<Clinic_r>().locationNumber;
         }
 
-        confirmTravel = true;
-        if (confirmTravelPanel)
-            confirmTravelPanel.SetActive(false);
+        //confirmTravel = true;
+        //if (confirmTravelPanel)
+        //    confirmTravelPanel.SetActive(false);
     }
 
     public void NoTravel()
