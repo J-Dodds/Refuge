@@ -177,9 +177,9 @@ public class Map_r : MonoBehaviour
             currentLocationNumber = newLocation.GetComponent<Clinic_r>().locationNumber;
         }
 
-        //confirmTravel = true;
-        //if (confirmTravelPanel)
-        //    confirmTravelPanel.SetActive(false);
+        confirmTravel = true;
+        if (confirmTravelPanel)
+            confirmTravelPanel.SetActive(false);
     }
 
     public void NoTravel()
