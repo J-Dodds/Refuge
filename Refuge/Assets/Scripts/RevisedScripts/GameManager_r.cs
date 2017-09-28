@@ -34,9 +34,11 @@ public class GameManager_r : MonoBehaviour {
     public float partySpeed = 1f;
 
     float hoverTimer = 0;
-   public bool inCoRoutine = false;
+    public bool inCoRoutine = false;
     public AudioManager _AudioManager;
     bool musicStarted = false;
+
+    public bool inTutorial = true;
 
     // Singleton
     public static GameManager _Instance;
@@ -178,4 +180,10 @@ public class GameManager_r : MonoBehaviour {
 
     public void AddMoney(int modifier) { partyMoney += modifier; if (moneyGUI) moneyGUI.GetComponent<Text>().text = "Money: " + partyMoney; }
     public int GetMoney() { return partyMoney; }
+
+    //So refugees wont lose hunger, thirst or get sick during the starting stages
+    public void ToggleTutorial()
+    {
+        inTutorial = !inTutorial;
+    }
 }
