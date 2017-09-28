@@ -182,8 +182,8 @@ public class GameManager_r : MonoBehaviour {
     public int GetMoney() { return partyMoney; }
 
     //So refugees wont lose hunger, thirst or get sick during the starting stages
-    public void ToggleTutorial()
+    public void DeactivateTutorial()
     {
-        inTutorial = !inTutorial;
+        inTutorial = false;
     }
 }

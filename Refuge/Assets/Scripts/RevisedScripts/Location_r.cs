@@ -55,10 +55,12 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     public virtual void GenerateInventory() {
         if (inventory.Length > 0) {
         if (!generated) {
+                Debug.Log(inventory.Length);
             generated = true;
             foreach (GameObject slot in inventory) {
-                // No Empty RND Slots
-                float rnd = Random.Range(0f, 1f);
+                    Debug.Log(slot);
+                    // No Empty RND Slots
+                    float rnd = Random.Range(0f, 1f);
                 GameObject selectedObj = possibleItems[Random.Range(0, possibleItems.Length)];
                 foreach (GameObject item in possibleItems)
                     if (selectedObj) {
