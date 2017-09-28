@@ -158,7 +158,7 @@ public class Map_r : MonoBehaviour
             }
             else
             {
-                "In tutorial";
+                Debug.Log("In tutorial");
             }
                     
         }
