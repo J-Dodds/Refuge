@@ -180,4 +180,10 @@ public class GameManager_r : MonoBehaviour {
 
     public void AddMoney(int modifier) { partyMoney += modifier; if (moneyGUI) moneyGUI.GetComponent<Text>().text = "Money: " + partyMoney; }
     public int GetMoney() { return partyMoney; }
+
+    //So refugees wont lose hunger, thirst or get sick during the starting stages
+    public void ToggleTutorial()
+    {
+        inTutorial = !inTutorial;
+    }
 }

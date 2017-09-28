@@ -34,6 +34,9 @@ public class Map_r : MonoBehaviour
     GameObject currentLocation;
     int time = 0;
 
+    /// <summary>
+    /// Confirm what? What is this for? - Jordon
+    /// </summary>
     public bool confirm;
 
     // Use this for initialization
@@ -57,14 +60,17 @@ public class Map_r : MonoBehaviour
                 {
                     refugeeObj.transform.position = Vector3.Lerp(refugeeObj.transform.position, newLocation.transform.position, Time.deltaTime * GM.partySpeed);
 
-                    foreach (GameObject chara in GM.characters)
+                    if (GM.inTutorial == false)
                     {
-                        chara.GetComponent<Character_r>().AddHunger(-0.0001f * time);
-                        chara.GetComponent<Character_r>().AddThirst(-0.0001f * time);
-
-                        if (chara.GetComponent<Character_r>().hunger == 0 || chara.GetComponent<Character_r>().thirst == 0)
+                        foreach (GameObject chara in GM.characters)
                         {
-                            //chara.GetComponent<Character_r>().AddHealth(-0.005f);
+                            chara.GetComponent<Character_r>().AddHunger(-0.0001f * time);
+                            chara.GetComponent<Character_r>().AddThirst(-0.0001f * time);
+
+                            if (chara.GetComponent<Character_r>().hunger == 0 || chara.GetComponent<Character_r>().thirst == 0)
+                            {
+                                //chara.GetComponent<Character_r>().AddHealth(-0.005f);
+                            }
                         }
                     }
                 }
