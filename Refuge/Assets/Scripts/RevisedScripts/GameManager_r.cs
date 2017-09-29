@@ -18,6 +18,7 @@ public class GameManager_r : MonoBehaviour {
         STEnMap1 = 9, // Heshem Night
         STEnMap2 = 10, // Heshem Day
         STEnMap3 = 11, // World Night
+        STDebug = 12,
     };
 
     public GameObject charUI;
@@ -79,6 +80,7 @@ public class GameManager_r : MonoBehaviour {
         screens.Add(ScreenType.STEnMap1, GameObject.FindGameObjectWithTag("ScreenHeshemNight"));
         screens.Add(ScreenType.STEnMap2, GameObject.FindGameObjectWithTag("ScreenHeshemDay"));
         screens.Add(ScreenType.STEnMap3, GameObject.FindGameObjectWithTag("ScreenWorldNight"));
+        screens.Add(ScreenType.STDebug, GameObject.FindGameObjectWithTag("ScreenDebug"));
 
         if (!screens[ScreenType.STEnMap3])
             Debug.Log("World Night Map has gone walkabouts");
@@ -94,7 +96,6 @@ public class GameManager_r : MonoBehaviour {
         }
 
         _AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-
     }
 
     void Update() {
