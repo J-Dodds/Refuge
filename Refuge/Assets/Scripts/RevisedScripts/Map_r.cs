@@ -52,7 +52,7 @@ public class Map_r : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (confirmTravel == true)
+        if (confirmTravel == true && confirmTravelPanel.activeSelf == false)
         {
             if (newLocation)
             {
