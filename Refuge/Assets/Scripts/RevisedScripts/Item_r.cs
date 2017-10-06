@@ -31,4 +31,6 @@ public class Item_r : MonoBehaviour {
     public bool cureDiseases;
     public int price;
     public float spawnChance;
+    public string shopHoverTip;
+    public string invHoverTip;
 }
