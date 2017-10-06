@@ -192,6 +192,7 @@ public class Map_r : MonoBehaviour
     {
         newLocation = previousLocation;
         confirmTravelPanel.SetActive(false);
+        costOfTravelText.text = "";
         Debug.Log("panel shut");
     }
 }
