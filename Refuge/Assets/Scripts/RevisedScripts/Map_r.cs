@@ -60,13 +60,39 @@ public class Map_r : MonoBehaviour
                 {
                     refugeeObj.transform.position = Vector3.Lerp(refugeeObj.transform.position, newLocation.transform.position, Time.deltaTime * GM.partySpeed);
 
-                    if (GM.inTutorial == false)
+                    //if (GM.inTutorial == false)
                     {
                         foreach (GameObject chara in GM.characters)
                         {
-                            chara.GetComponent<Character_r>().AddHunger(-0.0001f * time);
-                            chara.GetComponent<Character_r>().AddThirst(-0.0001f * time);
+                            float charHunger = chara.GetComponent<Character_r>().GetHunger();
+                            float charThirst = chara.GetComponent<Character_r>().GetThirst();
+                            charHunger = Mathf.Lerp(charHunger, 1 - newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime * 2.5f);
+                            charThirst = Mathf.Lerp(charThirst, 1 - newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime * 2.5f);
 
+                            //chara.GetComponent<Character_r>().AddHunger(-1);
+                            //chara.GetComponent<Character_r>().AddHunger(charHunger);
+                            chara.GetComponent<Character_r>().AddHunger(-1);
+                            chara.GetComponent<Character_r>().AddThirst(-1);
+                            //chara.GetComponent<Character_r>().AddHunger(Mathf.Lerp(chara.GetComponent<Character_r>().GetHunger(), 1 - newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime * 3));
+                            //chara.GetComponent<Character_r>().AddThirst(Mathf.Lerp(chara.GetComponent<Character_r>().GetThirst(), 1 - newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime * 3));
+                            chara.GetComponent<Character_r>().AddHunger(charHunger);
+                            chara.GetComponent<Character_r>().AddThirst(charThirst);
+                            //Debug.Log(charHunger);
+                            //chara.GetComponent<Character_r>().AddHunger(Mathf.Lerp(charHunger, -newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime));
+                            //chara.GetComponent<Character_r>().AddThirst(Mathf.Lerp(chara.GetComponent<Character_r>().GetThirst(), -newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime));
+                            //Debug.Log(string.Format("Supposed to take {0} off, for some reason we took bloody {1} off", -newLocation.GetComponent<Location_r>().distance * 0.25f, 1 - chara.GetComponent<Character_r>().GetHunger()));
+                            /*
+                             * Add(LERP(1, -0.75, T)) = Adding 0.25
+                             * Add(-1 - LERP(1, -0.75, T) = 
+                             * Starting Value = 1
+                             * Ending Value = 0.25
+                             * Overall Add -0.75
+                             * V = D/T
+                             * D
+                             * VT
+                             * D = -0.75
+                             * T = 
+                             */
                             if (chara.GetComponent<Character_r>().hunger == 0 || chara.GetComponent<Character_r>().thirst == 0)
                             {
                                 //chara.GetComponent<Character_r>().AddHealth(-0.005f);
@@ -103,9 +129,10 @@ public class Map_r : MonoBehaviour
                 confirmTravelPanel.SetActive(true);
 
                 //Im aware the numbers don't match with the value they are actually going down by, but this fits the slider much much better - Jordon
-                costOfTravelText.text += "Hunger - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n" +
-                                         "Thirst - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n";
+                //costOfTravelText.text += "Hunger - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n" +
+                //                         "Thirst - " + time * 0.0003f * (((newLocation.transform.position.x - refugeeObj.transform.position.x) + (newLocation.transform.position.y - refugeeObj.transform.position.y)) * Time.deltaTime * GM.partySpeed) * 1000 + "\n";
                                          /*"You will lose health if hunger or thirst are empty"*/
+                costOfTravelText.text = string.Format("This journey will tak {0} days to travel\nThis will deplete {1}% of your total hunger, and {2}% of your total thirst", location.GetComponent<Location_r>().distance, location.GetComponent<Location_r>().distance * 0.25f, location.GetComponent<Location_r>().distance * 0.25f);
             }
             else
             {
