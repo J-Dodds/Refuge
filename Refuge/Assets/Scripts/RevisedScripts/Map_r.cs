@@ -88,13 +88,15 @@ public class Map_r : MonoBehaviour
 
     public void Travel(GameObject location)
     {
-        if (newLocation != location || newLocation.GetComponent<Location_r>().possibleLocations.Contains(location))
+        //if (newLocation != location || newLocation.GetComponent<Location_r>().possibleLocations.Contains(location))
+        if (newLocation != location && location.GetComponent<Location_r>().locationNumber == currentLocationNumber + 1)
         {
             //if (location.GetComponent<Location_r>().locationNumber == currentLocationNumber - 1 || location.GetComponent<Location_r>().locationNumber == currentLocationNumber + 1)
             //{
             time = (int)Vector3.Distance(refugeeObj.transform.position, location.transform.position) / 5;
 
             newLocation = location;
+            currentLocationNumber = location.GetComponent<Location_r>().locationNumber;
 
             if (confirmTravelPanel)
             {
@@ -111,7 +113,12 @@ public class Map_r : MonoBehaviour
             }
         }
         else
-            Debug.Log(location.GetComponent<Location_r>().locationNumber + " | " + currentLocationNumber + " | " + locations.Length);
+            if (newLocation == location)
+                Debug.Log("newLocation and location are one in the same");
+            if (newLocation.GetComponent<Location_r>().locationNumber != currentLocationNumber + 1)
+                Debug.Log(location.name);
+                //Debug.Log("location numbers are mismatched: " + newLocation.GetComponent<Location_r>().locationNumber + ", " + currentLocationNumber);
+            //Debug.Log(location.GetComponent<Location_r>().locationNumber + " | " + currentLocationNumber + " | " + locations.Length);
     }
 
     public void YesTravel()
@@ -192,6 +199,7 @@ public class Map_r : MonoBehaviour
     {
         newLocation = previousLocation;
         confirmTravelPanel.SetActive(false);
+        costOfTravelText.text = "";
         Debug.Log("panel shut");
     }
 }

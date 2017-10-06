@@ -162,6 +162,10 @@ public class GameManager_r : MonoBehaviour {
             screens[ScreenType.STEncounter].SetActive(true);
     }
 
+    public void ChangeToPrevScreen() {
+        ChangeScreen(prevScreen);
+    }
+
     public GameObject WealthiestChar(Item_r.ItemType itemType) {
         GameObject chara = new GameObject();
         int maxItemCount = 0;
