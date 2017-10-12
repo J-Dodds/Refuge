@@ -75,6 +75,11 @@ public class Character_r : MonoBehaviour
         {
             OnNoTrust();
         }
+
+        if(trust >= 100)
+        {
+            trust = 100;
+        }
     }
 
     public void UseItem () {
