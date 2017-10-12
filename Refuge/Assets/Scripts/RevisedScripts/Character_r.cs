@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Character_r : MonoBehaviour {
-
-    [SerializeField]
+public class Character_r : MonoBehaviour
+{
     public string charName, bio;
-    [SerializeField]
     public GameObject[] inventory;
     public float health, hunger, thirst; // Normalized
     public bool injured, cholera, dysentery, typhoid;
     public bool isDead = false;
+    public int trust = 50;
 
     public Sprite sprite;
-    [SerializeField]
     GameObject UISprite; // Button
-    [SerializeField]
     GameObject UIHealth, UIHunger, UIThirst; // Sliders
 
     public void AddHealth(float modifier) { health += modifier; health = Mathf.Clamp01(health); UIHealth.GetComponent<Slider>().value = health; }
@@ -30,7 +27,15 @@ public class Character_r : MonoBehaviour {
     public GameObject choleraSprite;
     public GameObject dysenterySprite;
     public GameObject typhoidSprite;
+    [Space(1)]
 
+    [Header("Family")]
+    public GameObject significantOther = null;
+    public GameObject parentOne = null;
+    public GameObject parentTwo = null;
+    public GameObject childOne = null;
+    public GameObject childTwo = null;
+    
     void Update()
     {
         if(health <= 0)
@@ -115,3 +120,4 @@ public class Character_r : MonoBehaviour {
         Destroy(gameObject);
     }
 }
+
