@@ -33,6 +33,9 @@ public class Map_r : MonoBehaviour
 
     GameObject currentLocation;
     int time = 0;
+    bool logged = false;
+    List<float> hunger = new List<float>();
+    List<float> thirst = new List<float>();
 
     /// <summary>
     /// Confirm what? What is this for? - Jordon
@@ -47,6 +50,10 @@ public class Map_r : MonoBehaviour
         hungerPercentLeft = 100f;
         thirstPercentLeft = 100f;
         stressPercentLeft = 100f;
+        foreach (GameObject chara in GM.characters) {
+            hunger.Add(chara.GetComponent<Character_r>().GetHunger());
+            thirst.Add(chara.GetComponent<Character_r>().GetThirst());
+        }
     }
 
     // Update is called once per frame
@@ -62,12 +69,15 @@ public class Map_r : MonoBehaviour
 
                     //if (GM.inTutorial == false)
                     {
+                        int index = 0;
                         foreach (GameObject chara in GM.characters)
                         {
                             float charHunger = chara.GetComponent<Character_r>().GetHunger();
                             float charThirst = chara.GetComponent<Character_r>().GetThirst();
-                            charHunger = Mathf.Lerp(charHunger, 1 - newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime * 2.5f);
-                            charThirst = Mathf.Lerp(charThirst, 1 - newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime * 2.5f);
+                            charHunger = Mathf.Lerp(charHunger, hunger[index] - newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime * 2.5f);
+                            charThirst = Mathf.Lerp(charThirst, thirst[index] - newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime * 2.5f);
+                            //if (!logged)
+                                Debug.Log(charHunger);
 
                             //chara.GetComponent<Character_r>().AddHunger(-1);
                             //chara.GetComponent<Character_r>().AddHunger(charHunger);
@@ -97,12 +107,18 @@ public class Map_r : MonoBehaviour
                             {
                                 //chara.GetComponent<Character_r>().AddHealth(-0.005f);
                             }
+                            ++index;
                         }
                     }
                 }
                 else
                 {
                     Debug.Log("We Made It! (woo)");
+                    for (int i = 0; i < hunger.Count; ++i) {
+                        hunger[i] = GM.characters[i].GetComponent<Character_r>().GetHunger();
+                        thirst[i] = GM.characters[i].GetComponent<Character_r>().GetThirst();
+                    }
+                    logged = false;
                     refugeeObj.transform.position = Vector3.MoveTowards(refugeeObj.transform.position, new Vector3(newLocation.transform.position.x + movementXOffset, newLocation.transform.position.y + movementYOffset, -5), 1.0f);
                     newLocation.GetComponent<Location_r>().Scavenge();
                     confirmTravel = false;
