@@ -77,7 +77,7 @@ public class Map_r : MonoBehaviour
                             charHunger = Mathf.Lerp(charHunger, hunger[index] - newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime * 2.5f);
                             charThirst = Mathf.Lerp(charThirst, thirst[index] - newLocation.GetComponent<Location_r>().distance * 0.25f, Time.deltaTime * 2.5f);
                             //if (!logged)
-                                Debug.Log(charHunger);
+                                //Debug.Log(charHunger);
 
                             //chara.GetComponent<Character_r>().AddHunger(-1);
                             //chara.GetComponent<Character_r>().AddHunger(charHunger);
