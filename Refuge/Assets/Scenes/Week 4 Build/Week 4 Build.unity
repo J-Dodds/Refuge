@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 30949387}
   - component: {fileID: 30949386}
   m_Layer: 5
-  m_Name: Char4 (Aya)
+  m_Name: Char4 (Maya)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63078dce61a78224dbf0228d9909af9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charName: Feliz
+  charName: Maya
   bio: 
   inventory: []
   health: 1
@@ -785,13 +785,17 @@ MonoBehaviour:
   isDead: 0
   trust: 50
   sprite: {fileID: 21300000, guid: 1380d8128d40b3c4391d1c271f832383, type: 3}
+  UIHealth: {fileID: 1450704715}
+  UIHunger: {fileID: 786409973}
+  UIThirst: {fileID: 148180154}
+  UITrust: {fileID: 200892675}
   injurySprite: {fileID: 1013633353}
   choleraSprite: {fileID: 221095860}
   dysenterySprite: {fileID: 2102255300}
   typhoidSprite: {fileID: 1667636454}
   significantOther: {fileID: 0}
-  parentOne: {fileID: 0}
-  parentTwo: {fileID: 0}
+  parentOne: {fileID: 378520940}
+  parentTwo: {fileID: 594160366}
   childOne: {fileID: 0}
   childTwo: {fileID: 0}
 --- !u!114 &30949387
@@ -1441,6 +1445,11 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 51377311}
+--- !u!4 &53491324 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4237636780863222, guid: 290a83d302b5deb4db3afdce710c6444,
+    type: 2}
+  m_PrefabInternal: {fileID: 1323212501}
 --- !u!1 &65281066
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,17 +2188,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 94236177}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 533439742}
+  m_Father: {fileID: 929717432}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 780.3124, y: 439.82428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94236179
 MonoBehaviour:
@@ -3044,7 +3053,7 @@ RectTransform:
   m_Children:
   - {fileID: 756685621}
   m_Father: {fileID: 1700608245}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5343,7 +5352,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 533439742}
+    m_TransformParent: {fileID: 929717432}
     m_Modifications:
     - target: {fileID: 114490269878673258, guid: 1fbd7fa81f3f9494ca640e28b48833a2,
         type: 2}
@@ -5393,12 +5402,12 @@ Prefab:
     - target: {fileID: 224539169156241996, guid: 1fbd7fa81f3f9494ca640e28b48833a2,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 80
+      value: -310.15622
       objectReference: {fileID: 0}
     - target: {fileID: 224539169156241996, guid: 1fbd7fa81f3f9494ca640e28b48833a2,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 45
+      value: -174.91217
       objectReference: {fileID: 0}
     - target: {fileID: 224539169156241996, guid: 1fbd7fa81f3f9494ca640e28b48833a2,
         type: 2}
@@ -6038,7 +6047,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 1
-  distance: 0
+  distance: 1
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -7727,6 +7736,10 @@ MonoBehaviour:
   isDead: 0
   trust: 50
   sprite: {fileID: 21300000, guid: abaa056d36edb074582d7185acf41bfa, type: 3}
+  UIHealth: {fileID: 67654075}
+  UIHunger: {fileID: 1438416782}
+  UIThirst: {fileID: 696485020}
+  UITrust: {fileID: 196803457}
   injurySprite: {fileID: 1897640938}
   choleraSprite: {fileID: 348604141}
   dysenterySprite: {fileID: 1335751401}
@@ -7835,14 +7848,18 @@ MonoBehaviour:
   isDead: 0
   trust: 50
   sprite: {fileID: 21300000, guid: 1380d8128d40b3c4391d1c271f832383, type: 3}
+  UIHealth: {fileID: 197970167}
+  UIHunger: {fileID: 556884842}
+  UIThirst: {fileID: 166845458}
+  UITrust: {fileID: 1742959839}
   injurySprite: {fileID: 1017830448}
   choleraSprite: {fileID: 1909694633}
   dysenterySprite: {fileID: 1722969926}
   typhoidSprite: {fileID: 536054314}
-  significantOther: {fileID: 0}
+  significantOther: {fileID: 594160366}
   parentOne: {fileID: 0}
   parentTwo: {fileID: 0}
-  childOne: {fileID: 0}
+  childOne: {fileID: 30949384}
   childTwo: {fileID: 0}
 --- !u!114 &378520943
 MonoBehaviour:
@@ -9205,15 +9222,15 @@ RectTransform:
   m_GameObject: {fileID: 461253718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3288362, y: 1.3288363, z: 1.3288363}
+  m_LocalScale: {x: 1.3288363, y: 1.3288364, z: 1.3288364}
   m_Children: []
-  m_Father: {fileID: 533439742}
+  m_Father: {fileID: 929717432}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -2}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 780.3124, y: 439.82428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &461253720
 MonoBehaviour:
@@ -10286,6 +10303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 533439742}
   - component: {fileID: 533439744}
+  - component: {fileID: 533439743}
   m_Layer: 5
   m_Name: (4) Market UI
   m_TagString: ScreenMarket
@@ -10303,11 +10321,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 94236178}
-  - {fileID: 1692179304}
-  - {fileID: 461253719}
-  - {fileID: 1874292639}
-  - {fileID: 2061244824}
+  - {fileID: 929717432}
   m_Father: {fileID: 1468065623}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10316,6 +10330,36 @@ RectTransform:
   m_AnchoredPosition: {x: 120.00061, y: 0}
   m_SizeDelta: {x: -400, y: -180}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &533439743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 533439741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc727e15050b98d4a8c4b18448a9616f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeScreen: 0
+  destinationScreen: 0
+  FungusBlockToExecute: 
+  executeEncounterWithFungus: 0
+  type: 2
+  inventoryUI: {fileID: 2061244823}
+  inventory:
+  - {fileID: 1780604501738474, guid: e8371f509049a3f42aa55abbad0c6dc8, type: 2}
+  - {fileID: 1465567080678274, guid: 7c2d26347288b154b891a1bacf877ee6, type: 2}
+  - {fileID: 1972752203891548, guid: c2b3e522c1a67fd4a8629e91fb36a306, type: 2}
+  possibleItems: []
+  locationNumber: 0
+  distance: 0
+  description: 
+  map: {fileID: 0}
+  generated: 0
+  possibleLocations: []
+  _AudioManager: {fileID: 0}
+  travelReady: 0
 --- !u!222 &533439744
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11362,7 +11406,7 @@ GameObject:
   - component: {fileID: 594160369}
   - component: {fileID: 594160368}
   m_Layer: 5
-  m_Name: Char3 (Joram)
+  m_Name: Char3 (Rasha)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11400,7 +11444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63078dce61a78224dbf0228d9909af9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charName: Firas
+  charName: Rasha
   bio: 
   inventory: []
   health: 1
@@ -11413,14 +11457,18 @@ MonoBehaviour:
   isDead: 0
   trust: 50
   sprite: {fileID: 21300000, guid: 1380d8128d40b3c4391d1c271f832383, type: 3}
+  UIHealth: {fileID: 609425450}
+  UIHunger: {fileID: 1050758987}
+  UIThirst: {fileID: 863937926}
+  UITrust: {fileID: 1362557280}
   injurySprite: {fileID: 35693294}
   choleraSprite: {fileID: 1636732045}
   dysenterySprite: {fileID: 1094410945}
   typhoidSprite: {fileID: 165969471}
-  significantOther: {fileID: 0}
+  significantOther: {fileID: 378520940}
   parentOne: {fileID: 0}
   parentTwo: {fileID: 0}
-  childOne: {fileID: 0}
+  childOne: {fileID: 30949384}
   childTwo: {fileID: 0}
 --- !u!114 &594160369
 MonoBehaviour:
@@ -13183,124 +13231,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224539169156241996, guid: 1fbd7fa81f3f9494ca640e28b48833a2,
     type: 2}
   m_PrefabInternal: {fileID: 693606502}
---- !u!1 &693939290
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 693939291}
-  - component: {fileID: 693939295}
-  - component: {fileID: 693939294}
-  - component: {fileID: 693939293}
-  - component: {fileID: 693939292}
-  m_Layer: 5
-  m_Name: Town
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &693939291
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 693939290}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999505, y: 0.99999505, z: 0.99999505}
-  m_Children: []
-  m_Father: {fileID: 1700608245}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 346.3, y: -362.7}
-  m_SizeDelta: {x: 50, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &693939292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 693939290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4df50e8ac7888b48a105fc99de7e6cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverTip: The small Town of Mule
-  xOffset: 150
-  yOffset: -100
---- !u!114 &693939293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 693939290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc727e15050b98d4a8c4b18448a9616f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changeScreen: 1
-  destinationScreen: 1
-  FungusBlockToExecute: 
-  executeEncounterWithFungus: 0
-  type: 0
-  inventoryUI: {fileID: 32750066}
-  inventory:
-  - {fileID: 1941230495}
-  - {fileID: 1698040340}
-  - {fileID: 1498170775}
-  - {fileID: 784040394}
-  possibleItems:
-  - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
-  - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
-  locationNumber: 3
-  distance: 0
-  description: 
-  map: {fileID: 1700608248}
-  generated: 0
-  possibleLocations:
-  - {fileID: 1767372275}
-  _AudioManager: {fileID: 0}
-  travelReady: 0
---- !u!114 &693939294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 693939290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6923ad86c01554b508f0599385ea0500, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &693939295
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 693939290}
 --- !u!1 &696485020
 GameObject:
   m_ObjectHideFlags: 0
@@ -13580,7 +13510,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &709891897
 GameObject:
@@ -15682,6 +15612,10 @@ MonoBehaviour:
   isDead: 0
   trust: 50
   sprite: {fileID: 21300000, guid: 1380d8128d40b3c4391d1c271f832383, type: 3}
+  UIHealth: {fileID: 476283856}
+  UIHunger: {fileID: 286892693}
+  UIThirst: {fileID: 495867767}
+  UITrust: {fileID: 2064127412}
   injurySprite: {fileID: 1430630224}
   choleraSprite: {fileID: 414404266}
   dysenterySprite: {fileID: 1618765628}
@@ -16014,7 +15948,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 2
-  distance: 0
+  distance: 1
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -17112,7 +17046,7 @@ MonoBehaviour:
   partySpeed: 2
   inCoRoutine: 0
   _AudioManager: {fileID: 881573695}
-  inTutorial: 1
+  inTutorial: 0
 --- !u!4 &856529017
 Transform:
   m_ObjectHideFlags: 0
@@ -18653,6 +18587,44 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -42, y: -585}
   m_SizeDelta: {x: -850, y: 90}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &929717431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 929717432}
+  m_Layer: 5
+  m_Name: Market
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &929717432
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 929717431}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 94236178}
+  - {fileID: 1692179304}
+  - {fileID: 461253719}
+  - {fileID: 1874292639}
+  - {fileID: 2061244824}
+  m_Father: {fileID: 533439742}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &932056794 stripped
 RectTransform:
@@ -20804,7 +20776,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 6
-  distance: 0
+  distance: 2
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -20922,7 +20894,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 4
-  distance: 0
+  distance: 2
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -22342,7 +22314,7 @@ Prefab:
     - target: {fileID: 114406967292628568, guid: 6decb6bc3bba2a34bad375b0eeba0d34,
         type: 2}
       propertyPath: selectedBlocks.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114406967292628568, guid: 6decb6bc3bba2a34bad375b0eeba0d34,
         type: 2}
@@ -22859,7 +22831,7 @@ Prefab:
     - target: {fileID: 114735418318403106, guid: 6decb6bc3bba2a34bad375b0eeba0d34,
         type: 2}
       propertyPath: nodeRect.y
-      value: 1250.6641
+      value: 1251.9799
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114131169685637494, guid: 6decb6bc3bba2a34bad375b0eeba0d34, type: 2}
@@ -23042,7 +23014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
 --- !u!114 &1185227109
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1185226580}
@@ -23058,7 +23030,7 @@ MonoBehaviour:
     stringVal: 
 --- !u!114 &1185227110
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1185226580}
@@ -23355,7 +23327,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 12
-  distance: 0
+  distance: 1
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -24875,7 +24847,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 3
-  distance: 0
+  distance: 1
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -25422,15 +25394,15 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1468065623}
     m_Modifications:
     - target: {fileID: 4237636780863222, guid: 290a83d302b5deb4db3afdce710c6444, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -640
       objectReference: {fileID: 0}
     - target: {fileID: 4237636780863222, guid: 290a83d302b5deb4db3afdce710c6444, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -360
       objectReference: {fileID: 0}
     - target: {fileID: 4237636780863222, guid: 290a83d302b5deb4db3afdce710c6444, type: 2}
       propertyPath: m_LocalPosition.z
@@ -25454,13 +25426,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4237636780863222, guid: 290a83d302b5deb4db3afdce710c6444, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 114806566339246284, guid: 290a83d302b5deb4db3afdce710c6444,
         type: 2}
       propertyPath: BGM
       value: 
       objectReference: {fileID: 8300000, guid: 0e983fcd4db3cc94fb451217e3dedc68, type: 3}
+    - target: {fileID: 1345539313808864, guid: 290a83d302b5deb4db3afdce710c6444, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345539313808864, guid: 290a83d302b5deb4db3afdce710c6444, type: 2}
+      propertyPath: m_TagString
+      value: AudioManager
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 290a83d302b5deb4db3afdce710c6444, type: 2}
@@ -27099,7 +27079,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 10
-  distance: 0
+  distance: 1
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -28173,7 +28153,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 8
-  distance: 0
+  distance: 1
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -28522,6 +28502,7 @@ RectTransform:
   - {fileID: 1700608245}
   - {fileID: 1283581999}
   - {fileID: 1464743059}
+  - {fileID: 53491324}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28766,7 +28747,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 5
-  distance: 0
+  distance: 1
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -28884,7 +28865,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 7
-  distance: 0
+  distance: 1
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -29303,6 +29284,39 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1501181964}
+--- !u!1 &1508382835 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1201147502540704, guid: bea8576958b789746a158bfa75fdcab1,
+    type: 2}
+  m_PrefabInternal: {fileID: 134249049}
+--- !u!114 &1508382836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1508382835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc727e15050b98d4a8c4b18448a9616f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeScreen: 0
+  destinationScreen: 0
+  FungusBlockToExecute: 
+  executeEncounterWithFungus: 0
+  type: 0
+  inventoryUI: {fileID: 940793687}
+  inventory:
+  - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
+  possibleItems: []
+  locationNumber: 0
+  distance: 0
+  description: 
+  map: {fileID: 0}
+  generated: 0
+  possibleLocations: []
+  _AudioManager: {fileID: 0}
+  travelReady: 0
 --- !u!1 &1513820386
 GameObject:
   m_ObjectHideFlags: 0
@@ -30397,6 +30411,10 @@ MonoBehaviour:
   isDead: 0
   trust: 50
   sprite: {fileID: 21300000, guid: 67bb7dd28d8ab974d9a98268e403aa1b, type: 3}
+  UIHealth: {fileID: 2101601159}
+  UIHunger: {fileID: 921191151}
+  UIThirst: {fileID: 597018609}
+  UITrust: {fileID: 1317468088}
   injurySprite: {fileID: 1379771884}
   choleraSprite: {fileID: 1560846577}
   dysenterySprite: {fileID: 1240289441}
@@ -31521,7 +31539,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 9
-  distance: 0
+  distance: 1
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -32364,7 +32382,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.6838235, g: 0.5470588, b: 0.34191176, a: 1}
+  m_BackGroundColor: {r: 1, g: 0, b: 0, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -32429,15 +32447,15 @@ RectTransform:
   m_GameObject: {fileID: 1692179303}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8329474, y: 0.83294743, z: 0.83294743}
+  m_LocalScale: {x: 0.83294743, y: 0.8329475, z: 0.8329475}
   m_Children: []
-  m_Father: {fileID: 533439742}
+  m_Father: {fileID: 929717432}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 20, y: -160}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 780.3124, y: 439.82428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1692179305
 MonoBehaviour:
@@ -32632,7 +32650,6 @@ RectTransform:
   - {fileID: 21840909}
   - {fileID: 1864101710}
   - {fileID: 32750069}
-  - {fileID: 693939291}
   - {fileID: 164332625}
   - {fileID: 1921232070}
   - {fileID: 1703330093}
@@ -32698,15 +32715,13 @@ MonoBehaviour:
   - {fileID: 1482995732}
   - {fileID: 1055492494}
   - {fileID: 1213594596}
-  - {fileID: 0}
   - {fileID: 2122521866}
   - {fileID: 1401203137}
-  - {fileID: 0}
   - {fileID: 1637496854}
   - {fileID: 1456434351}
   refugeeObj: {fileID: 1864101709}
   newLocation: {fileID: 2014372520}
-  GM: {fileID: 0}
+  GM: {fileID: 856529016}
   currentLocationNumber: 0
   chanceOfNothing: 60
   chanceOfInjury: 70
@@ -32744,7 +32759,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1700608245}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -34030,7 +34045,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 8
-  distance: 0
+  distance: 2
   description: 
   map: {fileID: 1700608248}
   generated: 0
@@ -35725,7 +35740,7 @@ RectTransform:
   - {fileID: 1456434352}
   - {fileID: 1767372276}
   m_Father: {fileID: 1700608245}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -37135,9 +37150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4df50e8ac7888b48a105fc99de7e6cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverTip: Point of Interest
-  xOffset: 150
-  yOffset: -100
+  hoverTip: Heshem
+  xOffset: 10
+  yOffset: -10
 --- !u!114 &2014372522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38267,12 +38282,12 @@ RectTransform:
   - {fileID: 503317959}
   - {fileID: 569726126}
   - {fileID: 1435946029}
-  m_Father: {fileID: 533439742}
+  m_Father: {fileID: 929717432}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 45}
+  m_AnchoredPosition: {x: 0, y: -174.91217}
   m_SizeDelta: {x: 30, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061244825
@@ -39295,7 +39310,7 @@ MonoBehaviour:
   - {fileID: 1480268101118192, guid: c776065b612ffcb4196fa5c8c3fd5f59, type: 2}
   - {fileID: 1764215071121986, guid: ff02c66e47a27084a9182509cfc09346, type: 2}
   locationNumber: 11
-  distance: 0
+  distance: 1
   description: 
   map: {fileID: 1700608248}
   generated: 0

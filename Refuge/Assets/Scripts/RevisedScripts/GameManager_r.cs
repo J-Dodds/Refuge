@@ -95,7 +95,7 @@ public class GameManager_r : MonoBehaviour {
             chara.GetComponent<Character_r>().AddThirst(1);
         }
 
-        _AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        _AudioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update() {
@@ -113,15 +113,15 @@ public class GameManager_r : MonoBehaviour {
             newPos.z = -5f;
             carryingItem.transform.position = newPos;
         }
-        if (!musicStarted) {
-            _AudioManager.PlayClip(_AudioManager.BGM, _AudioManager.GetChannel("Music"), 1, true);
-            musicStarted = true;
-        }
+       // if (!musicStarted) {
+       //     _AudioManager.PlayClip(_AudioManager.BGM, _AudioManager.GetChannel("Music"), 1, true);
+        //    musicStarted = true;
+       // }
     }
 
     public void ChangeScreen(ScreenType newScreen) {
-        if (_AudioManager)
-            _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
+        //if (_AudioManager)
+           // _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
         Destroy(carryingItem);
 
         prevScreen = currentScreen;

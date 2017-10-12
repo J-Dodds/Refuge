@@ -17,6 +17,7 @@ TagManager:
   - ScreenHeshemDay
   - ScreenWorldNight
   - ScreenDebug
+  - AudioManager
   layers:
   - Default
   - TransparentFX

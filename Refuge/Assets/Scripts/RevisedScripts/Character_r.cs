@@ -14,7 +14,7 @@ public class Character_r : MonoBehaviour
 
     public Sprite sprite;
     GameObject UISprite; // Button
-    GameObject UIHealth, UIHunger, UIThirst, UITrust; // Sliders
+    public GameObject UIHealth, UIHunger, UIThirst, UITrust; // Sliders
 
     public void AddHealth(float modifier) { health += modifier; health = Mathf.Clamp01(health); UIHealth.GetComponent<Slider>().value = health; }
     public float GetHealth() { return health; }
