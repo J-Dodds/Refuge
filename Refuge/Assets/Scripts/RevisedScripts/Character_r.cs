@@ -20,7 +20,32 @@ public class Character_r : MonoBehaviour
     public float GetHealth() { return health; }
     public void AddThirst(float modifier) { thirst += modifier; thirst = Mathf.Clamp01(thirst); UIThirst.GetComponent<Slider>().value = thirst; }
     public float GetThirst() { return thirst; }
-    public void AddHunger(float modifier) { hunger += modifier; hunger = Mathf.Clamp01(hunger); UIHunger.GetComponent<Slider>().value = hunger; }
+
+    public void AddHunger(float modifier)
+    {
+        hunger += modifier; hunger = Mathf.Clamp01(hunger); UIHunger.GetComponent<Slider>().value = hunger;
+
+        if (childOne != null || childTwo != null)
+        {
+            if (hunger >= 0.75)
+            {
+                trust -= 5;
+            }
+        }
+
+        if (parentOne != null)
+        {
+            parentOne.GetComponent<Character_r>().trust += 15;
+
+            if (parentTwo != null)
+            {
+                parentTwo.GetComponent<Character_r>().trust += 15;
+            }
+        }
+
+        trust += 10;
+    }
+
     public float GetHunger() { return hunger; }
 
     public GameObject injurySprite;
@@ -42,6 +67,11 @@ public class Character_r : MonoBehaviour
         {
             isDead = true;
             OnDeath();
+        }
+
+        if(trust <= 0)
+        {
+            OnNoTrust();
         }
     }
 
@@ -117,6 +147,15 @@ public class Character_r : MonoBehaviour
         GM.conditionReportText.text = charName + " Has Died!";
         StartCoroutine(GM.HasGottenHealthCondition());
         Debug.Log(charName + " has died");
+        Destroy(gameObject);
+    }
+
+    public void OnNoTrust()
+    {
+        GameManager_r GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
+        GM.conditionReportText.text = charName + " Has Left!";
+        StartCoroutine(GM.HasGottenHealthCondition());
+        Debug.Log(charName + " has left");
         Destroy(gameObject);
     }
 }
