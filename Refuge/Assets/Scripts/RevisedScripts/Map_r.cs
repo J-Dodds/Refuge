@@ -176,7 +176,7 @@ public class Map_r : MonoBehaviour
                 foreach (GameObject chara in GM.characters)
                 {
                     int rand = Random.Range(0, 100);
-                    Debug.Log(rand);
+                    //Debug.Log(rand);
 
                     if (rand <= chanceOfNothing)
                     {
