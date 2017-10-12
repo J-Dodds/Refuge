@@ -14,12 +14,14 @@ public class Character_r : MonoBehaviour
 
     public Sprite sprite;
     GameObject UISprite; // Button
-    GameObject UIHealth, UIHunger, UIThirst; // Sliders
+    GameObject UIHealth, UIHunger, UIThirst, UITrust; // Sliders
 
     public void AddHealth(float modifier) { health += modifier; health = Mathf.Clamp01(health); UIHealth.GetComponent<Slider>().value = health; }
     public float GetHealth() { return health; }
     public void AddThirst(float modifier) { thirst += modifier; thirst = Mathf.Clamp01(thirst); UIThirst.GetComponent<Slider>().value = thirst; }
     public float GetThirst() { return thirst; }
+    public void AddTrust(int modifier) { trust += modifier; UITrust.GetComponent<Slider>().value = trust; }
+
 
     public void AddHunger(float modifier)
     {
@@ -29,21 +31,21 @@ public class Character_r : MonoBehaviour
         {
             if (hunger >= 0.75)
             {
-                trust -= 5;
+                AddTrust(-5);
             }
         }
 
         if (parentOne != null)
         {
-            parentOne.GetComponent<Character_r>().trust += 15;
+            parentOne.GetComponent<Character_r>().AddTrust(15);
 
             if (parentTwo != null)
             {
-                parentTwo.GetComponent<Character_r>().trust += 15;
+                parentTwo.GetComponent<Character_r>().AddTrust(15);
             }
         }
 
-        trust += 10;
+        AddTrust(10);
     }
 
     public float GetHunger() { return hunger; }
