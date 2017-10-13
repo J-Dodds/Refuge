@@ -113,10 +113,10 @@ public class GameManager_r : MonoBehaviour {
             newPos.z = -5f;
             carryingItem.transform.position = newPos;
         }
-       // if (!musicStarted) {
-       //     _AudioManager.PlayClip(_AudioManager.BGM, _AudioManager.GetChannel("Music"), 1, true);
-        //    musicStarted = true;
-       // }
+        if (!musicStarted) {
+            _AudioManager.PlayClip(_AudioManager.BGM, _AudioManager.GetChannel("Music"), 1, true);
+            musicStarted = true;
+        }
     }
 
     public void ChangeScreen(ScreenType newScreen) {
@@ -142,7 +142,7 @@ public class GameManager_r : MonoBehaviour {
     }
 
     public void ChangeScreen(int iNewScreen) {
-        if (_AudioManager)
+        if (_AudioManager && _AudioManager.GetChannel("SFX") != null && _AudioManager.clickSound)
             _AudioManager.PlayClip(_AudioManager.clickSound, _AudioManager.GetChannel("SFX"));
         Destroy(carryingItem);
 
