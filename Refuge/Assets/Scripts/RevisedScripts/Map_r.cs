@@ -138,7 +138,6 @@ public class Map_r : MonoBehaviour
             time = (int)Vector3.Distance(refugeeObj.transform.position, location.transform.position) / 5;
 
             newLocation = location;
-            currentLocationNumber = location.GetComponent<Location_r>().locationNumber;
 
             if (confirmTravelPanel)
             {
@@ -166,6 +165,8 @@ public class Map_r : MonoBehaviour
 
     public void YesTravel()
     {
+        currentLocationNumber = newLocation.GetComponent<Location_r>().locationNumber;
+
         if (!GM)
             GM = GameObject.Find("GameManager").GetComponent<GameManager_r>();
 

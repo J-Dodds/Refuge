@@ -30,6 +30,8 @@ public class GameManager_r : MonoBehaviour {
     public float reportActiveTime = 1f;
     public ScreenType currentScreen, prevScreen;
     Dictionary<ScreenType, GameObject> screens = new Dictionary<ScreenType, GameObject>();
+    public List<GameObject> hubs = new List<GameObject>();
+    GameObject currentHub;
 
     public int partyMoney;
     public float partySpeed = 1f;
@@ -81,6 +83,7 @@ public class GameManager_r : MonoBehaviour {
         screens.Add(ScreenType.STEnMap2, GameObject.FindGameObjectWithTag("ScreenHeshemDay"));
         screens.Add(ScreenType.STEnMap3, GameObject.FindGameObjectWithTag("ScreenWorldNight"));
         screens.Add(ScreenType.STDebug, GameObject.FindGameObjectWithTag("ScreenDebug"));
+        currentHub = hubs[0];
 
         if (!screens[ScreenType.STEnMap3])
             Debug.Log("World Night Map has gone walkabouts");
@@ -164,6 +167,15 @@ public class GameManager_r : MonoBehaviour {
 
     public void ChangeToPrevScreen() {
         ChangeScreen(prevScreen);
+    }
+
+    public void SwitchToHub(int HubIndex) {
+        ChangeScreen(ScreenType.STHubMap);
+        foreach (GameObject hub in hubs) {
+            hub.SetActive(false);
+        }
+        currentHub = hubs[HubIndex];
+        currentHub.SetActive(true);
     }
 
     public GameObject WealthiestChar(Item_r.ItemType itemType) {

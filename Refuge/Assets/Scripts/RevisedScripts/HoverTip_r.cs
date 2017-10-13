@@ -29,9 +29,9 @@ public class HoverTip_r : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         GM.mouseHoverTip.SetActive(true);
         GM.mouseHoverTip.GetComponentInChildren<Text>().text = hoverTip;
         isOver = true;
-        if (GM.currentScreen == GameManager_r.ScreenType.STHubMap)
-            GM.mouseHoverTip.GetComponentInChildren<Text>().color = Color.black;
-        else
+        //if (GM.currentScreen == GameManager_r.ScreenType.STHubMap)
+        //    GM.mouseHoverTip.GetComponentInChildren<Text>().color = Color.black;
+        //else
             GM.mouseHoverTip.GetComponentInChildren<Text>().color = Color.white;
 
         if (GetComponent<InventorySlot_r>() && GetComponent<InventorySlot_r>().item)

@@ -33,6 +33,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
     public bool generated = false;
     public List<GameObject> possibleLocations = new List<GameObject>();
     public AudioManager _AudioManager;
+    public int hubArea = 0;
 
     public bool travelReady = false;
 
@@ -90,6 +91,7 @@ public class Location_r : MonoBehaviour, IPointerClickHandler {
             }
             else
             {
+                GameObject.Find("GameManager").GetComponent<GameManager_r>().SwitchToHub(hubArea);
                 GameObject.Find("GameManager").GetComponent<GameManager_r>().ChangeScreen(destinationScreen);
                 GameObject.Find("GameManager").GetComponent<GameManager_r>().conditionReportText.text = "";
             }

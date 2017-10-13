@@ -91,7 +91,7 @@ public class Character_r : MonoBehaviour
         Destroy(item.gameObject);
         GameObject.Find("GameManager").GetComponent<GameManager_r>().carryingItem = null;
 
-        if (Random.Range(0f, 1f) > item.injuryChance)
+        if (Random.Range(0f, 1f) < item.injuryChance)
         {
             injured = true;
             GM.conditionReportText.text = charName + " has gotten injured! ";
@@ -99,7 +99,7 @@ public class Character_r : MonoBehaviour
             injurySprite.SetActive(true);
         }
 
-        if (Random.Range(0f, 1f) > item.choleraChance)
+        if (Random.Range(0f, 1f) < item.choleraChance)
         {
             cholera = true;
             GM.conditionReportText.text = charName + " has gotten cholera! ";
@@ -107,7 +107,7 @@ public class Character_r : MonoBehaviour
             choleraSprite.SetActive(true);
         }
 
-        if (Random.Range(0f, 1f) > item.dysenteryChance)
+        if (Random.Range(0f, 1f) < item.dysenteryChance)
         {
             dysentery = true;
             GM.conditionReportText.text = charName + " has gotten dysentery! ";
@@ -115,7 +115,7 @@ public class Character_r : MonoBehaviour
             dysenterySprite.SetActive(true);
         }
 
-        if (Random.Range(0f, 1f) > item.typhoidChance)
+        if (Random.Range(0f, 1f) < item.typhoidChance)
         {
             typhoid = true;
             GM.conditionReportText.text = charName + " has gotten typhoid! ";
